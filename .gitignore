@@ -1,0 +1,28 @@
+# Editor temporary files
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+*.orig
+
+# VS Code / IDE
+.vscode/
+*.code-workspace
+
+# Compiled binaries and objects
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+*.class
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
