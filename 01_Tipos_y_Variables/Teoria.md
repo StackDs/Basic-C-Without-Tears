@@ -50,6 +50,9 @@ Para una arquitectura de 64 bits, por ejemplo x86-64 con GCC en Linux, puedes us
 | `double` | 8 bytes (64 bits) | aprox ±1.7 x $10^{308}$|
 | `bool` | 1 byte (8 bits) | 0 o 1|
 
+> [!WARNING]
+> \***El tipo `bool` no es nativo por defecto**. A diferencia de Python donde usas `True` o `False` directamente, en C debes incluir la cabecera `<stdbool.h>` al principio de tu archivo para poder usar las palabras clave `bool`, `true` y `false`.
+
 ### Un poco de arquitectura de computadores
 
 Bastante información, ¿verdad? Bueno, en vez de que tengas que memorizar toda esa tabla, te voy a enseñar a calcular esos valores, así que vamos a ello.
@@ -249,6 +252,15 @@ Ahora veremos un poco cómo podemos declarar variables, asignarles valores y act
 
 En C, todas las variables deben declararse explícitamente antes de ser utilizadas. Una declaración anuncia las propiedades de una variable (su tipo y nombre) al compilador, pero no necesariamente reserva almacenamiento físico (eso lo hace una definición).
 
+### Reglas para nombrar variables
+A diferencia de Python, C tiene reglas muy estrictas para nombrar tus variables:
+- **Solo pueden contener** letras (a-z, A-Z), números (0-9) y guiones bajos (`_`).
+- **No pueden empezar con un número** (ej: `1alcohol` es inválido, pero `alcohol1` sí).
+- **No pueden contener espacios ni caracteres especiales** (como `@`, `#`, `-`).
+- **Es sensible a mayúsculas y minúsculas**: `Variable` y `variable` son dos cosas distintas.
+- Acostúmbrate a usar convenciones estándar de la industria como `snake_case` o `camelCase`.
+- Combinando espacios y guiones bajos para reemplawlzar los espacios.
+
 ```
 int main(){
 int IronMaiden, SOAD, Metallica;  // Declaramos 3 variables enteras.
@@ -314,6 +326,20 @@ De igual forma las equivalencias como:
 - \-=
 
 Siguen presentes.
+
+### Conversión de Tipos (Type Casting)
+
+Algo fundamental al cambiar de Python a C es cómo se manejan los tipos al operar con ellos. En Python, si divides `5 / 2`, obtienes `2.5`. En C, si divides dos enteros (`5 / 2`), el resultado es **siempre un entero** (el compilador trunca el decimal y te da `2`).
+
+Para obtener el resultado correcto, debes usar el *Type Casting* (conversión de tipos), que le dice al compilador "trata a este valor como si fuera de otro tipo temporalmente". Se hace poniendo el tipo deseado entre paréntesis antes del valor:
+
+```c
+int a = 5;
+int b = 2;
+// Casteo explícito: Convertimos 'a' a float antes de dividir. 
+// Esto hace que la división sea flotante (5.0 / 2 = 2.5).
+float resultado = (float) a / b; 
+```
 
 ---
 

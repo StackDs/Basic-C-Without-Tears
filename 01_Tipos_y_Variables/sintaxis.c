@@ -85,6 +85,11 @@ int main(void){
 
   printf("Bandas (Declaracion unitaria): Megadeth = %d, RCHP = %d, MCR = %d\n", Megadeth, RCHP, MCR);
 
+  // Demostracion de variables no inicializadas (Basura en memoria)
+  int variable_basura;
+  printf("\n--- Demostracion de variable sin inicializar ---\n");
+  printf("Valor de variable_basura: %d (Este valor es impredecible)\n", variable_basura);
+
   printf("\n--- Operadores de actualizacion ---\n");
   int contador = 10;
   contador++; //Incremento en 1
@@ -92,7 +97,11 @@ int main(void){
   contador +=5; // Equivalente para sumar 5
   printf("Contador despues de sumar 5 = %d\n", contador); 
 
-  //No te preocupes por los parametros de un printf, lo veremos despues en el modulo de Entrada y salida
+  // Nota rapida sobre los formatos de printf (lo veremos a fondo despues):
+  // %d -> enteros (int)
+  // %f -> flotantes (float/double)
+  // %c -> caracteres (char)
+  // %s -> strings (cadenas de texto)
 
   /** Post y pre incremento
    *  En C existen 2 tipos de incrementos:
