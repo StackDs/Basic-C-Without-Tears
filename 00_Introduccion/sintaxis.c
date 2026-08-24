@@ -6,6 +6,14 @@
    ############################################################
 **/
 
+/** 0. Comentarios en C:
+ * Como habras notado, aqui no usamos '#' para comentar como en Python.
+ * En C tenemos dos formas de documentar nuestro codigo:
+ * - Comentarios de linea: Se hacen usando '//' al inicio, sirven para una sola linea.
+ * - Comentarios de bloque: Se abren con '/*' y se cierran con '*/'.
+ *   Permiten comentar multiples lineas (como este mismo bloque o el titulo de arriba).
+**/
+
 /** 1. Directivas generales del preprocesador:
  * En C, las lineas que comienzan con '#' son procesadas por el procesador antes
  * de la compilacion real.

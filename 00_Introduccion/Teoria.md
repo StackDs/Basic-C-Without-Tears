@@ -128,6 +128,13 @@ gcc ludopatia.c -o AllInRed    // Para compilar
 ./AllInRed                     // Para ejecutar 
 ```
 
+**Compilación con advertencias (MUY RECOMENDADO)**
+```
+gcc -Wall ludopatia.c -o AllInRed
+```
+
+> Usar `-Wall` (Warnings All) obliga al compilador a mostrarte advertencias sobre posibles errores en tu código antes de que ocurran. Como C no te protege de tus propios errores, activar los *warnings* es la mejor práctica que puedes adoptar.
+
 La única diferencia entre ambas es que, con la segunda opción, puedes ponerle el nombre que quieras al ejecutable de tu programa. Por defecto, `gcc` genera una salida llamada **a.out**, para que lo tengas en consideración.
 
 - **Portabilidad:** C es portátil en el sentido de que un código bien escrito puede compilarse y ejecutarse sin cambios en prácticamente cualquier computadora. Sin embargo, el archivo compilado generado en una arquitectura Intel de 64 bits **no funcionará** en un procesador ARM, como por ejemplo en un teléfono o una Raspberry Pi, ni en un sistema operativo diferente sin volverlo a compilar desde el código fuente.
