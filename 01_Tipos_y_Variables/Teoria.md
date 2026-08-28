@@ -314,6 +314,7 @@ Para actualizar las variables que creamos podemos usar los operadores que conoce
 - \- para restar
 - \/ para dividir
 - \* para multiplicar 
+- \% para obtener el módulo (o resto) de una división entera. ¡Ojo! En C el operador `%` solo funciona con tipos enteros (`int`, `char`, etc.), no con flotantes.
 
 También tenemos unos operadores que probablemente no conozcas, los cuales son:
 
@@ -326,6 +327,20 @@ De igual forma las equivalencias como:
 - \-=
 
 Siguen presentes.
+
+### L-values y R-values (El lado izquierdo y derecho)
+
+Cuando hablamos de asignaciones en C, es crucial entender dos conceptos fundamentales que el compilador utiliza constantemente: **lvalue** y **rvalue**. 
+
+- **lvalue (Locator Value):** Es una expresión que hace referencia a una ubicación de memoria física y persistente que tiene un identificador (un nombre) y puede almacenar datos. Se llama "lvalue" porque habitualmente va en el lado izquierdo (Left) de una asignación (`=`). Por ejemplo, una variable `int edad;` es un lvalue.
+- **rvalue (Read Value):** Es un valor temporal que no tiene un espacio de memoria persistente asignado en tu código. Son datos crudos, cálculos temporales o literales. Suelen ir en el lado derecho (Right) de una asignación. Un número como `5` o el resultado de `2 + 3` son rvalues.
+
+```c
+int a = 5;      // 'a' es lvalue, '5' es rvalue
+a = a + 10;     // 'a' es lvalue, 'a + 10' es un rvalue temporal
+// 10 = a;      // ERROR de compilación: '10' es un rvalue, no puede ir a la izquierda.
+```
+En resumen, un *lvalue* es "un recipiente", y un *rvalue* es "el contenido". No puedes meter un recipiente dentro de un contenido.
 
 ### Conversión de Tipos (Type Casting)
 

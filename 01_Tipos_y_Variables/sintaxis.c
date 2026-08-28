@@ -97,9 +97,27 @@ int main(void){
   contador +=5; // Equivalente para sumar 5
   printf("Contador despues de sumar 5 = %d\n", contador); 
 
+  // Operador Modulo (%)
+  int dividendo = 10;
+  int divisor = 3;
+  int resto = dividendo % divisor; // Devuelve el resto de la division entera (10 / 3 = 3, resto = 1)
+  printf("El resto de dividir %d entre %d es: %d\n", dividendo, divisor, resto);
+
+  /** L-values y R-values
+   * Un lvalue (left-value) representa un objeto con memoria persistente (ej: una variable 'recipiente').
+   * Un rvalue (right-value) representa un valor temporal o literal (ej: 100).
+   * Solo los lvalues pueden estar a la izquierda de un operador de asignacion (=).
+   **/
+  int recipiente = 100; // 'recipiente' es lvalue, '100' es rvalue.
+  // 100 = recipiente; // Esto daria error de compilacion: lvalue required as left operand of assignment
+
   // Nota rapida sobre los formatos de printf (lo veremos a fondo despues):
-  // %d -> enteros (int)
-  // %f -> flotantes (float/double)
+  // %d / %i -> enteros (int, short)
+  // %u -> enteros sin signo (unsigned int)
+  // %ld / %lld -> enteros largos (long, long long)
+  // %f -> flotantes (float)
+  // %lf -> flotantes de doble precision (double)
+  // %Lf -> flotantes de precision extendida (long double)
   // %c -> caracteres (char)
   // %s -> strings (cadenas de texto)
 
