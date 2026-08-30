@@ -24,6 +24,24 @@ printf("Hola Mundo\n");
 printf("Me llamo \"C\" y uso una barra \\.\n");
 ```
 
+### Acentos y la letra 'ñ' (El problema del idioma)
+Si intentas imprimir "Año" o "Canción" en C, probablemente veas caracteres extraños en la consola (como `Ao` o peor). Esto pasa porque C, por defecto, usa la configuración de idioma mínima (el "C" locale), que asume que el mundo entero habla inglés estándar donde no existen las tildes.
+
+Para que la terminal reconozca el español y renderice correctamente las tildes y las eñes, debes importar la librería `<locale.h>` y usar la función `setlocale` al inicio de tu programa:
+
+```c
+#include <stdio.h>
+#include <locale.h> // 1. Importar la libreria de localizacion
+
+int main() {
+    // 2. Forzamos a C a utilizar codificación UTF-8 (español) para soportar caracteres especiales
+    setlocale(LC_ALL, "es_ES.UTF-8"); // También puedes usar "en_US.UTF-8" o "" según tu sistema
+    
+    printf("¡Año exitoso, misión cumplida y canción cantada!\n");
+    return 0;
+}
+```
+
 ### Especificadores de formato
 En Python podías hacer `print(f"Mi edad es {edad}")`. En C, `printf` usa "marcadores" o **especificadores de formato** dentro del texto, seguidos de las variables correspondientes en orden:
 
