@@ -6,6 +6,10 @@ Bienvenidos al maravilloso submundo de las funciones, donde por fin vas a dejar 
 
 ## 1. Conceptos Básicos y Modularidad
 
+<div align="center">
+  <img src="./imgs/modularidad.jpeg" alt="Modularidad" />
+</div>
+
 ### El Principio de Modularidad
 Imagina que estás armando un mueble sin instrucciones (algo que seguro has hecho). Si todas las piezas vinieran pegadas en un solo bloque gigantesco, sería imposible de manejar. **La modularidad** consiste en dividir un programa grande y complejo en bloques de código pequeños, independientes y reutilizables. Básicamente, aislar las tareas para que si algo explota, sepas exactamente en qué bloque fue y no tengas que leer 2000 líneas de código para encontrar el error.
 
@@ -39,6 +43,10 @@ void insultar_usuario(void){
 ---
 
 ## 2. Declaración vs. Definición (Prototipos)
+
+<div align="center">
+  <img src="./imgs/prototipo.jpeg" alt="Prototipos" />
+</div>
 
 ### El orden de lectura de C
 El compilador de C es como un burócrata muy estricto y de mente cerrada: lee el archivo de arriba hacia abajo, línea por línea. Si intentas invocar una función que está escrita *debajo* de donde la llamas, el compilador entrará en pánico diciendo algo como "Ni puta idea que es esto bro". Necesita "conocer" la función antes de usarla.
@@ -78,6 +86,10 @@ int multiplicar(int x, int y){
 
 ## 3. Retorno de Valores
 
+<div align="center">
+  <img src="./imgs/retorno.png" alt="Retorno" />
+</div>
+
 ### La sentencia `return`
 La palabra mágica `return` hace dos cosas:
 1. Devuelve el resultado prometido (del tipo declarado) a quien llamó a la función.
@@ -109,6 +121,10 @@ int main(){
 ---
 
 ## 4. Paso de Parámetros: Copia vs. Referencia
+
+<div align="center">
+  <img src="./imgs/copia_referencia.jpeg" alt="Copia vs Referencia" />
+</div>
 
 Aquí es donde C separa a los niños de los adultos (otra vez). Presta atención.
 
@@ -151,6 +167,10 @@ Los arreglos son especiales. **Un arreglo NUNCA se copia al pasarlo a una funci�
 
 ## 5. Ámbito de las Variables (Scope)
 
+<div align="center">
+  <img src="./imgs/scope.jpg" alt="Scope" />
+</div>
+
 El "scope" o ámbito dicta dónde vive y respira una variable. Si no entiendes esto, te la pasarás peleando con errores de "variable undeclared".
 
 ### Variables Locales
@@ -176,6 +196,10 @@ void contador_persistente(){
 ---
 
 ## 6. Enfoques de Resolución: Iterativo vs. Recursivo
+
+<div align="center">
+  <img src="./imgs/recursivo.jpg" alt="Recursividad" />
+</div>
 
 Hay dos formas principales de hacer que una función repita cosas. 
 
@@ -217,6 +241,10 @@ El código recursivo suele ser muy elegante y corto. **PERO**, cada vez que una 
 ---
 
 ## 7. Argumentos desde la Consola (Pasando datos al main)
+
+<div align="center">
+  <img src="./imgs/argumentos.png" alt="Argumentos Consola" />
+</div>
 
 ¿Te has preguntado por qué el `main` a veces tiene cosas raras adentro de los paréntesis? Hasta ahora hemos usado `int main()`, o `int main(void)`, que significa que nuestro programa arranca sin recibir nada del exterior. Pero podemos hacer que reciba datos *justo cuando el usuario lo ejecuta desde la terminal*.
 

@@ -6,6 +6,13 @@ Este módulo aborda los cimientos del sistema de tipado estático de C y cómo e
 
 ## 1. Python vs C  
 
+<div align="center">
+  <img src="./imgs/Python_Vs_C.png" alt="Python vs C" />
+</div>  
+
+
+
+
 Para un programador que viene de Python, entender variables en C requiere cambiar el chip con el que piensas: 
 
 | **Concepto** | **Python** | **C** |  
@@ -18,6 +25,10 @@ Para un programador que viene de Python, entender variables en C requiere cambia
 ---
 
 ## 2. Tipos de datos Primitivos y sus Tamaños
+
+<div align="center">
+  <img src="./imgs/Primitives.png" alt="Tipos de datos Primitivos" />
+</div>
 
 
 En C, los tipos de datos determinan el conjunto de valores válidos que un objeto puede almacenar y las operaciones válidas permitidas sobre él. Existen 4 tipos de **datos básicos.**
@@ -250,6 +261,10 @@ Ahora veremos un poco cómo podemos declarar variables, asignarles valores y act
 
 ## 3. Declaraciones, asignaciones y actualizaciones
 
+<div align="center">
+  <img src="./imgs/Declaration.PNG" alt="Declaraciones y asignaciones" />
+</div>
+
 En C, todas las variables deben declararse explícitamente antes de ser utilizadas. Una declaración anuncia las propiedades de una variable (su tipo y nombre) al compilador, pero no necesariamente reserva almacenamiento físico (eso lo hace una definición).
 
 ### Reglas para nombrar variables
@@ -360,6 +375,10 @@ float resultado = (float) a / b;
 
 ## 4. Representación de Constantes 
 
+<div align="center">
+  <img src="./imgs/representacion.jpg" alt="Representación de Constantes" />
+</div>
+
 C permite expresar valores constantes de manera muy especifica en el código para forzar su tipo:
 
 ### Constantes enteras
@@ -403,6 +422,10 @@ Existen algunas más pero estas 3 son importantes por ahora.
 
 ## 5. Caracteres
 
+<div align="center">
+  <img src="./imgs/caracteres.png" alt="Caracteres" />
+</div>
+
 Por ahora no vamos a ahondar mucho en esto, ya que lo veremos a fondo en el módulo de strings. Así que, por ahora, lo único que tienes que saber es que un `string` en C no es más que un arreglo de caracteres y se declara de esta forma:
 
 ```
@@ -415,6 +438,10 @@ char invitacion[] = "Vamos a tomar"; // El compilador calcula el tamaño exacto 
 ---
 
 ## 6. Variables constantes (const)
+
+<div align="center">
+  <img src="./imgs/constantes.jpeg" alt="Variables constantes" />
+</div>
 
 El calificador **const** puede aplicarse a la declaración de cualquier variable para anunciar que su valor no será modificado durante su ejecución.
 
