@@ -1,0 +1,3 @@
+Hola, disco duro!
+Tenemos 3 vidas restantes.
+Adios, archivo.
