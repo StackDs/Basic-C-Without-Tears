@@ -8,6 +8,10 @@ En C, si una función falla, a menudo se encoge de hombros, te devuelve un núme
 
 ## 1. El Paradigma de Errores en C
 
+<p align="center">
+  <img src="imgs/errores.jpg" alt="Imagen Seccion 1" width="600">
+</p>
+
 ### La Ausencia de Excepciones
 En C **no hay bloques `try/catch` nativos** ni "errores que detienen el programa automáticamente". Si `malloc()` falla al pedir memoria a tu sistema operativo, simplemente te devuelve `NULL` y sigue de largo. Si intentas usar ese `NULL` en la siguiente línea, el sistema operativo asesinará tu programa. La responsabilidad de revisar si algo falló recae única y exclusivamente en ti.
 
@@ -20,6 +24,10 @@ fprintf(stderr, "Error catastrófico: El puntero era NULL.\n");
 ---
 
 ## 2. Patrones de Códigos de Retorno (Return Codes)
+
+<p align="center">
+  <img src="imgs/retorno.jpeg" alt="Imagen Seccion 2" width="600">
+</p>
 
 Como no hay excepciones, C usa el valor de retorno de las funciones para avisarte si hubo éxito o tragedia. Existen tres estándares de la industria para esto:
 
@@ -57,6 +65,10 @@ int leer_sensor(float *resultado) {
 
 ## 3. La variable global `errno` (`<errno.h>`)
 
+<p align="center">
+  <img src="imgs/errno.png" alt="Imagen Seccion 3" width="600">
+</p>
+
 Vale, la función devolvió `-1` o `NULL`. Pero, ¿*por qué* falló? ¿Se acabó la memoria? ¿Faltan permisos? ¿El archivo estaba bloqueado? Aquí entra el salvavidas del estándar POSIX y de la librería de C: `errno`.
 
 ### ¿Qué es `errno`?
@@ -72,6 +84,10 @@ Las funciones exitosas **no** limpian el valor de `errno` por arte de magia. Por
 ---
 
 ## 4. Traducción de Errores a texto humano
+
+<p align="center">
+  <img src="imgs/traduccion.png" alt="Imagen Seccion 4" width="600">
+</p>
 
 A menos que seas una suerte de autómata, no sabes de memoria qué significa el "Error 2" (`ENOENT`) o el "Error 13" (`EACCES`). Afortunadamente, C nos da herramientas para traducirlos.
 
@@ -96,6 +112,10 @@ fprintf(stderr, "Error crítico %d: %s\n", errno, strerror(errno));
 
 ## 5. Terminación Controlada (`<stdlib.h>`)
 
+<p align="center">
+  <img src="imgs/abortar.jpg" alt="Imagen Seccion 5" width="600">
+</p>
+
 A veces, el error es simplemente insalvable. Si tu programa de cálculo de nóminas no puede abrir la base de datos de los empleados, no tiene sentido seguir ejecutándose. El programa debe morir.
 
 ### La función `exit()`
@@ -109,6 +129,10 @@ Cuando matas tu programa, debes avisarle al Sistema Operativo si lo mataste por 
 ---
 
 ## 6. Aserciones y Contratos (`<assert.h>`)
+
+<p align="center">
+  <img src="imgs/assert.jpg" alt="Imagen Seccion 6" width="600">
+</p>
 
 Esto es una herramienta exclusiva para ti, el programador, durante tus madrugadas de desarrollo. **No es para interactuar con los usuarios**.
 
@@ -135,6 +159,10 @@ Lo hermoso de `assert` es que cuando terminas tu programa y estás listo para co
 ---
 
 ## 7. Saltos no locales (El "Try-Catch" primitivo de C) - Opcional/Avanzado
+
+<p align="center">
+  <img src="imgs/saltos.jpg" alt="Imagen Seccion 7" width="600">
+</p>
 
 C tiene un lado oscuro escondido en la librería `<setjmp.h>`. 
 

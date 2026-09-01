@@ -6,7 +6,7 @@ C es un terreno distinto: puede que le tengas miedo al inicio y, en realidad, de
 Es una transición fundamental para entender cómo interactúa tu software con el hardware del sistema. Si no me crees, pregúntale a mi tío **Linus Torvalds**. Comenzaremos explicando la filosofía de C y su modelo de ejecución compilado. Ya que si C es un lenguaje compilado, a diferencia de Python, que es un lenguaje interpretado, para no hacer esto tan largo, comencemos con un poco de teoría y cosas que deberías saber de antemano.
 
 <div align="center">
-  <img src="./imgs/C.png" alt="C programming language" width="400">
+  <img src="./imgs/C.png" alt="C programming language" width="400" width="600">
 </div>
 
 --- 
@@ -81,14 +81,16 @@ Cuando necesitas que un bloque de memoria sobreviva a la ejecución de la funci�
 Esto, en programas grandes, es estrictamente necesario. En sistemas pequeños, una vez termine la ejecución del programa, liberará automáticamente la memoria pedida de forma automática; de igual forma, es una buena práctica hacerlo en el código.  
 
 <div align="center">
-    <img src="./imgs/memoria.jpg" alt="Modelo de memoria" width="400">
+    <img src="./imgs/memoria.jpg" alt="Modelo de memoria" width="400" width="600">
 </div>
 
 ---
 
 ## 3. Modelo de Ejecución: Interpretado vs. Compilado  
 
-![Modelo de Ejecucion](./imgs/ejecucion.jpg)
+<p align="center">
+  <img src="./imgs/ejecucion.jpg" alt="Modelo de Ejecucion" width="600">
+</p>
 
 Anteriormente te comenté que C es un lenguaje **compilado** y que Python es un lenguaje **interpretado**. Probablemente no sepas de qué demonios estoy hablando, pero bueno, cálmate y déjame explicarte.  
 

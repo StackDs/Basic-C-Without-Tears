@@ -11,7 +11,7 @@ Y créeme, si no entiendes cómo C lee lo que escribes, las cosas van a salir mu
 ## 1. Salida de Datos (Output)
 
 <div align="center">
-  <img src="./imgs/ouput.jpg" alt="Salida de Datos" />
+  <img src="./imgs/ouput.jpg" alt="Salida de Datos" width="600">
 </div>
 
 La función reina para mostrar cosas por pantalla es `printf` (Print Formatted). No es solo imprimir texto, es un motor de formateo.
@@ -101,7 +101,7 @@ Si no necesitas formatear variables y solo quieres imprimir texto directo, `prin
 ## 2. Entrada Básica de Datos (Input)
 
 <div align="center">
-  <img src="./imgs/Input.jpeg" alt="Entrada de Datos" />
+  <img src="./imgs/Input.jpeg" alt="Entrada de Datos" width="600">
 </div>
 
 Para capturar datos usamos `scanf` (Scan Formatted). Es la contraparte de `printf`.
@@ -143,7 +143,7 @@ if (scanf("%d", &edad) != 1) {
 ## 3. Captura de Cadenas con Espacios (Strings)
 
 <div align="center">
-  <img src="./imgs/catch_strings.jpg" alt="Cadenas con Espacios" />
+  <img src="./imgs/catch_strings.jpg" alt="Cadenas con Espacios" width="600">
 </div>
 
 Aquí es donde C separa a los niños de los adultos.
@@ -188,7 +188,7 @@ scanf("%[^\n]", nombre); // Lee la línea completa con espacios
 ## 4. Gestión del Buffer de Entrada (stdin)
 
 <div align="center">
-  <img src="./imgs/buffer.png" alt="Buffer de Entrada" />
+  <img src="./imgs/buffer.png" alt="Buffer de Entrada" width="600">
 </div>
 
 Este es el culpable del 90% de los dolores de cabeza de los principiantes en C.
@@ -228,7 +228,7 @@ while ((c = getchar()) != '\n' && c != EOF); // Limpia el buffer manualmente
 ## 5. Flujos de Consola Avanzados (fprintf)
 
 <div align="center">
-  <img src="./imgs/Stderror.jpg" alt="Flujos de Consola" />
+  <img src="./imgs/Stderror.jpg" alt="Flujos de Consola" width="600">
 </div>
 
 En UNIX y C, todo es un archivo. La consola donde escribes y lees también está tratada como "archivos" virtuales o **flujos de datos (streams)**. C abre 3 por defecto:

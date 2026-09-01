@@ -6,6 +6,10 @@ Llegamos a los tan lindos Strings, cadenas de caracteres que en Python tienen su
 
 ## 1. El Concepto Fundamental y el Carácter Nulo (`\0`)
 
+<p align="center">
+  <img src="imgs/caracter_nulo.png" alt="Carácter Nulo" width="600">
+</p>
+
 ### La Ilusión del String
 En C, un string es simplemente un **arreglo unidimensional de tipo `char`**. Punto. No hay un tipo `String` mágico. Es solo una fila continua de letras guardadas en la memoria que, por convención, decidimos que forman palabras.
 
@@ -22,6 +26,10 @@ Tienes que entender la diferencia entre lo que reservas y lo que usas:
 ---
 
 ## 2. Declaración e Inicialización
+
+<p align="center">
+  <img src="imgs/inicializacion.jpg" alt="Declaración e Inicialización" width="600">
+</p>
 
 ### Asignación literal (Sintaxis rápida)
 La forma más amigable y recomendada para inicializar un string al momento de declararlo.
@@ -51,6 +59,10 @@ char *texto = "Hola";
 ---
 
 ## 3. Entrada y Salida (Integración del Módulo I/O)
+
+<p align="center">
+  <img src="imgs/entrada y salida.jpg" alt="Entrada y Salida" width="600">
+</p>
 
 ### Impresión
 Tienes las herramientas clásicas de `printf` usando el formato `%s` y la función rápida `puts`.
@@ -88,6 +100,10 @@ nombre[strcspn(nombre, "\n")] = '\0';
 ---
 
 ## 4. Manipulación de bloques de texto: La librería `<string.h>`
+
+<p align="center">
+  <img src="imgs/manipulacion.png" alt="Manipulación de Strings" width="600">
+</p>
 
 Como los strings son arreglos, **los operadores matemáticos no funcionan**. No puedes usar `=`, `+` ni `==`. Hacer `cadena1 = cadena2;` es un error tonto, porque estarías intentando cambiar la dirección de memoria de un arreglo constante, no copiando el texto. Para trabajar con ellos dependemos de las funciones que nos regala `<string.h>`.
 
@@ -157,6 +173,10 @@ if (arroba != NULL){
 
 ## 5. Análisis y modificación carácter por carácter: La librería `<ctype.h>`
 
+<p align="center">
+  <img src="imgs/ctype.png" alt="Librería ctype" width="600">
+</p>
+
 Es el complemento perfecto para analizar y modificar strings letra por letra. Típicamente lo usas dentro de un bucle que recorre el string hasta chocar con el nulo: `while(cadena[i] != '\0')`.
 
 ### Evaluación de caracteres
@@ -193,6 +213,10 @@ for (int i = 0; grito[i] != '\0'; i++){
 
 ## 6. Conversión de texto a números: La librería `<stdlib.h>`
 
+<p align="center">
+  <img src="imgs/atoi.png" alt="Conversión atoi" width="600">
+</p>
+
 A veces tendrás strings que en realidad son números disfrazados, como `"42"` o `"3.14"`. No puedes simplemente sumarles `5`. Tienes que convertirlos al tipo de dato numérico correspondiente usando `<stdlib.h>`.
 
 ### Las funciones básicas (Rápidas pero un poco peligrosas)
@@ -224,6 +248,10 @@ long numero = strtol(texto, &resto, 10); // Base 10
 ---
 
 ## 7. Las "Trampas Clásicas" de los Strings
+
+<p align="center">
+  <img src="imgs/Buffer_overflow.png" alt="Buffer Overflow" width="600">
+</p>
 
 ### El Desbordamiento por el `\0` (Olvido Mortal)
 ¿Qué pasa si declaras esto?

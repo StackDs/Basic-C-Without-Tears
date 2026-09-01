@@ -8,6 +8,10 @@ Bienvenidos al nivel más bajo de un sistema: los bits.
 
 ## 1. Fundamentos: El Sistema Binario y Tipos de Datos
 
+<p align="center">
+  <img src="imgs/interruptor.jpg" alt="Imagen Seccion 1" width="600">
+</p>
+
 Antes de manipular bits, hay que entender cómo demonios los guarda tu computadora.
 
 ### El mapa de bits
@@ -31,6 +35,10 @@ En C, cualquier número precedido por `0x` es hexadecimal. Así que en lugar de 
 
 ## 2. Los 6 Operadores a Nivel de Bits
 
+<p align="center">
+  <img src="imgs/cirujano.jpeg" alt="Imagen Seccion 2" width="600">
+</p>
+
 Es **crucial** que dejes de confundir a estos operadores con los operadores lógicos (`&&`, `||`, `!`) que viste en el módulo de Control de Flujo. Los operadores lógicos evalúan la verdad de una expresión completa. Los operadores a nivel de bits evalúan **bit por bit**, de forma paralela.
 
 1. **AND a nivel de bits (`&`)**: Devuelve `1` solo si *ambos* bits son `1`. Funciona como un **filtro**.
@@ -43,6 +51,10 @@ Es **crucial** que dejes de confundir a estos operadores con los operadores lóg
 ---
 
 ## 3. Máscaras de Bits (Bitmasking)
+
+<p align="center">
+  <img src="imgs/mascara.jpeg" alt="Imagen Seccion 3" width="600">
+</p>
 
 Este es el concepto central de todo el módulo. Imagina que tienes 8 bits y quieres modificar el tercero, pero **sin alterar** a sus siete vecinos inocentes. Para eso fabricas una "máscara".
 
@@ -63,6 +75,10 @@ estado |= BIT_LED_ROJO; // Ahora sé que estás encendiendo un LED.
 
 ## 4. Las 4 Operaciones Clásicas (El "CRUD" de los bits)
 
+<p align="center">
+  <img src="imgs/crud.png" alt="Imagen Seccion 4" width="600">
+</p>
+
 Si quieres que te tomen en serio en la industria, debes memorizarte estos 4 patrones sagrados. Son los que usarás todos los días.
 
 * **Encender un bit (Set)**: Usas `OR`. 
@@ -82,6 +98,10 @@ Si quieres que te tomen en serio en la industria, debes memorizarte estos 4 patr
 
 ## 5. Aplicaciones Prácticas y Empaquetado de Datos
 
+<p align="center">
+  <img src="imgs/winrar.jpg" alt="Imagen Seccion 5" width="600">
+</p>
+
 ¿Para qué sirve toda esta tortura mental en el mundo real?
 
 ### Banderas de Estado (Flags)
@@ -96,6 +116,10 @@ Cuando mandas datos por internet (paquetes TCP/IP), los protocolos están diseñ
 ---
 
 ## 6. Campos de Bits en Structs (Bit-fields)
+
+<p align="center">
+  <img src="imgs/bitFields.png" alt="Imagen Seccion 6" width="600">
+</p>
 
 C te permite ser tan quisquilloso que puedes pedirle que un campo de un `struct` no ocupe los típicos 8, 16 o 32 bits, sino la cantidad exacta que a ti te dé la gana.
 
@@ -114,6 +138,10 @@ Como el procesador de tu computadora solo puede acceder a la memoria byte por by
 
 ## 7. Las "Trampas Mortales"
 
+<p align="center">
+  <img src="imgs/trampas.jpg" alt="Imagen Seccion 7" width="600">
+</p>
+
 Finalmente, las 3 formas más comunes de arruinar tu programa con bits.
 
 ### Confusión Letal (`&` vs `&&`)
@@ -130,6 +158,10 @@ Si tu variable `uint32_t` tiene 32 bits, intentar desplazarla a la izquierda 35 
 Para ser sincero, es poca la experiencia que tengo trabajando con bits, sin embargo, logré recuperar una serie de ejemplos que te ayudarán a manejarlos mejor.
 
 ## 8. Llegaste a otra hoguera
+
+<p align="center">
+  <img src="imgs/hoguera.jpg" alt="Imagen Seccion 8" width="600">
+</p>
 
 Felicidades, lograste aprender casi todo lo que C tiene para ofrecerte, los siguientes módulos serán orientados a debug, que básicamente es el arte de encontrar y solucionar errores en el código, usando herramientas de depuración estándar.
 

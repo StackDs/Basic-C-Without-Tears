@@ -6,6 +6,10 @@ Vamos a desmitificar los punteros: no son sintaxis arcana para hacerte sufrir (b
 
 ## 1. Fundamentos de Memoria y el Concepto de Puntero
 
+<p align="center">
+  <img src="imgs/fundamento.jpg" alt="Fundamentos de Punteros" width="600">
+</p>
+
 ### El Mapa de la RAM
 Imagina la memoria RAM como un gigantesco y aburrido bloque secuencial de casilleros de un solo byte. Cada casillero tiene un número de identificación único y secuencial, escrito en hexadecimal. Eso es una **dirección de memoria** (ej. `0x7ffc32a1`).
 
@@ -27,6 +31,10 @@ printf("La dirección de x es: %p\n", (void *)&x);
 ```
 
 ## 2. Declaración, Tipos y Desreferenciación
+
+<p align="center">
+  <img src="imgs/declaracion.jpeg" alt="Declaración y Desreferenciación" width="600">
+</p>
 
 ### Sintaxis de Declaración
 Para declarar un puntero usamos el asterisco `*`.
@@ -63,6 +71,10 @@ Un puntero no inicializado apuntará a una dirección al azar (basura en memoria
 
 ## 3. Aritmética de Punteros
 
+<p align="center">
+  <img src="imgs/aritmetica.png" alt="Aritmética de Punteros" width="600">
+</p>
+
 A los punteros se les pueden sumar y restar números, pero no funciona como la matemática que conocemos.
 
 ### Sumar y Restar a un Puntero
@@ -76,6 +88,10 @@ Puedes restar dos punteros *del mismo tipo* para saber cuántos "elementos" hay 
 Puedes usar `<`, `>`, `==` para saber qué dirección está "más adelante" en la memoria física. Muy útil para saber cuándo detenerte si estás recorriendo un bloque de memoria (como un arreglo).
 
 ## 4. La Dualidad: Punteros y Arreglos
+
+<p align="center">
+  <img src="imgs/arreglos y punteros.jpg" alt="Dualidad Arreglos Punteros" width="600">
+</p>
 
 Aquí es donde C te revela su gran secreto: **los arreglos son una mentira piadosa.**
 
@@ -102,6 +118,10 @@ for(int *p = arr; p < arr + 3; p++) {
 ```
 
 ## 5. Punteros Genéricos y Múltiples
+
+<p align="center">
+  <img src="imgs/puntero generico.png" alt="Punteros Genéricos" width="600">
+</p>
 
 ### Puntero Genérico (`void *`)
 Un puntero `void *` es el "comodín". Guarda una dirección de memoria pero **no sabe qué tipo de dato hay ahí**. 
@@ -168,6 +188,10 @@ Esto es lo que hace a los punteros tan poderosos: te permiten esculpir la memori
 
 ## 6. Gestión Dinámica de Memoria (El "Heap" y `<stdlib.h>`)
 
+<p align="center">
+  <img src="imgs/gestion dinamica.png" alt="Gestión Dinámica de Memoria" width="600">
+</p>
+
 > **[NOTA DE SUPERVIVENCIA]** 
 > *No nos volveremos locos aquí, ya que el próximo módulo (Memoria Dinámica) estará dedicado 100% a este infierno y a estas funciones en detalle. Pero necesitas tener el mapa mental.*
 
@@ -184,6 +208,10 @@ Esto es lo que hace a los punteros tan poderosos: te permiten esculpir la memori
 Estas funciones funcionan en base a punteros y direcciones de memoria, por lo que es necesario tener conocimientos de los mismos para poder utilizarlas correctamente.
 
 ## 7. Punteros Avanzados con Funciones
+
+<p align="center">
+  <img src="imgs/punteros avanzados.jpeg" alt="Punteros Avanzados" width="600">
+</p>
 
 ### El Riesgo de Retornar Punteros Locales
 **NUNCA, JAMÁS HAGAS ESTO:**
@@ -218,6 +246,10 @@ int (*operacion)(int, int);
 **¿Para qué sirve?** Para pasar funciones como parámetros de otras funciones. Ejemplo clásico: inyectarle tu propia función y criterio de ordenamiento a la función estándar `qsort` de C.
 
 ## 8. Seguridad y Errores Clásicos (Las "Trampas Mortales")
+
+<p align="center">
+  <img src="imgs/seguridad.png" alt="Errores y Seguridad con Punteros" width="600">
+</p>
 
 Los punteros te dan el poder absoluto sobre la máquina. Y como diría el tío Ben, un gran poder conlleva crashear el sistema miserablemente.
 

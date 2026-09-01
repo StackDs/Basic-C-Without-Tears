@@ -12,6 +12,10 @@ Cumplo con decirte esto, para que no seas tan idiota de guardar tus contraseñas
 
 ## 1. Fundamentos y el Puntero a Archivo
 
+<p align="center">
+  <img src="imgs/fundamento.jpg" alt="Imagen Seccion 1" width="600">
+</p>
+
 Antes de leer o escribir, debes entender que tu programa de C no puede tocar el disco duro directamente. Tiene que pedirle permiso al Sistema Operativo, y el OS establecerá un "puente" de comunicación, se usarán las conocidas como syscalls (llamadas al sistema), que son las encargadas de comunicarse con el kernel del sistema operativo para llevar a cabo ciertas operaciones que requieren privilegios especiales o bien que implican el uso de hardware, como el disco duro. De cualquier modo, en esta práctica no veremos el uso de las syscalls, sino que veremos el uso de las funciones de la biblioteca estándar de C que nos permiten manejar archivos.
 
 Para información adicional acerca de syscalls y del curso de sistemas operativos en general, tengo un repositorio en proceso que te puede ayudar más tarde.
@@ -36,6 +40,10 @@ El segundo parámetro le dice al OS cuáles son tus intenciones:
 Cuando abres un archivo, el Sistema Operativo reserva recursos y un *buffer* en memoria RAM para acelerar las escrituras. Si no haces `fclose(archivo);` al terminar, los últimos datos podrían quedarse atrapados en el buffer de la RAM y nunca guardarse en el disco duro. Además, el archivo quedará "bloqueado" por tu programa, impidiendo que otros lo usen. Así que recuerda, **Si lo abres, lo cierras**.
 
 ## 2. Gestión de Errores y Fin de Archivo
+
+<p align="center">
+  <img src="imgs/fin de archivo.jpg" alt="Imagen Seccion 2" width="600">
+</p>
 
 El disco duro es un entorno un tanto hostil (no hay permisos, no hay espacio, la ruta no existe). Nunca asumas que todo salió bien.
 
@@ -73,6 +81,10 @@ while (1) {
 
 ## 3. Archivos de Texto (Legibles para humanos)
 
+<p align="center">
+  <img src="imgs/txt.png" alt="Imagen Seccion 3" width="600">
+</p>
+
 Esta es la conexión directa con el módulo de consola (`printf` / `scanf`). Lo que sabías hacer en la pantalla, ahora lo vas a hacer en un `.txt` en el disco.
 
 ### Escritura
@@ -87,6 +99,10 @@ Esta es la conexión directa con el módulo de consola (`printf` / `scanf`). Lo 
 *   **`fscanf(archivo, "%s", cadena)`:** Lee texto con formatos, pero tiene exactamente los mismos peligros que el `scanf` normal (se detiene cobardemente en el primer espacio en blanco que encuentra). Cuidado con los nombres compuestos.
 
 ## 4. Archivos Binarios (El clon de la RAM)
+
+<p align="center">
+  <img src="imgs/archivos binarios.jpg" alt="Imagen Seccion 4" width="600">
+</p>
 
 Los archivos de texto son lentos y ocupan mucho espacio por culpa de la codificación de caracteres. Aquí entra la verdadera potencia de C: los archivos binarios. No son texto legible, son **copias exactas** de los ceros y unos tal como existen en la memoria RAM.
 
@@ -104,6 +120,10 @@ fwrite(inventario, sizeof(struct Producto), 10000, archivo);
 Y para cargar esa partida guardada o base de datos de vuelta a tu programa al día siguiente, usas un solo `fread`. Es brutalmente rápido y eficiente.
 
 ## 5. Navegación y Acceso Aleatorio
+
+<p align="center">
+  <img src="imgs/navegando.png" alt="Imagen Seccion 5" width="600">
+</p>
 
 A veces tienes un archivo de 5 Gigabytes y solo quieres leer el dato que está en el medio. Leerlo todo desde el principio (Acceso Secuencial) sería estúpido.
 
@@ -130,6 +150,10 @@ Y listo, en peso tendrás el tamaño total del archivo en bytes.
 Un atajo de cortesía que devuelve instantáneamente el cursor al byte cero (el inicio absoluto del archivo), exactamente igual que hacer `fseek(archivo, 0, SEEK_SET)`.
 
 ## 6. Llegaste a la hoguera
+
+<p align="center">
+  <img src="imgs/hoguera.png" alt="Imagen Seccion 6" width="600">
+</p>
 
 Felicidades, en este punto sabes bastante de C, muchas personas lo habrán dejado en la introducción, y es normal, es un lenguaje difícil, no te lleva de la mano como otros, pero la recompensa vale la pena.
 

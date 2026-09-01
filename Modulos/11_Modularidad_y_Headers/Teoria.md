@@ -8,6 +8,10 @@ Hoy vamos a aprender a *modularizar* tu código. Según las sagradas escrituras 
 
 ## 1. El Concepto de Modularidad y el Compilador
 
+<p align="center">
+  <img src="imgs/modularidad.png" alt="Imagen Seccion 1" width="600">
+</p>
+
 Antes de empezar a hachar código, necesitas entender *por qué* lo dividimos y, más importante aún, *cómo* C une las piezas.
 
 ### Divide y Vencerás
@@ -26,6 +30,10 @@ Por defecto, si creas una función `calcular_daño()` en `armas.c`, el archivo `
 ---
 
 ## 2. Archivos de Cabecera (.h): El Contrato
+
+<p align="center">
+  <img src="imgs/cabecera.png" alt="Imagen Seccion 2" width="600">
+</p>
 
 El archivo `.h` (Header) es la **interfaz pública** de tu módulo. Es como el menú de un restaurante: le dice a los otros archivos *qué* platos pueden pedir, pero no revela *cómo* el chef los prepara (la implementación queda oculta).
 
@@ -58,6 +66,10 @@ Cuando creas tus .h deberás incluirlos en tu programa usando las comillas doble
 
 ## 3. Archivos de Implementación (.c): El Ejecutor
 
+<p align="center">
+  <img src="imgs/ejecutor.jpeg" alt="Imagen Seccion 3" width="600">
+</p>
+
 El archivo `.c` es donde ocurre la magia. Es el código privado de tu módulo.
 
 ### El Vínculo
@@ -83,6 +95,10 @@ Así, todos los archivos que incluyan el `.h` sabrán que la variable existe en 
 ---
 
 ## 4. Guardas de Inclusión (Include Guards)
+
+<p align="center">
+  <img src="imgs/include guard.png" alt="Imagen Seccion 4" width="600">
+</p>
 
 Aquí es donde nos protegemos de la estupidez colectiva y del caos del preprocesador.
 
@@ -127,6 +143,10 @@ Lo pones como la primera línea de tu archivo `.h` y el compilador se encargará
 
 ## 5. Compilación de Múltiples Archivos (El Linker)
 
+<p align="center">
+  <img src="imgs/linker.png" alt="Imagen Seccion 5" width="600">
+</p>
+
 Ya tienes tus pedazos de código bien estructurados. ¿Cómo los ensamblamos?
 
 ### Compilación por Consola
@@ -149,6 +169,10 @@ Para eso existen los **Makefiles**. Un Makefile es una receta que automatiza tu 
 ---
 
 ## 6. Librerías "Header-Only" (Tendencia Moderna)
+
+<p align="center">
+  <img src="imgs/headerOnly.jpeg" alt="Imagen Seccion 6" width="600">
+</p>
 
 En el mundo moderno del desarrollo (especialmente en videojuegos y gráficos con C/C++), vas a notar librerías de terceros que se distribuyen en un único archivo que hace todo el trabajo, como `stb_image.h` (de Sean Barrett). 
 
@@ -175,6 +199,10 @@ Por lo general se usan funciones del tipo inline, las cuales se definen dentro d
 ---
 
 ## 7. Errores Clásicos (Troubleshooting)
+
+<p align="center">
+  <img src="imgs/errores.jpeg" alt="Imagen Seccion 7" width="600">
+</p>
 
 Aquí están los 3 errores más comunes que verás cuando comiences a modularizar tu código, y qué significan:
 

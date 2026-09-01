@@ -6,6 +6,10 @@ Bienvenidos a los Arreglos, el momento donde te das cuenta de que crear 100 vari
 
 ## 1. Introducción a los Arreglos (1D)
 
+<p align="center">
+  <img src="imgs/intro_arreglos.png" alt="Introducción a Arreglos" width="600">
+</p>
+
 ### Concepto Fundamental
 Un arreglo (o *array*) es básicamente una colección de múltiples variables **del mismo tipo de dato** que se almacenan de forma secuencial bajo un único nombre. Piensa en ellos como un casillero gigante donde cada compartimento tiene un número de serie.
 
@@ -43,6 +47,10 @@ Los corchetes `[]` son mágicos: sirven tanto para leer como para escribir (acce
 
 ## 2. Gestión en Memoria y la "Trampa de los Límites"
 
+<p align="center">
+  <img src="imgs/segmentation_fault.png" alt="Segmentation Fault" width="600">
+</p>
+
 ### Memoria Contigua
 Cuando pides un arreglo, C va a la RAM y reserva un bloque *continuo* de memoria. Los elementos se guardan uno exactamente al lado del otro. Si tienes un `int` de 4 bytes, el elemento 0 está en la dirección de memoria `X`, el elemento 1 en `X + 4`, y así sucesivamente. Esta es la razón principal de su increíble velocidad y eficiencia.
 
@@ -70,6 +78,10 @@ arr[10] = 666; // C te lo permite, pero tu programa probablemente explotará.
 ---
 
 ## 3. Iteración y Operaciones Básicas (1D)
+
+<p align="center">
+  <img src="imgs/arreglos.png" alt="Iteración de Arreglos" width="600">
+</p>
 
 ### El Combo Arreglo + Bucle `for`
 Son como uña y mugre. Usas la variable de control del bucle (`i`) como tu índice dinámico para recorrer el arreglo de principio a fin sin esfuerzo.
@@ -118,6 +130,10 @@ Todo programador en C necesita saber cómo hacer estas operaciones básicas:
 
 ## 4. Arreglos Multidimensionales (Matrices, Cubos y N-Dimensiones)
 
+<p align="center">
+  <img src="imgs/arreglo_multi.png" alt="Arreglos Multidimensionales" width="600">
+</p>
+
 ### Concepto Escalable
 Si un arreglo 1D es una fila, un 2D es un "arreglo de arreglos" (una tabla o matriz). Un 3D es un arreglo de tablas (un cubo o un libro). Y sí, C soporta $N$ dimensiones, solo sigue agregando corchetes.
 
@@ -150,6 +166,10 @@ for (int i = 0; i < 3; i++){
 ---
 
 ## 5. Paso de Arreglos (de cualquier dimensión) a Funciones
+
+<p align="center">
+  <img src="imgs/arreglos_funciones.png" alt="Paso de Arreglos a Funciones" width="600">
+</p>
 
 ### Referencia Implícita
 A diferencia de variables normales (que se pasan por valor), **los arreglos nunca se copian al pasarlos a una función**. C es extremadamente eficiente; simplemente envía un *puntero* (la dirección de memoria) al primer elemento. 
@@ -185,6 +205,10 @@ void procesarCubo(int cubo[][10][5], int profundidad){
 ---
 
 ## 6. Arreglos de Longitud Variable (VLAs)
+
+<p align="center">
+  <img src="imgs/stack_overflow.png" alt="Stack Overflow" width="600">
+</p>
 
 ### El Estándar C99
 Antes del estándar C99, el tamaño de un arreglo tenía que ser estrictamente una constante macro (`#define` o constante mágica). Con C99, se permitió declarar un arreglo usando una variable ingresada por el usuario en tiempo de ejecución.

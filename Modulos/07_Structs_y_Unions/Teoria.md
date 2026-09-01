@@ -6,6 +6,10 @@ Si llegaste hasta acá, ya podemos empezar a ver C de verdad. Superaste datos, f
 
 ## 1. Introducción a las Estructuras (`struct`)
 
+<p align="center">
+  <img src="imgs/struct.png" alt="Introducción a Structs" width="600">
+</p>
+
 ### El Concepto
 Una estructura (`struct`) es como una caja o un molde. Te permite agrupar variables de **diferentes tipos de datos** bajo un solo nombre. Es lo más cercano a la Programación Orientada a Objetos (como las clases) que vas a encontrar en C puro, pero sin métodos; aquí solo guardamos datos, la lógica va por separado.
 
@@ -36,6 +40,10 @@ int main() {
 
 ## 2. Acceso e Inicialización
 
+<p align="center">
+  <img src="imgs/inicializacion.png" alt="Acceso e Inicialización" width="600">
+</p>
+
 ### El Operador Punto (`.`)
 Para entrar a la caja y manipular lo que hay adentro, usamos el sagrado operador punto. Si `emp1` es el dueño, `.edad` es su propiedad.
 
@@ -65,6 +73,10 @@ emp_clon = emp2; // Ahora emp_clon tiene los datos de Jane Doe
 
 ## 3. Simplificación con `typedef`
 
+<p align="center">
+  <img src="imgs/typedef.png" alt="Uso de typedef" width="600">
+</p>
+
 ### El Problema
 Escribir la palabra `struct` cada vez que vas a declarar una variable, un parámetro, o un arreglo es un dolor de cabeza (`struct Empleado e1; struct Empleado e2;`). 
 
@@ -93,6 +105,10 @@ int main() {
 
 ## 4. Arreglos de Estructuras (Bases de datos en RAM)
 
+<p align="center">
+  <img src="imgs/arreglos_structs.jpg" alt="Arreglos de Structs" width="600">
+</p>
+
 ### El Concepto
 En el mundo real no vas a procesar un solo empleado o producto, vas a procesar cientos. Para eso creamos arreglos de estructuras. Cada elemento del arreglo es un registro completo.
 
@@ -119,6 +135,10 @@ scanf("%f", &inventario[i].precio);
 ---
 
 ## 5. Structs y Funciones: El Operador Flecha (`->`)
+
+<p align="center">
+  <img src="imgs/flecha.png" alt="Operador Flecha" width="600">
+</p>
 
 ### Paso por Valor (La pesadilla de la RAM)
 Si le pasas un struct a una función como lo harías con un `int`, C lo **copia entero**. Si tu struct pesa 2 Megabytes (porque tiene un arreglo muy grande adentro, por ejemplo), cada vez que llamas a la función, C duplica esos 2 Megabytes de RAM y quema ciclos de CPU a lo tonto. Además, la función original nunca recibirá las modificaciones.
@@ -149,6 +169,10 @@ int main() {
 ---
 
 ## 6. Uniones (`union`): Compartiendo la Memoria
+
+<p align="center">
+  <img src="imgs/unions.jpeg" alt="Uniones en Memoria" width="600">
+</p>
 
 ### El Concepto Diferenciador
 La sintaxis de un `union` es un calco a la del `struct`, pero mecánicamente hacen lo contrario. Mientras el `struct` reserva memoria para **TODAS** sus variables, el `union` hace que **TODOS sus miembros compartan exactamente el mismo bloque de memoria**.
@@ -190,6 +214,10 @@ typedef struct {
 ---
 
 ## 7. Padding y Alineación de Memoria (Avanzado)
+
+<p align="center">
+  <img src="imgs/padding.jpeg" alt="Padding de Memoria" width="600">
+</p>
 
 ### La Sorpresa del `sizeof`
 La intuición dice que si tu struct tiene un `char` (1 byte) y un `int` (4 bytes), su tamaño usando `sizeof()` debería ser 5 bytes. 

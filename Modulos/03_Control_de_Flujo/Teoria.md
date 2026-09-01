@@ -11,7 +11,7 @@ Nuevamente citando a mis tíos, Kernighan y Ritchie (K&R): *"Las sentencias de c
 ## 1. Operadores y Lógica Básica (La verdad absoluta, según C)
 
 <div align="center">
-  <img src="./imgs/operadores.png" alt="Operadores y Lógica" />
+  <img src="./imgs/operadores.png" alt="Operadores y Lógica" width="600">
 </div>
 
 En Python tenías `True` y `False`. C, en sus orígenes, era demasiado "rústico" para tener tipos booleanos nativos. Para C, la verdad es estrictamente matemática.
@@ -49,7 +49,7 @@ else
 ## 2. Condicionales (Toma de decisiones)
 
 <div align="center">
-  <img src="./imgs/condicionales.png" alt="Condicionales" />
+  <img src="./imgs/condicionales.png" alt="Condicionales" width="600">
 </div>
 
 ### La estructura `if / else`
@@ -107,7 +107,7 @@ printf("%s\n", bebida);
 ## 3. Selección Múltiple (`switch`)
 
 <div align="center">
-  <img src="./imgs/switch.png" alt="Switch" />
+  <img src="./imgs/switch.png" alt="Switch" width="600">
 </div>
 
 Cuando tienes una horda de `else if` comprobando la **misma** variable contra distintos valores, es hora de usar un estilo de condicional que se llama `switch`. K&R lo describen como *"una forma especial de decisión múltiple que comprueba si una expresión coincide con uno de varios valores constantes enteros"*.
@@ -151,7 +151,7 @@ switch(tecla)
 ## 4. Bucles (Repetición de tareas)
 
 <div align="center">
-  <img src="./imgs/ciclos.jpg" alt="Bucles" />
+  <img src="./imgs/ciclos.jpg" alt="Bucles" width="600">
 </div>
 
 Para obligar a la computadora a trabajar duro por ti.
@@ -211,7 +211,7 @@ for (int fila = 1; fila <= 3; fila++)
 ## 5. Modificadores de Flujo
 
 <div align="center">
-  <img src="./imgs/break.png" alt="Modificadores de Flujo" />
+  <img src="./imgs/break.png" alt="Modificadores de Flujo" width="600">
 </div>
 
 A veces necesitas alterar el comportamiento normal y lineal de un bucle.
@@ -274,7 +274,7 @@ printf("Aterrizamos en la etiqueta escape.\n");
 ## 6. Errores Comunes de Sintaxis (Las trampas de osos de C)
 
 <div align="center">
-  <img src="./imgs/error.jpeg" alt="Errores de Sintaxis" />
+  <img src="./imgs/error.jpeg" alt="Errores de Sintaxis" width="600">
 </div>
 
 Si vienes de lenguajes de alto nivel más "amigables", C te va a tender estas trampas. Caen todos. Tú también caerás, pero hagamos un inútil intento por evitarlo.

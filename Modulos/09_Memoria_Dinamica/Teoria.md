@@ -4,6 +4,10 @@ La memoria dinámica es el corazón de C y una de las utilidades más importante
 
 ## 1. Arquitectura de Memoria: Stack vs. Heap
 
+<p align="center">
+  <img src="imgs/arquitectura.png" alt="Arquitectura Stack vs Heap" width="600">
+</p>
+
 Antes de escribir código, debes entender en detalle dónde están viviendo tus datos.
 
 ### El Stack (La Pila)
@@ -27,6 +31,10 @@ Mantente atento a futuras actualizaciones.
 2. Para que las variables **sobrevivan** incluso después de que termine la función que las creó, permitiéndote compartir esa información con el resto del programa.
 
 ## 2. Asignación y Liberación Básica (`malloc` y `free`)
+
+<p align="center">
+  <img src="imgs/memory leak.png" alt="Memory Leak Malloc Free" width="600">
+</p>
 
 Este es el ciclo de vida fundamental de la memoria manual. Todo empieza y termina aquí (recuerda importar `<stdlib.h>`).
 
@@ -67,6 +75,10 @@ De esta forma puedes usar el puntero `ptr` en otro lado del programa sin problem
 
 ## 3. Alternativas de Asignación (`calloc` y `realloc`)
 
+<p align="center">
+  <img src="imgs/calloc.jpg" alt="Alternativas Calloc Realloc" width="600">
+</p>
+
 Las herramientas finas para gestionar bloques de datos y crecer sobre la marcha.
 
 ### `calloc` (Contiguous Allocation)
@@ -103,6 +115,10 @@ Vamos con unos ejemplos prácticos y buenas prácticas para usar de forma correc
 
 ## 4. Arreglos Dinámicos (1D)
 
+<p align="center">
+  <img src="imgs/arreglos dinamicos.png" alt="Arreglos Dinámicos" width="600">
+</p>
+
 La aplicación más común. Te permite crear arreglos cuyo tamaño es decidido por el usuario en tiempo de ejecución.
 
 ```c
@@ -128,6 +144,10 @@ free(arreglo);
 ```
 
 ## 5. Matrices Dinámicas (Punteros a Punteros `**`)
+
+<p align="center">
+  <img src="imgs/matrices dinamicas.jpg" alt="Matrices Dinámicas" width="600">
+</p>
 
 El jefe final del módulo. Construir estructuras multidimensionales en el Heap no es tan directo como un `matriz[3][3]`.
 
@@ -156,6 +176,10 @@ free(matriz); // Liberar la columna vertebral principal
 
 ## 6. Memoria Dinámica con Structs (El puente a Estructuras de Datos)
 
+<p align="center">
+  <img src="imgs/structs dinamicos.jpg" alt="Structs Dinámicos" width="600">
+</p>
+
 Este es el puente que te prepara para Estructuras de Datos más avanzadas como Listas Enlazadas o Árboles, cosas que por ahora son ajenas y en realidad no lo veremos acá y en realidad para eso se usa C++ y en realidad no sé por qué lo mencioné, bueno, en fin, que sepas que igual se pueden hacer.
 
 **Un solo Struct Dinámico:**
@@ -180,6 +204,10 @@ Ten estas consideraciones al liberar memoria para evitar **memory leaks** y **da
 
 
 ## 7. Vulnerabilidades Clásicas y Herramientas (Debugging)
+
+<p align="center">
+  <img src="imgs/vulnerabilidades.jpg" alt="Vulnerabilidades Clásicas" width="600">
+</p>
 
 Ahora que tienes el poder, aquí está la lista de crímenes que puedes cometer contra tu propia máquina.
 
