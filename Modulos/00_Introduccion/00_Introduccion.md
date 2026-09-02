@@ -155,3 +155,11 @@ Con esto claro, vamos a terminar con una pequeña cita del libro __C Programming
 C es un lenguaje pequeño. Como bien señalan Kernighan y Ritchie: **"C no es un lenguaje grande, y no le sirve un libro grande"**. Su verdadero poder y elegancia no provienen de tener cientos de palabras clave o funciones mágicas integradas, sino de su flexibilidad y la forma limpia en que permite combinar un pequeño grupo de bloques de construcción.  
 
 A lo largo de este mini curso, aprenderás a dominar estos bloques de construcción desde sus cimientos más profundos. Toma un descanso, un cigarro, un trago o no sé, apuesta un rato. Esto se viene largo, pero después de todos estos módulos, sentirás que sabes infinitamente más que hace 2 días.
+
+---
+
+<div align="center">
+  <a href="../../Anexos/04_Arquitectura_Basica.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../01_Tipos_y_Variables/01_Tipos_y_Variables.md">Avanzar ➡️</a>
+</div>

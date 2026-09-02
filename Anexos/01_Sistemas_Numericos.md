@@ -447,3 +447,11 @@ El código de arriba imprimirá **`8`** porque `010` en octal equivale a `8` en 
 | `int d = 052;` | Octal | `0` (el cero inicial) | 42 | Prácticamente obsoleto hoy en día. Su uso actual se reduce casi en exclusiva a los permisos de archivos en UNIX/Linux (ej. `chmod 777`). |
 
 Todas esas variables contienen exactamente el mismo valor. Es solo una convención visual para el programador. C transformará todo a binario de todas formas cuando llegue al ensamblador.
+
+---
+
+<div align="center">
+  <a href="../Modulos/16_GUI_SDL/16_GUI_SDL.md">⬅️ Retroceder</a> | 
+  <a href="./README.md">💻 Ir a Códigos</a> | 
+  <a href="02_Complemento_a_2.md">Avanzar ➡️</a>
+</div>

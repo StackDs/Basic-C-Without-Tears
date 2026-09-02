@@ -159,3 +159,11 @@ Felicidades, en este punto sabes bastante de C, muchas personas lo habrán dejad
 
 A este punto ya puedes realizar muchas cosas y programas distintos, pero todavía falta mucho por aprender, en los siguientes módulos veremos principalmente buenas prácticas, modularidad, cómo crear tus propios headers, el uso de makefiles para compilar, además de pasar por operaciones a nivel de bits, que vendría a ser el tope de la optimización, aún queda un largo camino por delante, toma un descanso y nos vemos más tarde.
 
+
+---
+
+<div align="center">
+  <a href="../09_Memoria_Dinamica/09_Memoria_Dinamica.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../11_Modularidad_y_Headers/11_Modularidad_y_Headers.md">Avanzar ➡️</a>
+</div>

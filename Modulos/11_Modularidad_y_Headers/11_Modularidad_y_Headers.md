@@ -236,3 +236,11 @@ typedef struct {
 
 ---
 Bien, ahora entiendes el porqué un programa medianamente decente tiene docenas de archivos .h y .c. Sin embargo, la siguiente pregunta es: ¿Cómo compilo todo eso? Aquí es donde entra en juego el **Make**, echa un vistazo a los ejemplos de headers y código que te dejé y nos vemos en el módulo de makefiles.
+
+---
+
+<div align="center">
+  <a href="../10_Archivos/10_Archivos.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../12_Makefiles/12_Makefiles.md">Avanzar ➡️</a>
+</div>

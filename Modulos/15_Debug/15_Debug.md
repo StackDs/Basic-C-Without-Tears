@@ -140,3 +140,11 @@ Como puedes ver, hay múltiples formas de depurar, cada una sirviendo para un pr
 Hasta aquí llega el curso de C, espero que lo hayas disfrutado tanto como yo disfruté crearlo (aprendí cosas que no tenía idea que existían XD). Te sugiero que eches una vista a los ejercicios y a la lista de proyectos que hay en el repositorio; si logras algo decente, envíamelo como pull request y lo puedo incluir en el repositorio.
 
 Como DLC puedes revisar el curso de SDL que hay disponible con el fin de que puedas darle estética a lo que crees. Buena suerte y espero haber sido de ayuda, ¡nos vemos!
+
+---
+
+<div align="center">
+  <a href="../14_Operaciones_de_Bits/14_Operaciones_de_Bits.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../16_GUI_SDL/16_GUI_SDL.md">Avanzar ➡️</a>
+</div>

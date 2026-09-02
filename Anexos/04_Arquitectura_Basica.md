@@ -82,3 +82,11 @@ Como vimos, el programa pide a la CPU que vaya a la RAM a buscar un dato. Para l
 Por este motivo, tipos de datos como el `long int` o los punteros cambian de tamaño dependiendo de si compilas tu código en una tostadora del año 2005 o en una laptop moderna. Nunca asumas un tamaño, **usa siempre `sizeof`**
 
 Todos los conceptos que te hayan parecido extraños, los iremos profundizando a medida que avancemos en el curso, no te preocupes. 
+
+---
+
+<div align="center">
+  <a href="03_Tabla_ASCII.md">⬅️ Retroceder</a> | 
+  <a href="./README.md">💻 Ir a Códigos</a> | 
+  <a href="../Modulos/00_Introduccion/00_Introduccion.md">Avanzar ➡️</a>
+</div>

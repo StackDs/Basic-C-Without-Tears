@@ -12,7 +12,7 @@
 // 1. EL VÍNCULO (El contrato firmado)
 // Incluimos nuestro propio header para que el compilador verifique que
 // lo que escribimos aquí coincida con lo que prometimos a otros archivos.
-#include "sintaxis.h"
+#include "02_motor.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -38,13 +38,13 @@ static void aplicar_veneno(Jugador *j) {
 }
 
 // 4. IMPLEMENTACIÓN DE LA INTERFAZ PÚBLICA
-// Estas funciones DEBEN tener la misma firma exacta que en sintaxis.h.
+// Estas funciones DEBEN tener la misma firma exacta que en 02_motor.h.
 
 void inicializar_jugador(Jugador *j, const char *nombre) {
     strncpy(j->nombre, nombre, 49);
     j->nombre[49] = '\0';
     
-    // MAX_VIDA y ESTADO_VIVO vienen directamente de sintaxis.h
+    // MAX_VIDA y ESTADO_VIVO vienen directamente de 02_motor.h
     j->vida = MAX_VIDA; 
     j->estado = ESTADO_VIVO;
     j->arma_equipada = NULL;

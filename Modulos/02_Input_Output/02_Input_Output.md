@@ -260,3 +260,11 @@ En el futuro, cuando quieras guardar cosas en el disco duro, harás exactamente 
 ```
 
 Bien, eso es mucha teoría. Respira profundo. Ahora vamos a ver cómo se ve esto en código real. (Revisa el archivo `sintaxis.c` de este mismo directorio).
+
+---
+
+<div align="center">
+  <a href="../01_Tipos_y_Variables/01_Tipos_y_Variables.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../03_Control_de_Flujo/03_Control_de_Flujo.md">Avanzar ➡️</a>
+</div>

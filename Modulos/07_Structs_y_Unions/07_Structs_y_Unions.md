@@ -303,3 +303,11 @@ switch (jefe.tipo) {
 }
 ```
 Con esto, tu código no solo es más claro para los humanos, sino que muchos compiladores te advertirán si se te olvida incluir un `case` para alguno de los valores del `enum`.
+
+---
+
+<div align="center">
+  <a href="../06_Strings/06_Strings.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../08_Punteros/08_Punteros.md">Avanzar ➡️</a>
+</div>

@@ -185,3 +185,11 @@ Pero antes de poder correr, necesitas aprender a caminar. Entender los Makefiles
 
 El siguiente módulo será acerca de cómo manejar errores y excepciones en C, un tema que no es tan simple como en otros lenguajes como Python. 
 
+
+---
+
+<div align="center">
+  <a href="../11_Modularidad_y_Headers/11_Modularidad_y_Headers.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../13_Manejo_de_Errores/13_Manejo_de_Errores.md">Avanzar ➡️</a>
+</div>

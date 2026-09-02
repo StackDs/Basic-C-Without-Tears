@@ -17,7 +17,7 @@ Antes de manipular bits, hay que entender cómo demonios los guarda tu computado
 ### El mapa de bits
 A tu procesador no le importan tus letras ni tus números decimales. Todo se guarda en base 2. Un número entero como el `5` no es un "5" mágico en la memoria; es una secuencia de interruptores encendidos y apagados: `0000 0101`. Cada uno de esos interruptores es un **bit**.
 
-Información acerca de representación de números en binario la puedes encontrar en el módulo de **tipos de datos**.
+Información acerca de representación de números en binario la puedes encontrar en el [anexo de Sistemas Numéricos](../../Anexos/01_Sistemas_Numericos.md).
 
 
 ### La regla de oro del `unsigned`
@@ -168,3 +168,11 @@ Felicidades, lograste aprender casi todo lo que C tiene para ofrecerte, los sigu
 De igual forma, más adelante verás la sintaxis y el uso práctico de una biblioteca llamada SDL que sirve para crear interfaces gráficas, videojuegos, animaciones y mucho más, todo esto usando C. A pesar de que C no es un lenguaje orientado a la creación de videojuegos, sigue siendo posible crear algo decente con la suficiente dedicación y a su vez, un proyecto de tal magnitud te dará mucha experiencia con el lenguaje. Tómate un descanso, un cigarro, una cerveza, lo que sea que te relaje.
 
 Ha sido un largo camino y si llegaste hasta acá, te felicito por tu dedicación. No todas las personas son tan perseverantes con temas tan difíciles y abstractos, buena suerte, sigue aprendiendo y no te rindas. Nos vemos en el siguiente módulo.
+
+---
+
+<div align="center">
+  <a href="../13_Manejo_de_Errores/13_Manejo_de_Errores.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../15_Debug/15_Debug.md">Avanzar ➡️</a>
+</div>

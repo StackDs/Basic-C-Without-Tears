@@ -262,3 +262,11 @@ Los punteros te dan el poder absoluto sobre la máquina. Y como diría el tío B
 Las herramientas de depuración avanzadas como **Valgrind** o los **Sanitizers** de los compiladores modernos serán tus mejores amigos para detectar estos errores invisibles a simple vista.
 
 Si has llegado hasta acá, felicidades, ya puedes considerar que tus habilidades en C dejaron de ser patéticas, sin embargo aún queda camino para entender todos los conceptos básicos, echa un vistazo a la sintaxis y luego veremos a fondo memoria dinámica.
+
+---
+
+<div align="center">
+  <a href="../07_Structs_y_Unions/07_Structs_y_Unions.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../09_Memoria_Dinamica/09_Memoria_Dinamica.md">Avanzar ➡️</a>
+</div>

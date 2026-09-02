@@ -233,3 +233,11 @@ En esto profundizaremos en la sección de Debug, también veremos GDB en dicho m
 
 El siguiente tema a tocar será Archivos, cómo abrirlos, leerlos, escribirlos y crearlos, por ahora revisa el archivo de sintaxis para que te familiarices con las aplicaciones de la memoria dinámica.
 
+
+---
+
+<div align="center">
+  <a href="../08_Punteros/08_Punteros.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../10_Archivos/10_Archivos.md">Avanzar ➡️</a>
+</div>

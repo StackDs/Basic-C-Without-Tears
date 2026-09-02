@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 # 2. Objetivo Principal (El ejecutable final)
 # $^ representa todas las dependencias (main.o sintaxis.o)
 # $@ representa el objetivo actual (programa)
-programa: main.o sintaxis.o
+programa: 01_main.o 02_saludo.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 # 3. Regla de Patrón para compilar archivos .c a .o

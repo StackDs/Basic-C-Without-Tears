@@ -17,8 +17,8 @@
 // Si quisieras usar la forma clásica (que es a prueba de balas incluso
 // en compiladores prehistóricos), usarías esto en su lugar:
 /*
-#ifndef SINTAXIS_H
-#define SINTAXIS_H
+#ifndef MOTOR_H
+#define MOTOR_H
 ... todo el contenido ...
 #endif
 */

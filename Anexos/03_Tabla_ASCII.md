@@ -94,3 +94,11 @@ A estos valores adicionales se les llamó **ASCII Extendido** (el estándar clá
 ### La Tabla Completa (0 - 255)
 
 <p align="center"><img src="./imgs/ASCII.png" alt="Tabla ASCII Completa" width="900"></p>
+
+---
+
+<div align="center">
+  <a href="02_Complemento_a_2.md">⬅️ Retroceder</a> | 
+  <a href="./README.md">💻 Ir a Códigos</a> | 
+  <a href="04_Arquitectura_Basica.md">Avanzar ➡️</a>
+</div>

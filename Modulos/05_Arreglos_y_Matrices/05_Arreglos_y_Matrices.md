@@ -227,3 +227,11 @@ int arr[n];
 2. **Sin Inicialización Rápida:** No puedes inicializar los VLAs en la misma línea que los declaras (hacer `int arr[n] = {0};` no está permitido). Tendrás que llenarlos elemento a elemento usando un bucle `for` o funciones especializadas.
 
 ---
+
+---
+
+<div align="center">
+  <a href="../04_Funciones/04_Funciones.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../06_Strings/06_Strings.md">Avanzar ➡️</a>
+</div>

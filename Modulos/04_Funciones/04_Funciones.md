@@ -287,3 +287,10 @@ int main(int argc, char *argv[])
 
 Bien, eso es suficiente por ahora. Ya tienes las herramientas para dejar de escribir código espagueti. Aprovéchalo, crea módulos limpios, y por favor, no te olvides del caso base en tus recursiones.
 Consulta el archivo `sintaxis.c` de esta sección para ver diferentes implementaciones de funciones y la sintaxis correspondiente en cada caso.
+---
+
+<div align="center">
+  <a href="../03_Control_de_Flujo/03_Control_de_Flujo.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../05_Arreglos_y_Matrices/05_Arreglos_y_Matrices.md">Avanzar ➡️</a>
+</div>

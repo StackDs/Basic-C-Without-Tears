@@ -169,3 +169,11 @@ C tiene un lado oscuro escondido en la librería `<setjmp.h>`.
 A través de las funciones `setjmp` y `longjmp`, puedes guardar un "punto de control" (checkpoint) del estado del CPU y los registros en un punto específico de tu programa. Si ocurre un error profundo a 15 niveles de funciones de distancia, puedes hacer un `longjmp` y "teletransportarte" mágicamente de regreso a ese punto de control inicial.
 
 **Advertencia:** Mencionamos esto para que sepas que existe, porque Kernighan y Ritchie lo documentaron en el libro en el cual se basa este curso. Su uso es extremadamente de nicho (útil si estás programando tu propio intérprete de un lenguaje o un sistema operativo). Si lo usas en un programa normal, generarás el peor código espagueti imaginable, violarás todas las reglas lógicas del flujo de un programa, e invocarás demonios antiguos que corromperán tu memoria. Mantente alejado a menos que sepas exactamente lo que haces o al menos hasta que tengas un poco mas de experiencia con el lenguaje.
+
+---
+
+<div align="center">
+  <a href="../12_Makefiles/12_Makefiles.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../14_Operaciones_de_Bits/14_Operaciones_de_Bits.md">Avanzar ➡️</a>
+</div>

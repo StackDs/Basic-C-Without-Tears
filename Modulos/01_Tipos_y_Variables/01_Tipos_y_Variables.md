@@ -64,7 +64,7 @@ Para una arquitectura de 64 bits, por ejemplo x86-64 con GCC en Linux, puedes us
 > [!WARNING]
 > \***El tipo `bool` no es nativo por defecto**. A diferencia de Python donde usas `True` o `False` directamente, en C debes incluir la cabecera `<stdbool.h>` al principio de tu archivo para poder usar las palabras clave `bool`, `true` y `false`.
 
-### Un poco de arquitectura de computadores
+### Un poco de [arquitectura de computadores](../../Anexos/04_Arquitectura_Basica.md)
 
 Bastante información, ¿verdad? Bueno, en vez de que tengas que memorizar toda esa tabla, te voy a enseñar a calcular esos valores, así que vamos a ello.
 
@@ -154,7 +154,7 @@ $0 ... 2^n - 1$
 
 ### 6. Enteros con signo
 
-En C, los enteros con signo modernos utilizan normalmente **complemento a dos**, no es necesario que entiendas esto por ahora aunque sería bueno que lo investigaras.
+En C, los enteros con signo modernos utilizan normalmente **complemento a dos**, puedes investigarlo a fondo en el [anexo de Complemento a 2](../../Anexos/02_Complemento_a_2.md).
 
 
 En este caso, un entero de n bits puede representar:
@@ -401,7 +401,7 @@ Se escriben con punto decimal (ej:**123.4**)
 
 ¿Alguna vez pensaste que una letra también puede ser un número y viceversa? Pues puede.
 
-Se escriben entre comillas simples (ej: **'x'**). Internamente, **una constante de carácter es un número entero**, cuyo valor es igual al valor numérico asignado en el conjunto de caracteres de la máquina; por lo general se usa la tabla ASCII para esto. Por ejemplo, el carácter '0' es 48 en la tabla y 'A' es 65. Debido a esto, las constantes de carácter pueden participar de manera directa en expresiones aritméticas comunes.
+Se escriben entre comillas simples (ej: **'x'**). Internamente, **una constante de carácter es un número entero**, cuyo valor es igual al valor numérico asignado en el conjunto de caracteres de la máquina; por lo general se usa la [tabla ASCII](../../Anexos/03_Tabla_ASCII.md) para esto. Por ejemplo, el carácter '0' es 48 en la tabla y 'A' es 65. Debido a esto, las constantes de carácter pueden participar de manera directa en expresiones aritméticas comunes.
 
 ```
 int num = c - '0'; // Obtiene el valor numérico real si el char c contiene un dígito.
@@ -453,3 +453,11 @@ Si el código intenta modificar una variable marcada como **const**, el compilad
 Bien. Espero hayas entendido algo; esto está siendo más complicado de lo que pensé. Echa un vistazo al archivo `sintaxis.c` de este módulo para que veas un poco de código.
 
 
+
+---
+
+<div align="center">
+  <a href="../00_Introduccion/00_Introduccion.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../02_Input_Output/02_Input_Output.md">Avanzar ➡️</a>
+</div>

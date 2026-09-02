@@ -272,3 +272,11 @@ Hoy en día, la industria (y cualquier programador con sentido de autopreservaci
 * `strncmp(cadena1, cadena2, max_caracteres);`
 
 Estas funciones te permiten establecer un límite máximo de caracteres a procesar, evitando que tu programa explote si recibe textos más grandes de lo esperado. Usa protección.
+
+---
+
+<div align="center">
+  <a href="../05_Arreglos_y_Matrices/05_Arreglos_y_Matrices.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../07_Structs_y_Unions/07_Structs_y_Unions.md">Avanzar ➡️</a>
+</div>

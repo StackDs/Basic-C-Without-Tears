@@ -329,3 +329,11 @@ Ocurre cuando olvidas actualizar la variable que controla el bucle (`i++` o `con
 ---
 
 Con esto, ya puedes controlar el destino de tu programa. Nuevamente revisa el sintaxis.c que está en el directorio actual para ver cómo se usan estas sentencias.
+
+---
+
+<div align="center">
+  <a href="../02_Input_Output/02_Input_Output.md">⬅️ Retroceder</a> | 
+  <a href="./Codigo/">💻 Ir a Códigos</a> | 
+  <a href="../04_Funciones/04_Funciones.md">Avanzar ➡️</a>
+</div>

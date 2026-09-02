@@ -228,3 +228,11 @@ El procesador ni siquiera sabe qué intentabas calcular, solo mira el resultado 
 
 
 
+
+---
+
+<div align="center">
+  <a href="01_Sistemas_Numericos.md">⬅️ Retroceder</a> | 
+  <a href="./README.md">💻 Ir a Códigos</a> | 
+  <a href="03_Tabla_ASCII.md">Avanzar ➡️</a>
+</div>

@@ -7,14 +7,14 @@
 **/
 
 // Este archivo demuestra la compilación de múltiples archivos.
-// Incluye nuestro "sintaxis.h" para acceder a las funciones y variables
+// Incluye nuestro "02_motor.h" para acceder a las funciones y variables
 // del módulo, pero el código real de esas funciones vive en "sintaxis.c".
 // 
 // Compilación:
 // gcc main.c sintaxis.c -o juego
 
 #include <stdio.h>
-#include "sintaxis.h" // Incluimos la interfaz pública de nuestro módulo
+#include "02_motor.h" // Incluimos la interfaz pública de nuestro módulo
 
 int main() {
     printf("\n=== DEMOSTRACIÓN DE COMPILACIÓN SEPARADA ===\n\n");
