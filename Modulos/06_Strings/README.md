@@ -1,5 +1,7 @@
 # Módulo 06: Strings (Cadenas de Texto)
 
+Te cuento un secreto: en C, las cadenas de texto son una ilusión. Son solo arreglos de caracteres con un final sorpresa. Aquí descubrirás cómo manipular texto a bajo nivel y entenderás el porqué casi nadie ocupa C para usar strings.
+
 <div align="center">
   <h3><a href="./06_Strings.md">🚀 Entrar al Módulo</a></h3>
 </div>

@@ -1,5 +1,7 @@
 # Módulo 09: Memoria Dinámica
 
+¿Qué pasa si tienes que hacer que tu programa crezca en tiempo real? Libérate de la memoria estática y aprende un poco de modales con tu memoria. Aprende a pedir (y devolver, por favor) memoria al vuelo directamente al sistema operativo.
+
 <div align="center">
   <h3><a href="./09_Memoria_Dinamica.md">🚀 Entrar al Módulo</a></h3>
 </div>

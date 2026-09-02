@@ -1,5 +1,7 @@
 # Módulo 04: Funciones
 
+No deberías reinventar la rueda cada vez que necesites hacer algo. Aprende a encapsular, reutilizar y dominar el arte milenario de "divide y vencerás". Tu código será más limpio, modular, organizado y fácil de mantener.
+
 <div align="center">
   <h3><a href="./04_Funciones.md">🚀 Entrar al Módulo</a></h3>
 </div>

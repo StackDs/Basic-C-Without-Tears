@@ -1,5 +1,7 @@
 # Módulo 12: Makefiles (Automatización)
 
+Cuando tu proyecto es modular (como debería ser), tendrás que compilar varios archivos a la vez, y seguro te vas a cansar de escribir comandos gigantescos en la terminal para compilar varios archivos. Aquí aprenderás a automatizar todo tu proceso de construcción con Makefiles y podrás compilar como los profesionales.
+
 <div align="center">
   <h3><a href="./12_Makefiles.md">🚀 Entrar al Módulo</a></h3>
 </div>

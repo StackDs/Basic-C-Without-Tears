@@ -1,5 +1,7 @@
 # Módulo 02: Input y Output
 
+Tu programa necesita hablar con el mundo exterior. Aquí aprenderás cómo hacer que tu código deje de ser una caja negra silenciosa y empiece a interactuar con el exterior, tanto capturando datos como imprimiendo resultados.
+
 <div align="center">
   <h3><a href="./02_Input_Output.md">🚀 Entrar al Módulo</a></h3>
 </div>

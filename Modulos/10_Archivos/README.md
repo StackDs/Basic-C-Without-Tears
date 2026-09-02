@@ -1,5 +1,7 @@
 # Módulo 10: Manejo de Archivos
 
+La memoria RAM y el almacenamiento de datos temporales son volátiles, pero los archivos son persistentes. Aprende a leer, escribir y modificar información en el disco duro para que tus datos sobrevivan al inevitable cierre del programa. Aquí aprenderás a gestionar todo tipo de archivos para guardar información de forma permanente.
+
 <div align="center">
   <h3><a href="./10_Archivos.md">🚀 Entrar al Módulo</a></h3>
 </div>

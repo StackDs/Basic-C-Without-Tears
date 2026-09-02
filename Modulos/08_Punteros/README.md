@@ -1,5 +1,7 @@
 # Módulo 08: Punteros
 
+El momento de la verdad ha llegado. La característica más temida, incomprendida y, a la vez, más poderosa de C. Entiende los punteros y tendrás la llave maestra de la memoria RAM en tus manos. Aquí verás todos los conceptos que te dije que más adelante aprenderías.
+
 <div align="center">
   <h3><a href="./08_Punteros.md">🚀 Entrar al Módulo</a></h3>
 </div>

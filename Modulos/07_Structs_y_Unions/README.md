@@ -1,5 +1,7 @@
 # Módulo 07: Structs y Unions
 
+Deja de agrupar datos relacionados, pegándolos unos con otros y esperando que todo funcione bien. Crea tus propias estructuras complejas y dale forma a la información como el buen programador que supone que eres.
+
 <div align="center">
   <h3><a href="./07_Structs_y_Unions.md">🚀 Entrar al Módulo</a></h3>
 </div>

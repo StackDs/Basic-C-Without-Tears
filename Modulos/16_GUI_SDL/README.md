@@ -1,5 +1,7 @@
 # Módulo 16: Interfaz Gráfica con SDL2
 
+*¿Cansado de la aburrida y monocromática terminal negra? Es hora de ponerle color, sonido y movimiento a tus ideas. Descubre cómo crear interfaces gráficas y videojuegos con la magia de SDL2.*
+
 <div align="center">
   <h3><a href="./16_GUI_SDL.md">🚀 Entrar al Módulo</a></h3>
 </div>

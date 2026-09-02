@@ -1,5 +1,7 @@
 # Módulo 01: Tipos y Variables
 
+Olvídate de los lenguajes modernos que te llevan de la mano y hacen todo por ti. Aquí tú tienes el control absoluto de la memoria, y eso implica definir qué tipo de variables vas a usar. Prepárate para entender cómo funciona por dentro la memoria de tu computador.
+
 <div align="center">
   <h3><a href="./01_Tipos_y_Variables.md">🚀 Entrar al Módulo</a></h3>
 </div>

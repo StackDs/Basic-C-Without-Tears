@@ -1,5 +1,7 @@
 # Módulo 00: Introducción
 
+¿Crees que C es un dinosaurio? Y un poco de razón tienes, pero es un lenguaje muy potente y lo veremos en este módulo. Este es el lenguaje que mueve al mundo, desde tu tostadora hasta los servidores de Google. Prepárate para entender cómo funciona el detrás de tu sistema operativo.
+
 <div align="center">
   <h3><a href="./00_Introduccion.md">🚀 Entrar al Módulo</a></h3>
 </div>

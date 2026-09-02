@@ -1,5 +1,7 @@
 # Módulo 03: Control de Flujo
 
+La vida es difícil y está llena de decisiones. ¿Qué te hace pensar que tu código será la excepción? Aquí dominarás las bifurcaciones y los ciclos para darle verdadera inteligencia, dinamismo y lógica a tus programas.
+
 <div align="center">
   <h3><a href="./03_Control_de_Flujo.md">🚀 Entrar al Módulo</a></h3>
 </div>

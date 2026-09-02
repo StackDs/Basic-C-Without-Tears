@@ -1,5 +1,7 @@
 # Módulo 13: Manejo de Errores
 
+Los errores no son un "tal vez", son una garantía absoluta. Aquí aprenderás a anticipar, capturar y manejar el caos antes de que tu programa explote y haga morir el sistema completo de alguna empresa.
+
 <div align="center">
   <h3><a href="./13_Manejo_de_Errores.md">🚀 Entrar al Módulo</a></h3>
 </div>

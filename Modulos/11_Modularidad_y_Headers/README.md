@@ -1,5 +1,7 @@
 # Módulo 11: Modularidad y Headers
 
+Imagínate que tu proyecto crece tanto que ya no cabe en un solo archivo. Es hora de madurar: aprende a dividir tu código en múltiples submódulos y domina el arte de modularizar tu de separar las funciones en distintos archivos.
+
 <div align="center">
   <h3><a href="./11_Modularidad_y_Headers.md">🚀 Entrar al Módulo</a></h3>
 </div>

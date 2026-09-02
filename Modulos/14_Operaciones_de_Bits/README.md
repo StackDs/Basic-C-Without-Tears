@@ -1,5 +1,8 @@
 # Módulo 14: Operaciones de Bits
 
+El nivel más bajo de programación lo encontrarás aquí (al menos conceptualmente). Aquí no hay variables amigables, solo ceros y unos. Domina el arte del "bit hacking" para máxima eficiencia y control absoluto sobre el hardware, aplicando operaciones a nivel de bits como desplazamiento, el uso de operadores
+AND, OR, NOT, etc.
+
 <div align="center">
   <h3><a href="./14_Operaciones_de_Bits.md">🚀 Entrar al Módulo</a></h3>
 </div>

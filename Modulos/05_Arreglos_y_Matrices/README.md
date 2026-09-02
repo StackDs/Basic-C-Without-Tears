@@ -1,5 +1,7 @@
 # Módulo 05: Arreglos y Matrices
 
+¿Por qué lidiar con variables sueltas cuando puedes jugar a ser Alejandro Magno y comandar ejércitos de datos ordenados? Aquí entrarás al mundo de los arreglos y dominarás la manipulación masiva de información.
+
 <div align="center">
   <h3><a href="./05_Arreglos_y_Matrices.md">🚀 Entrar al Módulo</a></h3>
 </div>
