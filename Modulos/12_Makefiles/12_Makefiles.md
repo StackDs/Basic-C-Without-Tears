@@ -9,7 +9,7 @@ Hoy vamos a dejar la prehistoria atrás. Vas a aprender a automatizar tu vida. P
 ## 1. El Proceso de Compilación (Bajo el Capó)
 
 <p align="center">
-  <img src="imgs/compilacion.jpg" alt="Imagen Seccion 1" width="600">
+  <img src="imgs/el_proceso_de_compilacin_bajo_el_cap.jpg" alt="Imagen Seccion 1" width="600">
 </p>
 
 Antes de automatizar nada, necesitas entender exactamente qué fases tiene el comando `gcc main.c -o programa`. No, el compilador no es un mago que transforma texto a binario por arte de magia. Es una fábrica con cuatro departamentos distintos:
@@ -24,7 +24,7 @@ Antes de automatizar nada, necesitas entender exactamente qué fases tiene el co
 ## 2. El Problema de la Compilación Manual
 
 <p align="center">
-  <img src="imgs/compilacion_manual.jpeg" alt="Imagen Seccion 2" width="600">
+  <img src="imgs/el_problema_de_la_compilacin_manual.jpeg" alt="Imagen Seccion 2" width="600">
 </p>
 
 ¿Por qué necesitamos automatizar esto? Pregúntatelo cuando tengas un proyecto real.
@@ -41,7 +41,7 @@ El objetivo en el mundo real es generar los `.o` de forma independiente. Si solo
 ## 3. Introducción a Make y Sintaxis Básica
 
 <p align="center">
-  <img src="imgs/director.jpeg" alt="Imagen Seccion 3" width="600">
+  <img src="imgs/introduccin_a_make_y_sintaxis_bsica.jpeg" alt="Imagen Seccion 3" width="600">
 </p>
 
 **Make** es la herramienta estándar de facto de Unix para resolver el problema de la compilación incremental. 
@@ -76,7 +76,7 @@ Pero aquí está la magia: si el `.o` ya existe, Make comparará la **fecha de m
 ## 4. Variables y Macros
 
 <p align="center">
-  <img src="imgs/macros.png" alt="Imagen Seccion 4" width="600">
+  <img src="imgs/variables_y_macros.png" alt="Imagen Seccion 4" width="600">
 </p>
 
 Tu Makefile debería ser reutilizable y fácil de modificar, no quieres escribir el mismo código 50 veces. Para esto usamos variables.
@@ -105,7 +105,7 @@ programa: main.o mod1.o
 ## 5. Automatización Avanzada: Variables Automáticas y Patrones
 
 <p align="center">
-  <img src="imgs/automatizacion.jpeg" alt="Imagen Seccion 5" width="600">
+  <img src="imgs/automatizacin_avanzada_variables_automticas_y_patrones.jpeg" alt="Imagen Seccion 5" width="600">
 </p>
 
 Si haces una regla por cada archivo de tu proyecto de 500 archivos, te volverás loco. Aquí es donde el Makefile pasa de ser "un script glorificado" a un motor inteligente.
@@ -136,7 +136,7 @@ Con estas dos líneas acabas de eliminar la necesidad de escribir cientos de reg
 ## 6. Objetivos Ficticios (Phony Targets)
 
 <p align="center">
-  <img src="imgs/clean.JPG" alt="Imagen Seccion 6" width="600">
+  <img src="imgs/objetivos_ficticios_phony_targets.JPG" alt="Imagen Seccion 6" width="600">
 </p>
 
 Todo buen Makefile debe tener herramientas de mantenimiento y limpieza. El más famoso de todos es el objetivo `clean`.
@@ -170,7 +170,7 @@ Ahora, no importa si existe un archivo llamado `clean`, Make ejecutará la recet
 ## 7. Más allá de Make (Contexto de la Industria)
 
 <p align="center">
-  <img src="imgs/cmake.jpeg" alt="Imagen Seccion 7" width="600">
+  <img src="imgs/ms_all_de_make_contexto_de_la_industria.jpeg" alt="Imagen Seccion 7" width="600">
 </p>
 
 Aunque Make te salvará la vida en este curso y en la mayoría de proyectos medianos o pequeños de C en Linux, debes saber que no es perfecto. 

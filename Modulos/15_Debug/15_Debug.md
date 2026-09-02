@@ -11,7 +11,7 @@ Este módulo te enseñará cómo dejar de adivinar y empezar a diagnosticar tu c
 ## 1. La Mentalidad y el "Print Debugging"
 
 <p align="center">
-  <img src="imgs/printDebug.jpg" alt="Imagen Seccion 1" width="600">
+  <img src="imgs/la_mentalidad_y_el_print_debugging.jpg" alt="Imagen Seccion 1" width="600">
 </p>
 
 Lo primero que hace un programador novato cuando su programa falla es empezar a cambiar el código al azar a ver si mágicamente se arregla. **No hagas eso.**
@@ -45,7 +45,7 @@ fprintf(stderr, "[DEBUG] Falla en %s, línea %d, función %s\n", __FILE__, __LIN
 ## 2. La Primera Línea de Defensa: El Compilador
 
 <p align="center">
-  <img src="imgs/The wall.jpeg" alt="Imagen Seccion 2" width="600">
+  <img src="imgs/la_primera_lnea_de_defensa_el_compilador.jpeg" alt="Imagen Seccion 2" width="600">
 </p>
 
 El compilador de C es perezoso y permisivo por defecto (por herencia histórica). Si no le exiges que sea estricto, te dejará compilar auténticas estupideces sin decir una palabra.
@@ -65,7 +65,7 @@ Esto le dice a `gcc` que incruste los nombres de tus variables, nombres de funci
 ## 3. El Estándar Industrial: GDB (GNU Debugger)
 
 <p align="center">
-  <img src="imgs/matrix.png" alt="Imagen Seccion 3" width="600">
+  <img src="imgs/el_estndar_industrial_gdb_gnu_debugger.png" alt="Imagen Seccion 3" width="600">
 </p>
 
 Si el *Print Debugging* es un cuchillo de mantequilla, GDB es un quirófano completo. Te permite pausar el tiempo de tu programa, ver qué hay en la memoria y avanzar línea por línea.
@@ -97,7 +97,7 @@ Si en ese momento escribes `bt` (backtrace), GDB rastreará toda la pila de llam
 ## 4. Depuración de Memoria: Valgrind
 
 <p align="center">
-  <img src="imgs/valgrind.png" alt="Imagen Seccion 4" width="600">
+  <img src="imgs/depuracin_de_memoria_valgrind.png" alt="Imagen Seccion 4" width="600">
 </p>
 
 Mientras que GDB es para encontrar fallos lógicos y cuelgues, Valgrind es un médico forense especialista en memoria dinámica. Valgrind crea un procesador virtual simulado donde ejecuta tu código e intercepta silenciosamente cada byte de memoria, cada `malloc` y cada `free` que haces. 
@@ -117,7 +117,7 @@ Valgrind escupirá un reporte detallado. Los errores clásicos de los que te deb
 ## 5. Análisis Post-Mortem (Core Dumps) - Avanzado
 
 <p align="center">
-  <img src="imgs/core dump.png" alt="Imagen Seccion 5" width="600">
+  <img src="imgs/anlisis_post-mortem_core_dumps_-_avanzado.png" alt="Imagen Seccion 5" width="600">
 </p>
 
 Imagínate este escenario: Has enviado tu programa al servidor en la nube de un cliente real. El cliente lo ejecuta, y aleatoriamente después de 3 días, el programa explota. No puedes reproducirlo en tu computadora. No puedes dejar un GDB abierto 3 días en el servidor. ¿Cómo sabes en qué línea falló? Con los **Core Dumps**.

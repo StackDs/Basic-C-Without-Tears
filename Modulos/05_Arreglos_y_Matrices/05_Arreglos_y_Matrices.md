@@ -7,7 +7,7 @@ Bienvenidos a los Arreglos, el momento donde te das cuenta de que crear 100 vari
 ## 1. Introducción a los Arreglos (1D)
 
 <p align="center">
-  <img src="imgs/intro_arreglos.png" alt="Introducción a Arreglos" width="600">
+  <img src="imgs/introduccin_a_los_arreglos_1d.png" alt="Introducción a Arreglos" width="600">
 </p>
 
 ### Concepto Fundamental
@@ -48,7 +48,7 @@ Los corchetes `[]` son mágicos: sirven tanto para leer como para escribir (acce
 ## 2. Gestión en Memoria y la "Trampa de los Límites"
 
 <p align="center">
-  <img src="imgs/segmentation_fault.png" alt="Segmentation Fault" width="600">
+  <img src="imgs/gestin_en_memoria_y_la_trampa_de_los_lmites.png" alt="Segmentation Fault" width="600">
 </p>
 
 ### Memoria Contigua
@@ -80,7 +80,7 @@ arr[10] = 666; // C te lo permite, pero tu programa probablemente explotará.
 ## 3. Iteración y Operaciones Básicas (1D)
 
 <p align="center">
-  <img src="imgs/arreglos.png" alt="Iteración de Arreglos" width="600">
+  <img src="imgs/iteracin_y_operaciones_bsicas_1d.png" alt="Iteración de Arreglos" width="600">
 </p>
 
 ### El Combo Arreglo + Bucle `for`
@@ -131,7 +131,7 @@ Todo programador en C necesita saber cómo hacer estas operaciones básicas:
 ## 4. Arreglos Multidimensionales (Matrices, Cubos y N-Dimensiones)
 
 <p align="center">
-  <img src="imgs/arreglo_multi.png" alt="Arreglos Multidimensionales" width="600">
+  <img src="imgs/arreglos_multidimensionales_matrices_cubos_y_n-dimensiones.png" alt="Arreglos Multidimensionales" width="600">
 </p>
 
 ### Concepto Escalable
@@ -168,7 +168,7 @@ for (int i = 0; i < 3; i++){
 ## 5. Paso de Arreglos (de cualquier dimensión) a Funciones
 
 <p align="center">
-  <img src="imgs/arreglos_funciones.png" alt="Paso de Arreglos a Funciones" width="600">
+  <img src="imgs/paso_de_arreglos_de_cualquier_dimensin_a_funciones.png" alt="Paso de Arreglos a Funciones" width="600">
 </p>
 
 ### Referencia Implícita
@@ -207,7 +207,7 @@ void procesarCubo(int cubo[][10][5], int profundidad){
 ## 6. Arreglos de Longitud Variable (VLAs)
 
 <p align="center">
-  <img src="imgs/stack_overflow.png" alt="Stack Overflow" width="600">
+  <img src="imgs/arreglos_de_longitud_variable_vlas.png" alt="Stack Overflow" width="600">
 </p>
 
 ### El Estándar C99

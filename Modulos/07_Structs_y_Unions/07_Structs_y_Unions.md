@@ -7,7 +7,7 @@ Si llegaste hasta acá, ya podemos empezar a ver C de verdad. Superaste datos, f
 ## 1. Introducción a las Estructuras (`struct`)
 
 <p align="center">
-  <img src="imgs/struct.png" alt="Introducción a Structs" width="600">
+  <img src="imgs/introduccin_a_las_estructuras_struct.png" alt="Introducción a Structs" width="600">
 </p>
 
 ### El Concepto
@@ -41,7 +41,7 @@ int main() {
 ## 2. Acceso e Inicialización
 
 <p align="center">
-  <img src="imgs/inicializacion.png" alt="Acceso e Inicialización" width="600">
+  <img src="imgs/acceso_e_inicializacin.png" alt="Acceso e Inicialización" width="600">
 </p>
 
 ### El Operador Punto (`.`)
@@ -74,7 +74,7 @@ emp_clon = emp2; // Ahora emp_clon tiene los datos de Jane Doe
 ## 3. Simplificación con `typedef`
 
 <p align="center">
-  <img src="imgs/typedef.png" alt="Uso de typedef" width="600">
+  <img src="imgs/simplificacin_con_typedef.png" alt="Uso de typedef" width="600">
 </p>
 
 ### El Problema
@@ -106,7 +106,7 @@ int main() {
 ## 4. Arreglos de Estructuras (Bases de datos en RAM)
 
 <p align="center">
-  <img src="imgs/arreglos_structs.jpg" alt="Arreglos de Structs" width="600">
+  <img src="imgs/arreglos_de_estructuras_bases_de_datos_en_ram.jpg" alt="Arreglos de Structs" width="600">
 </p>
 
 ### El Concepto
@@ -137,7 +137,7 @@ scanf("%f", &inventario[i].precio);
 ## 5. Structs y Funciones: El Operador Flecha (`->`)
 
 <p align="center">
-  <img src="imgs/flecha.png" alt="Operador Flecha" width="600">
+  <img src="imgs/structs_y_funciones_el_operador_flecha_-.png" alt="Operador Flecha" width="600">
 </p>
 
 ### Paso por Valor (La pesadilla de la RAM)
@@ -171,7 +171,7 @@ int main() {
 ## 6. Uniones (`union`): Compartiendo la Memoria
 
 <p align="center">
-  <img src="imgs/unions.jpeg" alt="Uniones en Memoria" width="600">
+  <img src="imgs/uniones_union_compartiendo_la_memoria.jpeg" alt="Uniones en Memoria" width="600">
 </p>
 
 ### El Concepto Diferenciador
@@ -216,7 +216,7 @@ typedef struct {
 ## 7. Padding y Alineación de Memoria (Avanzado)
 
 <p align="center">
-  <img src="imgs/padding.jpeg" alt="Padding de Memoria" width="600">
+  <img src="imgs/padding_y_alineacin_de_memoria_avanzado.jpeg" alt="Padding de Memoria" width="600">
 </p>
 
 ### La Sorpresa del `sizeof`
@@ -246,3 +246,60 @@ int main() {
     return 0;
 }
 ```
+
+---
+
+## 8. Enumeraciones (enums)
+
+<p align="center">
+  <img src="imgs/enums.jpg" alt="Enumeraciones" width="600">
+</p>
+
+### El Concepto
+Un `enum` (enumeración) es, en el fondo, un tipo de dato entero (`int`) disfrazado con nombres bonitos. Sirve para definir un conjunto de constantes relacionadas. 
+¿Por qué usarlo? Porque el código `if (estado == 1)` es críptico y propenso a errores (un "Magic Number"). En cambio, `if (estado == ACTIVO)` es código que se explica a sí mismo.
+
+### Sintaxis y Valores por Defecto
+Por defecto, el primer elemento vale `0`, el segundo `1`, y así sucesivamente. Sin embargo, puedes forzar el valor inicial.
+
+```c
+// Si no pusiéramos '= 1', MENU valdría 0.
+typedef enum {
+    MENU = 1,
+    JUGANDO,   // Automáticamente vale 2
+    GAMEOVER   // Automáticamente vale 3
+} EstadoJuego;
+```
+
+### Integración con Structs
+Los `enum` brillan cuando los usas como propiedades dentro de un `struct`, definiendo estados, roles o categorías.
+
+```c
+typedef enum { ORCO, GOBLIN, TROLL } TipoEnemigo;
+
+typedef struct {
+    char nombre[20];
+    int vida;
+    TipoEnemigo tipo; // Usamos nuestro propio enum
+} Enemigo;
+```
+
+### El Poder del Switch
+Cuando combinas un `enum` con un bloque `switch`, tu código se vuelve una obra de arte legible y robusta.
+
+```c
+Enemigo jefe = {"Grommash", 100, ORCO};
+
+switch (jefe.tipo) {
+    case ORCO:
+        printf("¡Por la horda!\n");
+        break;
+    case GOBLIN:
+        printf("¡El tiempo es oro, amigo!\n");
+        break;
+    case TROLL:
+        printf("¡Dingo!\n");
+        break;
+}
+```
+Con esto, tu código no solo es más claro para los humanos, sino que muchos compiladores te advertirán si se te olvida incluir un `case` para alguno de los valores del `enum`.

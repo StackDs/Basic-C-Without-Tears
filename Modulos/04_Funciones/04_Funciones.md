@@ -7,7 +7,7 @@ Bienvenidos al maravilloso submundo de las funciones, donde por fin vas a dejar 
 ## 1. Conceptos Básicos y Modularidad
 
 <div align="center">
-  <img src="./imgs/modularidad.jpeg" alt="Modularidad" width="600">
+  <img src="./imgs/conceptos_bsicos_y_modularidad.jpeg" alt="Modularidad" width="600">
 </div>
 
 ### El Principio de Modularidad
@@ -45,7 +45,7 @@ void insultar_usuario(void){
 ## 2. Declaración vs. Definición (Prototipos)
 
 <div align="center">
-  <img src="./imgs/prototipo.jpeg" alt="Prototipos" width="600">
+  <img src="./imgs/declaracin_vs_definicin_prototipos.jpeg" alt="Prototipos" width="600">
 </div>
 
 ### El orden de lectura de C
@@ -87,7 +87,7 @@ int multiplicar(int x, int y){
 ## 3. Retorno de Valores
 
 <div align="center">
-  <img src="./imgs/retorno.png" alt="Retorno" width="600">
+  <img src="./imgs/retorno_de_valores.png" alt="Retorno" width="600">
 </div>
 
 ### La sentencia `return`
@@ -123,7 +123,7 @@ int main(){
 ## 4. Paso de Parámetros: Copia vs. Referencia
 
 <div align="center">
-  <img src="./imgs/copia_referencia.jpeg" alt="Copia vs Referencia" width="600">
+  <img src="./imgs/paso_de_parmetros_copia_vs_referencia.jpeg" alt="Copia vs Referencia" width="600">
 </div>
 
 Aquí es donde C separa a los niños de los adultos (otra vez). Presta atención.
@@ -168,7 +168,7 @@ Los arreglos son especiales. **Un arreglo NUNCA se copia al pasarlo a una funci�
 ## 5. Ámbito de las Variables (Scope)
 
 <div align="center">
-  <img src="./imgs/scope.jpg" alt="Scope" width="600">
+  <img src="./imgs/mbito_de_las_variables_scope.jpg" alt="Scope" width="600">
 </div>
 
 El "scope" o ámbito dicta dónde vive y respira una variable. Si no entiendes esto, te la pasarás peleando con errores de "variable undeclared".
@@ -198,7 +198,7 @@ void contador_persistente(){
 ## 6. Enfoques de Resolución: Iterativo vs. Recursivo
 
 <div align="center">
-  <img src="./imgs/recursivo.jpg" alt="Recursividad" width="600">
+  <img src="./imgs/enfoques_de_resolucin_iterativo_vs_recursivo.jpg" alt="Recursividad" width="600">
 </div>
 
 Hay dos formas principales de hacer que una función repita cosas. 
@@ -243,7 +243,7 @@ El código recursivo suele ser muy elegante y corto. **PERO**, cada vez que una 
 ## 7. Argumentos desde la Consola (Pasando datos al main)
 
 <div align="center">
-  <img src="./imgs/argumentos.png" alt="Argumentos Consola" width="600">
+  <img src="./imgs/argumentos_desde_la_consola_pasando_datos_al_main.png" alt="Argumentos Consola" width="600">
 </div>
 
 ¿Te has preguntado por qué el `main` a veces tiene cosas raras adentro de los paréntesis? Hasta ahora hemos usado `int main()`, o `int main(void)`, que significa que nuestro programa arranca sin recibir nada del exterior. Pero podemos hacer que reciba datos *justo cuando el usuario lo ejecuta desde la terminal*.
