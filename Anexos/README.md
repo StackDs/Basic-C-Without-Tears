@@ -1,5 +1,7 @@
 # Anexos: Fundamentos Matemáticos y de Hardware
 
+Para todo en la vida, y sobre todo en programación, se necesita una base sólida y fuerte, por eso aquí reforzaremos conceptos que probablemente ya deberías de saber, pero que no importa si no lo sabes, lo importante es que lo aprenderás aquí y será de mucha utilidad para el resto del curso.
+
 <div align="center">
   <h3><a href="./01_Sistemas_Numericos.md">🚀 Entrar al Módulo</a></h3>
 </div>
