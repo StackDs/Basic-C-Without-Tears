@@ -112,7 +112,7 @@ printf("%s\n", bebida);
 
 Cuando tienes una horda de `else if` comprobando la **misma** variable contra distintos valores, es hora de usar un estilo de condicional que se llama `switch`. K&R lo describen como *"una forma especial de decisión múltiple que comprueba si una expresión coincide con uno de varios valores constantes enteros"*.
 
-* **Restricción de tipos:** A diferencia de otros lenguajes modernos donde el switch acepta strings u objetos, en C el switch **solo acepta enteros (`int`) y caracteres (`char`)**.
+* **Restricción de tipos:** A diferencia de otros lenguajes modernos donde el switch acepta strings u objetos, en C el switch **solo acepta expresiones de tipo entero** (como `int`, `char`, `short`, `long` o `enum`).
 
 ### La trampa mortal: El comportamiento "Fall-Through"
 Observa bien el `break;`. En C, si olvidas poner `break;` al final de un `case`, el programa no sale del switch; **continuará ejecutando las instrucciones de los casos siguientes de largo**, cayendo en cascada e ignorando si coinciden o no. A esto se le llama *fall-through*.

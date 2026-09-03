@@ -15,7 +15,7 @@ Antes de escribir código, debes entender en detalle dónde están viviendo tus 
 * **Residentes:** Aquí viven las variables locales y los arreglos normales que has usado hasta ahora (`int x = 5;`, `char nombre[20];`).
 * **Ciclo de vida:** Se limpia sola. Apenas el programa sale de la función donde se crearon, el Stack hace un barrido y las aniquila de forma automática.
 
-Dato curioso: Un también stack es una estructura de datos que funciona con el principio LIFO (Last In, First Out), es decir, el último elemento que entra es el primero que sale. No confundir el Stack de la memoria con la estructura de datos Stack. Son diferentes en naturaleza pero idénticas en lógica.
+Dato curioso: Un *Stack* (pila) también es una estructura de datos que funciona con el principio LIFO (Last In, First Out), es decir, el último elemento que entra es el primero que sale. No confundir el Stack de la memoria con la estructura de datos Stack. Son diferentes en naturaleza pero idénticas en lógica.
 
 Si quieres profundizar en esos temas, dentro de poco estaré trabajando en un repositorio acerca de estructuras de datos y algoritmos.
 
@@ -57,9 +57,9 @@ if (ptr == NULL) {
 ```
 
 ### `free` (La devolución)
-Cuando dejas de usar la memoria, debes devolverla. Obligatoriamente. Sobre todo si estás trabajando con bloques que piden memoria constantemente, de todas formas cuando tu programa termina, el sistema operativo se encarga de liberar la memoria.
+Cuando dejas de usar la memoria, debes devolverla. Obligatoriamente. Es cierto que **cuando tu programa termina por completo**, el sistema operativo barre y limpia cualquier memoria residual, pero depender de esto es una excusa de mal programador.
 
-Si tu programa está en un while pidiendo memoria una y otra vez sin liberarla, estarás causando una "fuga de memoria".
+Si tu programa es de larga duración (ej. un servidor web, un videojuego) y estás pidiendo memoria constantemente sin liberarla, estarás causando una fuga de memoria (Memory Leak) que tarde o temprano colapsará todo tu sistema.
 ```c
 free(ptr);
 ```
@@ -151,6 +151,9 @@ free(arreglo);
 
 El jefe final del módulo. Construir estructuras multidimensionales en el Heap no es tan directo como un `matriz[3][3]`.
 
+> [!NOTE]
+> **Recordemos y entendamos:** Gran parte de esta mecánica ya la vimos en uno de los módulos anteriores. La repetimos aquí detalladamente porque en C es mucho mejor entender visualmente la arquitectura de la memoria que estás esculpiendo, en lugar de mecanizar o memorizar código a ciegas.
+
 **El concepto del arreglo de punteros:**
 Una matriz en el Heap no es un bloque cuadrado perfecto de memoria. Es, en realidad, un arreglo dinámico principal (que representa las filas), donde cada casilla guarda **otro puntero** hacia un nuevo arreglo dinámico individual (las columnas).
 
@@ -187,6 +190,9 @@ Este es el puente que te prepara para Estructuras de Datos más avanzadas como L
 struct Alumno *a = malloc(sizeof(struct Alumno));
 ```
 Al igual que con los arreglos, la ventaja de esto es que ahora tu struct vivirá fuera del rango donde fue declarado.
+
+> [!NOTE]
+> **Recordemos y entendamos:** Como vimos en el módulo de Structs, al tener un puntero no podemos usar el punto (`.`). Volvemos a recalcarlo porque es vital entender que estás atravesando una dirección de memoria, en lugar de solo mecanizar el uso del símbolo.
 
 **El Operador Flecha (`->`) en acción:**
 Confirmarás por qué este operador es obligatorio. Al trabajar exclusivamente con punteros a un struct en el Heap, ya no puedes usar el simple punto (`.`). El operador `->` es tu pase de acceso.

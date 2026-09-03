@@ -45,7 +45,17 @@ Para adaptar estos tipos de datos a necesidades específicas de precisión o ran
  - **Tamaño:** ```short``` y ```long```: se aplican a enteros; suele omitirse la palabra `int` y se define la variable directamente con el modificador.
  - **Signo:** ```signed``` y ```unsigned```: se aplican a caracteres o a cualquier entero y sirven para modificar la forma en la que presentamos el rango de valores. Un tipo `signed` podrá alcanzar menos valores positivos que un `unsigned`, ya que este último emplea esos bytes para aumentar su rango de representación.
 
-Para una arquitectura de 64 bits, por ejemplo x86-64 con GCC en Linux, puedes usar esta tabla como referencia:
+> [!WARNING]
+> **El estándar de C solo garantiza tamaños mínimos.** Dependiendo de la arquitectura de tu computadora (por ejemplo, en un microcontrolador o un sistema embebido), un `int` podría ocupar solo 2 bytes en lugar de 4. No asumas nunca el tamaño de un tipo primitivo a ciegas si la precisión estricta es crítica para tu programa.
+
+Para solucionar este problema de portabilidad, C99 introdujo la cabecera `<stdint.h>`. Si incluyes esta librería, puedes usar tipos de datos con tamaños fijos garantizados sin importar la plataforma:
+- `uint8_t`: Entero sin signo de exactamente 8 bits (1 byte).
+- `int32_t`: Entero con signo de exactamente 32 bits (4 bytes).
+- `uint64_t`: Entero sin signo de exactamente 64 bits (8 bytes).
+
+Acostúmbrate a usarlos cuando el tamaño exacto importe.
+
+Para una arquitectura de 64 bits, por ejemplo x86-64 con GCC en Linux, usando los tipos estándar clásicos, puedes usar esta tabla como referencia:
 
 |**Tipo** | **Tamaño** | **Rango** |
 |   ---   |    ---     |    ---    |

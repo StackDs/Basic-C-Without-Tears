@@ -1,12 +1,12 @@
 # Introducción
-Bienvenidos a uno de los lenguajes de programación más poderosos y más viejos dentro del ámbito; probablemente vengas de un lenguaje como Python, muy de alto nivel, con gestión automática de memoria, donde no tienes que definir tipos de datos, los strings funcionan como objetos y, en general, todo funciona mejor.  
+Bienvenidos a uno de los lenguajes de programación más poderosos y más viejos dentro del ámbito; probablemente vengas de un lenguaje como Python, muy de alto nivel, con gestión automática de memoria, donde no tienes que definir tipos de datos, los strings funcionan como objetos y, en general, todo pareciera ser más fácil.  
 
 C es un terreno distinto: puede que le tengas miedo al inicio y, en realidad, deberías. Lidiarás con punteros, memoria dinámica, tipos de datos definidos, los famosos `;` que siempre vas a olvidar colocar, entre otras cosas, pero todo a su debido tiempo. Aprender C no es solo aprender una sintaxis nueva; en realidad, aprenderás más sobre cómo funciona tu computador que sobre el lenguaje en sí. XD.   
 
 Es una transición fundamental para entender cómo interactúa tu software con el hardware del sistema. Si no me crees, pregúntale a mi tío **Linus Torvalds**. Comenzaremos explicando la filosofía de C y su modelo de ejecución compilado. Ya que si C es un lenguaje compilado, a diferencia de Python, que es un lenguaje interpretado, para no hacer esto tan largo, comencemos con un poco de teoría y cosas que deberías saber de antemano.
 
 <div align="center">
-  <img src="./imgs/ntroduccin.png" alt="C programming language" width="400" width="600">
+  <img src="./imgs/ntroduccin.png" alt="C programming language" width="600">
 </div>
 
 --- 
@@ -29,14 +29,14 @@ Esto lleva a C a ser un lenguaje un poco intimidante. Al no llevarte de la mano 
 
 ## 2. El Modelo de Memoría: Stack, Heap y la Ausencia del recolector de basura.  
 
-En lenguajes como Python, cuando creas una variable u objeto, un mecanismo interno llamado **recolector de basura** monitorea si el objeto sigue en uso, esto con el fin de optimizar el programa y deshacerte de él en caso de no ser usado, para liberar memoria y cosas por el estilo. Pronto aprenderás que los informáticos estamos obsesionados con la eficiencia.  
+En lenguajes como Python, cuando creas una variable u objeto, un mecanismo interno llamado **recolector de basura** monitorea si el objeto sigue en uso, esto con el fin de optimizar el programa y deshacerte de él en caso de no ser usado, es decir el Garbage Collector libera memoria que no está siendo referenciada. Pronto aprenderás que los informáticos estamos obsesionados con la eficiencia y el rendimiento.  
 
 En C, sin embargo, **la gestión es manual**. La memoria del programa se divide principalmente en 3 áreas:
 
 ### A. Variables Automáticas (El "Stack" o pila)  
 
 Las variables declaradas dentro de una función como estas:
-```
+```c
 int main(){
     int whisky = 0;
     int gin = 1;
@@ -47,7 +47,7 @@ Son locales y pertenecen a la clase de almacenamiento automática.
 
 - **Ciclo de vida:** Estas variables nacen (se les asigna espacio) cuando la función es llamada, y "desaparecen" de forma automática cuando la función termina su ejecución.
 - **El peligro de la "basura":** Si no inicializas explícitamente una variable automática, como de esta forma:
-```
+```c
 int main(){
     int whisky;
 }
@@ -58,7 +58,7 @@ Dicha variable tendrá un valor indefinido; es decir, **contiene "basura"** (los
 
 Las variables declaradas fuera de cualquier función son **externas** o denominadas como (globales).
 
-```
+```c
 int cigarros = 20;  // Variable global
 int whisky;
 void fumar(){
@@ -78,7 +78,7 @@ Cuando necesitas que un bloque de memoria sobreviva a la ejecución de la funci�
 - En C, tú pides la memoria al sistema operativo y **estás obligado a devolverla** explícitamente con **free()**.
 - Olvidar liberar la memoria genera un **Memory Leak** o fuga de memoria, lo que eventualmente consumirá toda la memoria del sistema. 
 
-Esto, en programas grandes, es estrictamente necesario. En sistemas pequeños, una vez termine la ejecución del programa, liberará automáticamente la memoria pedida de forma automática; de igual forma, es una buena práctica hacerlo en el código.  
+Esto, en programas grandes, es estrictamente necesario. De todas formas, en todos los sistemas operativos una vez termine la ejecución del programa, este liberará automáticamente la memoria pedida; de igual forma, es una buena práctica hacerlo en el código.  
 
 <div align="center">
     <img src="./imgs/memoria_dinmica_el_heap_o_montculo.jpg" alt="Modelo de memoria" width="400" width="600">
@@ -120,18 +120,18 @@ C se traduce directamente a instrucciones binarias de lenguaje máquina que el p
 A continuación te muestro un ejemplo de compilación simple de un programa, porque sí, a partir de ahora lo harás por terminal (para que la uses alguna vez en tu vida).
 
 **Compilación básica**
-```
+```shell
 gcc ludopatia.c      // Para compilar
 ./a.out              // Para ejecutar
 ```
 **Compilación con un nombre distinto** 
-```
+```shell
 gcc ludopatia.c -o AllInRed    // Para compilar
 ./AllInRed                     // Para ejecutar 
 ```
 
 **Compilación con advertencias (MUY RECOMENDADO)**
-```
+```shell
 gcc -Wall ludopatia.c -o AllInRed
 ```
 

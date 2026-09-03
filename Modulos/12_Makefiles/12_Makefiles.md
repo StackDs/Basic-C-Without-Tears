@@ -167,7 +167,44 @@ Ahora, no importa si existe un archivo llamado `clean`, Make ejecutará la recet
 
 ---
 
-## 7. Más allá de Make (Contexto de la Industria)
+## 7. Plantilla Completa Funcional
+
+Para que no te vayas con las manos vacías, aquí tienes un `Makefile` completo y profesional que junta todos los conceptos que acabamos de ver. Cópialo, pégalo en tu proyecto y modifícalo según necesites.
+
+```makefile
+# 1. Variables
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
+TARGET = programa
+
+# 2. Archivos fuente y objetos
+# (Encuentra todos los .c en la carpeta y asume sus respectivos .o)
+SRCS = $(wildcard *.c)
+OBJS = $(SRCS:.c=.o)
+
+# 3. Regla por defecto (la primera que encuentra Make)
+all: $(TARGET)
+
+# 4. Regla para enlazar (Linker)
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) $^ -o $@
+
+# 5. Regla de patrón para compilar (Compilador)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# 6. Limpieza (Objetivo Ficticio)
+.PHONY: clean all
+
+clean:
+	rm -f *.o $(TARGET)
+```
+
+*(Nota: Asegúrate de que las indentaciones dentro de las reglas en tu archivo sean **tabulaciones reales** y no espacios).*
+
+---
+
+## 8. Más allá de Make (Contexto de la Industria)
 
 <p align="center">
   <img src="imgs/ms_all_de_make_contexto_de_la_industria.jpeg" alt="Imagen Seccion 7" width="600">

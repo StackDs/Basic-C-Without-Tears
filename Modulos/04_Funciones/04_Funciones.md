@@ -31,6 +31,8 @@ int sumar(int a, int b){
 ¿Y qué pasa si tu función no necesita devolver nada y solo está ahí para hacer su trabajo sucio en silencio? Para eso usamos `void` (vacío). Son funciones operativas que ejecutan tareas (como imprimir en pantalla) pero no le devuelven ningún valor útil al sistema.
 
 ```c
+#include <stdio.h>
+
 void insultar_usuario(void){
     printf("Escribiste mal el comando, inútil.\n");
     // No hay return, porque no devuelve nada.
@@ -54,7 +56,7 @@ El compilador de C es como un burócrata muy estricto y de mente cerrada: lee el
 ### Los Prototipos (Firmas)
 Para calmar al compilador sin tener que poner todas tus funciones amontonadas arriba de `main()`, usamos **Prototipos**. Un prototipo es simplemente la declaración de la función (su firma) que le dice al compilador: "Oye, relájate, más adelante te voy a explicar cómo funciona esto, pero confía en que existe y recibe estos parámetros". Se colocan antes del `main`.
 
-Dichas definiciones por lo general se encuentran en archivos .h, los cuales ya has visto antes; por ahora solo tienes que saber que son como una especie de contrato o "ADT" (Abstract Data Type), los cuales definen qué es lo que hace una función pero no cómo lo hace. Por ejemplo, no le dirían al compilador "suma dos números", sino que simplemente le dirían "toma dos números y devuélvenos el resultado", sin importar si es mediante la suma o cualquier otro método que se te ocurra.
+Dichas definiciones por lo general se encuentran en archivos .h, los cuales ya has visto antes; por ahora solo tienes que saber que son como una especie de contrato o interfaz, los cuales definen qué es lo que hace una función pero no cómo lo hace. Por ejemplo, no le dirían al compilador "suma dos números", sino que simplemente le dirían "toma dos números y devuélvenos el resultado", sin importar si es mediante la suma o cualquier otro método que se te ocurra.
 
 Sirven para que precisamente el compilador sepa qué es lo que hace una función y pueda compilar sin problemas.
 
@@ -161,7 +163,7 @@ int main(){
 ```
 
 ### Paso de Arreglos (Arrays): La gran excepción
-Los arreglos son especiales. **Un arreglo NUNCA se copia al pasarlo a una función.** Sería demasiado costoso en memoria copiar 1000 elementos solo para pasarlos. En su lugar, C implícitamente pasa el arreglo *por referencia* (envía la dirección de su primer elemento). Si modificas un arreglo dentro de una función, estás modificando el original. Cuidado con eso.
+Los arreglos son especiales. **Un arreglo NUNCA se copia al pasarlo a una función.** *(Nota: Este concepto es tan vital para tu existencia que lo verás repetido en el próximo módulo de [Arreglos y Matrices](../05_Arreglos_y_Matrices/05_Arreglos_y_Matrices.md))*. Sería demasiado costoso en memoria copiar 1000 elementos solo para pasarlos. En su lugar, C implícitamente pasa el arreglo *por referencia* (envía la dirección de su primer elemento). Si modificas un arreglo dentro de una función, estás modificando el original. Cuidado con eso.
 
 ---
 

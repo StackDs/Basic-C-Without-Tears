@@ -178,7 +178,7 @@ int main() {
 La sintaxis de un `union` es un calco a la del `struct`, pero mecánicamente hacen lo contrario. Mientras el `struct` reserva memoria para **TODAS** sus variables, el `union` hace que **TODOS sus miembros compartan exactamente el mismo bloque de memoria**.
 
 ### El Tamaño Físico
-El peso en bytes de un `struct` es (al menos) la suma de todos sus elementos. El peso de un `union` lo dicta **únicamente su miembro más grande**.
+El peso en bytes de un `struct` es la suma de sus elementos **más el padding de alineación** (que veremos en la siguiente sección). El peso de un `union` lo dicta **únicamente su miembro más grande**.
 
 ```c
 union Datos {
@@ -188,14 +188,14 @@ union Datos {
 }; // El union completo solo pesa 20 bytes, no 28.
 ```
 
-### La Regla de Oro (Sobrescritura Mortal)
+### Sobrescritura Mortal
 Como todo vive en el mismo piso, **solo un valor es válido a la vez**. Si escribes el `int`, y luego escribes el `float`, la memoria entera se corrompe adaptándose al `float`. Tu `int` original muere irremediablemente.
 
 ### Aplicaciones Prácticas
 En programas convencionales es poco usado y, la verdad, yo nunca los he tocado. Tuve que investigar para escribir sobre esto, aunque aquí te van algunas aplicaciones prácticas:
 
 *   **Ahorro extremo de RAM:** Ideal en sistemas embebidos donde la memoria se cuenta con cuentagotas.
-*   **Type Punning:** Analizar cómo se ve un tipo de dato por debajo (ej. guardas un `float` y lo lees como un arreglo de `char` para ver sus bytes exactos).
+*   **Type Punning (¡Peligro!):** Antiguamente se usaban las uniones para guardar un dato (ej. `float`) y leerlo como otro (ej. `int`) para inspeccionar sus bytes. En el C moderno (C99/C11) esto es considerado **comportamiento indefinido** y puede corromper la memoria u optimizaciones de tu compilador, excepto si el tipo de destino es estrictamente un arreglo de `char` o `unsigned char` (ya que los caracteres tienen un permiso especial en C para inspeccionar la memoria byte por byte). Para cualquier otra conversión de tipos incompatibles a nivel de bits, la única forma estándar y segura de hacer type punning es usando la función `memcpy`.
 
 ### Uniones Discriminadas (Tagged Unions)
 Como el `union` por sí solo no sabe cuál de sus variables es la que está activa actualmente, el patrón de diseño clásico es encapsularlo dentro de un `struct` junto con una etiqueta (una variable) que nos avise qué guardar adentro.

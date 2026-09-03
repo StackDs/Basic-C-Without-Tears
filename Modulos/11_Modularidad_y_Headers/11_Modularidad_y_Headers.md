@@ -46,10 +46,6 @@ Todo lo que necesite ser conocido o usado por otros archivos:
 * **Definiciones de macros:** `#define MAX_ENEMIGOS 100`
 * **Declaraciones de structs, unions y enums:** Junto con sus respectivos `typedef`.
 
-> [!WARNING]
-> Me acabo de dar cuenta que no tomé en consideración la existencia de enums en C, revisaré en qué parte lo puedo incluir más adelante, debí haberlo visto en el módulo de structs pero se me fue.
-
-
 ### ¿Qué NO debe ir en un `.h`?
 **NO PONGAS IMPLEMENTACIÓN LÓGICA, A MENOS QUE SEA NECESARIO** 
 No escribas el código (lo que va dentro de las llaves `{}`) ni inicialices variables globales (`int vida = 100;`). Si lo haces, el preprocesador pegará ese código idéntico en cada archivo `.c` que incluya tu `.h`. Cuando llegue el turno del Linker, verá cinco funciones idénticas en cinco archivos distintos y te castigará severamente por intentar redefinir la misma cosa varias veces (error de *multiple definition*).

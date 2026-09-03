@@ -60,6 +60,7 @@ En Python podías hacer `print(f"Mi edad es {edad}")`. En C, `printf` usa "marca
 | `%Lf` | Flotantes de precisión extendida (`long double`) |
 | `%c` | Carácter (`char`) |
 | `%s` | Cadena de texto (String) |
+| `%zu` | Tipo `size_t` (el tipo de dato que devuelve el operador `sizeof`) |
 
 ```c
 int edad = 25;
@@ -175,6 +176,9 @@ fgets(nombre, sizeof(nombre), stdin);
 // Busca el \n y lo reemplaza por el carácter nulo \0 (fin de cadena)
 nombre[strcspn(nombre, "\n")] = '\0';
 ```
+
+> [!WARNING]
+> **La trampa mortal `scanf` + `fgets`:** Si usas `scanf("%d", &edad)` para leer un número, y justo después usas `fgets` para leer texto, el `fgets` parecerá ignorarte y pasará de largo. Esto ocurre porque `scanf` deja el salto de línea (`\n`) en el buffer del teclado cuando presionas ENTER, y `fgets` se traga ese `\n` residual creyendo que ya terminaste de escribir. En la próxima sección veremos cómo solucionar este desastre.
 
 ### La solución rápida: Scansets
 Puedes usar una expresión regular simple dentro de `scanf` para decirle "lee todo hasta que encuentres un salto de línea".

@@ -4,7 +4,8 @@ Hasta ahora, tus programas han tenido amnesia severa. No importa cuán complejas
 
 Para que los datos sobrevivan a la muerte del programa (persistencia), debemos guardarlos en el disco duro. Bienvenidos al manejo de archivos.
 
-**[WARNING]** En la práctica no es muy buena idea guardar datos sensibles en texto plano, te enseñaré a manejar archivos .txt, .csv y binarios, pero si quieres guardar datos sensibles en la práctica te recomiendo usar JSON, XML o bases de datos.
+> [!WARNING]
+> En la práctica no es muy buena idea guardar datos sensibles en texto plano, te enseñaré a manejar archivos .txt, .csv y binarios, pero si quieres guardar datos sensibles en la práctica te recomiendo usar JSON, XML o bases de datos.
 
 Dichas tecnologías por lo general son más cómodas para trabajar con datos estructurados, sin embargo los datos que no necesitan tanta protección o bien que son creados con el fin de ser compartidos pueden almacenarse en archivos .txt, .csv o binarios sin problemas.
 
@@ -35,6 +36,12 @@ El segundo parámetro le dice al OS cuáles son tus intenciones:
 *   **`"r"` (Read - Lectura):** Solo para leer. Si el archivo no existe, `fopen` falla.
 *   **`"w"` (Write - Escritura):** Para crear un archivo nuevo y escribir en él. **[ADVERTENCIA CRÍTICA]:** Si el archivo ya existe, el modo `"w"` lo aniquilará por completo (lo trunca a cero bytes) sin hacerte ninguna pregunta.
 *   **`"a"` (Append - Añadir):** Abre el archivo para escribir datos al final del mismo, sin borrar lo que ya existía.
+
+### Modos de Apertura Combinados (El signo `+`)
+Si añades el signo `+` a los modos básicos, obtienes permisos bidireccionales (lectura y escritura simultáneas), aunque cada uno tiene sus trucos:
+*   **`"r+"` (Lectura y Escritura):** El archivo *debe* existir previamente. El cursor empieza al inicio, permitiéndote sobrescribir datos específicos sin borrar el resto.
+*   **`"w+"` (Escritura y Lectura con Truncamiento):** Crea un archivo nuevo para leer y escribir. Si ya existe, **lo aniquila y lo deja en cero bytes** antes de empezar.
+*   **`"a+"` (Lectura y Añadir):** Permite leer desde cualquier parte, pero **todas** las escrituras se irán forzosamente al final del archivo, sin importar dónde se encuentre tu cursor de lectura en ese momento.
 
 ### Cierre Obligatorio (`fclose`)
 Cuando abres un archivo, el Sistema Operativo reserva recursos y un *buffer* en memoria RAM para acelerar las escrituras. Si no haces `fclose(archivo);` al terminar, los últimos datos podrían quedarse atrapados en el buffer de la RAM y nunca guardarse en el disco duro. Además, el archivo quedará "bloqueado" por tu programa, impidiendo que otros lo usen. Así que recuerda, **Si lo abres, lo cierras**.

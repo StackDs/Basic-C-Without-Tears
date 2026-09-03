@@ -95,7 +95,7 @@ $$
 $$
 
 
-Como puedes ver el proceso es siempre el mismo, recuerda que siempre contamos la posición 0 como la de más a la izquierda, esto funciona muy bien para números enteros, sin embargo la cosa cambia un poco con los números flotantes y demás pero lo veremos en otro módulo.
+Como puedes ver el proceso es siempre el mismo. Recuerda que siempre contamos la posición 0 como la de más a la **derecha** (el bit menos significativo o LSB); esto funciona muy bien para números enteros, sin embargo la cosa cambia un poco con los números flotantes y demás pero lo veremos en otro módulo.
 
 De lo anterior podemos desglosar la siguiente fórmula para cada entero sin signo:
 

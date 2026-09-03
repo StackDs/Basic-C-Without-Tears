@@ -55,6 +55,9 @@ Si todos pesan 8 bytes, ¿por qué declaramos `int *` o `double *`?
 
 Porque el tipo le dice a C **cuántos bytes debe leer o escribir** a partir de esa dirección inicial. Si tienes un `char *`, C sabe que en esa dirección solo debe leer 1 byte. Si es un `int *`, leerá 4 bytes. Sin el tipo, el programa no sabría cuándo parar de leer la memoria.
 
+> [!WARNING]
+> **Strict Aliasing:** C tiene una regla estricta que dice que no debes acceder a un objeto en memoria usando un puntero de un tipo distinto al original (excepto `char *`). Por ejemplo, no debes apuntar un `float *` a una variable `int` para intentar leerla. El compilador asume que punteros de tipos distintos nunca apuntan al mismo lugar, y romper esta regla (Strict Aliasing Rule) generará un comportamiento impredecible tras las optimizaciones del compilador.
+
 ### El Operador de Desreferenciación (`*`)
 Una vez que tienes un puntero con una dirección, quieres poder ir a esa dirección para ver o cambiar lo que hay. A esto se le llama "desreferenciar" y usamos el operador `*` (sí, el mismo símbolo que usamos para declarar, pero hace algo distinto aquí).
 
@@ -78,7 +81,7 @@ Un puntero no inicializado apuntará a una dirección al azar (basura en memoria
 A los punteros se les pueden sumar y restar números, pero no funciona como la matemática que conocemos.
 
 ### Sumar y Restar a un Puntero
-Si tienes `int *ptr = 0x1000;` (asumiendo que es una dirección válida) y haces `ptr + 1`, la respuesta **NO** es `0x1001`. 
+Si tienes `int *ptr = (int *)0x1000;` (asumiendo que es una dirección válida y haciendo el cast necesario) y haces `ptr + 1`, la respuesta **NO** es `0x1001`. 
 La respuesta es `0x1004` (en sistemas donde el entero ocupa 4 bytes). La aritmética de punteros avanza **en saltos proporcionales al tamaño del tipo de dato al que apunta**.
 
 ### Distancia entre Punteros
@@ -125,7 +128,7 @@ for(int *p = arr; p < arr + 3; p++) {
 
 ### Puntero Genérico (`void *`)
 Un puntero `void *` es el "comodín". Guarda una dirección de memoria pero **no sabe qué tipo de dato hay ahí**. 
-*Regla de oro:* NO se puede desreferenciar un `void *` (porque C no sabe cuántos bytes leer) y NO se puede hacer aritmética con él (porque no tiene un tamaño base para los saltos). Para usarlo, primero debes obligarlo a tomar una identidad mediante un Cast explícito (conversión de tipo).
+**No** se puede desreferenciar un `void *` (porque C no sabe cuántos bytes leer) y, según el estándar de C, **no** se puede hacer aritmética con él (porque no tiene un tamaño base para los saltos). *(Nota: Compiladores como GCC permiten aritmética con `void *` como una extensión no estándar asumiendo saltos de 1 byte, pero es una mala práctica depender de ello)*. Para usarlo de forma segura, primero debes obligarlo a tomar una identidad mediante un Cast explícito (conversión de tipo).
 
 ### Punteros a Punteros (`**ptr`)
 Sí, puedes tener una variable que guarda la dirección de... otra variable que guarda una dirección.

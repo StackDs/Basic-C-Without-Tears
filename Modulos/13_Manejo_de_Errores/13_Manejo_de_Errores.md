@@ -32,7 +32,10 @@ fprintf(stderr, "Error catastrófico: El puntero era NULL.\n");
 Como no hay excepciones, C usa el valor de retorno de las funciones para avisarte si hubo éxito o tragedia. Existen tres estándares de la industria para esto:
 
 ### Retorno Booleano / Entero
-La función devuelve `0` (o `true`/`false` si usas `<stdbool.h>`) si todo salió bien, y `-1` (o un código de error específico) si algo falló.
+Existen dos vertientes principales aquí que no debes mezclar:
+1. **Convención POSIX (Enteros):** La función retorna `0` para indicar que todo salió bien (éxito absoluto), y `-1` (o un número positivo que representa un código de error específico) si algo falló.
+2. **Convención Lógica (Booleanos):** Si usas `<stdbool.h>`, la función retorna `true` (`1`) si la operación fue válida o exitosa, y `false` (`0`) si falló.
+*(Nota crítica: Un `0` en POSIX es un éxito, pero un `0` en booleano es un fracaso. Mantenlos separados en tu mente).*
 ```c
 int iniciar_sistema(void);
 
@@ -147,7 +150,7 @@ void procesar_datos(int *datos) {
 }
 ```
 
-Muy util cuando estas depurando el codigo y buscando ciertos errores que hacen que tu programa se comporte de forma inesperada.
+Muy útil cuando estás depurando el código y buscando ciertos errores que hacen que tu programa se comporte de forma inesperada.
 
 ### El propósito
 Los asertos sirven para detectar errores de lógica y atrapar tus propios bugs. Sirven para decir: *"Es matemáticamente imposible que esta variable sea negativa en este punto, y si lo es, es que programé algo mal"*. 

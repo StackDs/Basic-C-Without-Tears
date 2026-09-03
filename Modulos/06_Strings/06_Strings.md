@@ -51,10 +51,10 @@ char saludo[5] = {'H', 'o', 'l', 'a', '\0'};
 Probablemente veas esta sintaxis usando punteros:
 
 ```c
-char *texto = "Hola";
+const char *texto = "Hola";
 ```
 
-**ADVERTENCIA:** Aunque funciona, el texto literal se guarda en un área de **memoria de solo lectura** (Read-Only). Si en el futuro intentas cambiar una letra (ej. `texto[0] = 'h';`), el sistema operativo te castigará asesinando tu programa de un tiro con un hermoso **Segmentation Fault**. Usa arreglos (`char texto[] = "Hola";`) si planeas modificar el texto.
+**ADVERTENCIA:** Como el texto literal se guarda en un área de **memoria de solo lectura** (Read-Only) por parte del sistema operativo, usar un puntero a `char` regular sin el calificador `const` está obsoleto y el compilador te lanzará advertencias. Es preciso usar `const char *` para que el compilador sepa que no puede modificarse. Si en el futuro intentas engañar al sistema y cambiar una letra (ej. `texto[0] = 'h';`), serás castigado con un hermoso **Segmentation Fault**. Usa arreglos (`char texto[] = "Hola";`) si planeas modificar el texto.
 
 ---
 
@@ -154,6 +154,18 @@ char nombre[] = "Mundo cruel";
 
 // strcat(saludo, nombre); // ERROR: 6 (saludo) + 11 (nombre) = 17. Se pasa de 15.
 strncat(saludo, nombre, 8); // Seguro: Pega hasta 8 letras (strncat siempre añade el '\0')
+```
+
+### Formatear strings complejos (`sprintf` y `snprintf`)
+A veces no quieres imprimir texto en la consola, sino guardar un texto con múltiples variables formateadas dentro de otro string (ej. para armar una consulta de base de datos o un log).
+*   **`sprintf(destino, "Formato %d", var)`**: Funciona igual que `printf`, pero escribe en la variable `destino`. Es insegura porque no comprueba el tamaño del arreglo.
+*   **`snprintf(destino, max_caracteres, "Formato %d", var)`**: La alternativa estándar y segura. Le indicas el tamaño máximo para evitar desbordamientos.
+
+```c
+char archivo[30];
+int id = 42;
+// snprintf asegura que nunca pasaremos de los 30 caracteres permitidos
+snprintf(archivo, sizeof(archivo), "reporte_usuario_%d.pdf", id);
 ```
 
 ### Buscar caracteres perdidos (`strcspn` y `strchr`)

@@ -55,7 +55,7 @@ Los corchetes `[]` son mágicos: sirven tanto para leer como para escribir (acce
 Cuando pides un arreglo, C va a la RAM y reserva un bloque *continuo* de memoria. Los elementos se guardan uno exactamente al lado del otro. Si tienes un `int` de 4 bytes, el elemento 0 está en la dirección de memoria `X`, el elemento 1 en `X + 4`, y así sucesivamente. Esta es la razón principal de su increíble velocidad y eficiencia.
 
 ### El Operador `sizeof`
-Como en C los arreglos son bastante crudos y no "guardan" su propio tamaño de forma intrínseca, puedes usar `sizeof` para calcular cuántos elementos tienen dinámicamente. *(Nota: esto solo funciona en el mismo scope/función donde se declaró el arreglo).*
+Como en C los arreglos son bastante crudos y no "guardan" su propio tamaño de forma intrínseca, puedes usar `sizeof` para calcular cuántos elementos tienen en tiempo de compilación. *(Nota: esto solo funciona en el mismo scope/función donde se declaró el arreglo).*
 
 ```c
 int arreglo[10];
@@ -64,6 +64,9 @@ int arreglo[10];
 int longitud = sizeof(arreglo) / sizeof(arreglo[0]); // Resultado: 10
 ```
 Esto vendría a reemplazar a la clásica función `len()` que usábamos en Python. Un poco engorroso, lo sé, pero nadie dijo que C sería fácil.
+
+> [!WARNING]
+> **El decaimiento a puntero (Pointer Decay):** Esta fórmula `sizeof(arreglo) / sizeof(arreglo[0])` **solo funciona en la función donde el arreglo fue creado**. Si le pasas este arreglo a otra función (como parámetro), C no envía el arreglo completo, solo envía un *puntero* a la primera posición. Si intentas usar `sizeof` sobre ese parámetro en la nueva función, te dará el tamaño del puntero (usualmente 8 bytes), arruinando por completo tu cálculo. Por esta razón, cuando envíes un arreglo a otra función, **siempre debes pasarle también su longitud como un parámetro extra**.
 
 
 ### El Desbordamiento (Out of Bounds)
