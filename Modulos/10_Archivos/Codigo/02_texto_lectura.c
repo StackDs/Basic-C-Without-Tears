@@ -1,7 +1,15 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##        Archivos de Texto (Lectura Segura)        ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main(void) {
     printf("\n=== 2. Archivos de Texto (Lectura Segura con EOF) ===\n");
     // Abrimos en modo "r" (Read).
     FILE *archivo_leer = fopen("mi_texto.txt", "r");

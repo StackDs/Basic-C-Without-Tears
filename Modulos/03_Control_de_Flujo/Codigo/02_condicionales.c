@@ -1,15 +1,16 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##        Condicionales (Toma de Decisiones)        ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <stdbool.h>
 
 int main(void) {
-  /**
-     ############################################
-     ##                                        ##
-     ##  2. Condicionales (Toma de decisiones) ##  
-     ##                                        ##
-     ############################################
-  **/
-  printf("\n\n=== 2. Condicionales (if / else) ===\n");
+    printf("\n\n=== 2. Condicionales (if / else) ===\n");
   
   /** if, else if, else:
    * Control basico de decisiones. Las llaves {} son obligatorias

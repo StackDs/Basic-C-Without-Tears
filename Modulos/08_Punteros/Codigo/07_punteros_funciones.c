@@ -1,15 +1,23 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##         Punteros a Funciones (Callbacks)         ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 
-void saludar(){
+void saludar(void){
     printf("Hola desde un Callback!\n");
 }
 
-void despedir(){
+void despedir(void){
     printf("Adios desde un Callback!\n");
 }
 
 // Esta función recibe un puntero a una función que no toma argumentos y retorna void
-void ejecutar_callback(void (*func)()){
+void ejecutar_callback(void (*func)(void)){
     printf("Ejecutando funcion inyectada...\n");
     func();
 }

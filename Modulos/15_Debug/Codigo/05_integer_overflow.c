@@ -1,4 +1,12 @@
 /**
+   ######################################################
+   ##                                                  ##
+   ##     Debug: Desbordamiento Entero (Overflow)      ##
+   ##                                                  ##
+   ######################################################
+**/
+
+/**
  * Ejemplo 5: Desbordamiento de Entero (Integer Overflow)
  * 
  * Ocurre cuando intentas guardar en una variable un número más grande 

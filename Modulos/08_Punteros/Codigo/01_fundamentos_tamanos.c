@@ -1,5 +1,12 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##        Fundamentos: Direcciones y Tamanos        ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void){
     printf("\n=== 1. Fundamentos: Direcciones y Tamanos ===\n");

@@ -1,15 +1,16 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##           Seleccion Multiple (switch)            ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <stdbool.h>
 
 int main(void) {
-  /**
-     ############################################
-     ##                                        ##
-     ##  3. Seleccion Multiple (switch)        ##  
-     ##                                        ##
-     ############################################
-  **/
-  printf("\n\n=== 3. Seleccion Multiple (switch) ===\n");
+    printf("\n\n=== 3. Seleccion Multiple (switch) ===\n");
   
   /** Switch y el comportamiento Fall-Through:
    * Solo acepta enteros (int) y caracteres (char).

@@ -7,7 +7,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 
 # 2. Objetivo Principal (El ejecutable final)
-# $^ representa todas las dependencias (main.o sintaxis.o)
+# $^ representa todas las dependencias (01_main.o 02_saludo.o)
 # $@ representa el objetivo actual (programa)
 programa: 01_main.o 02_saludo.o
 	$(CC) $(CFLAGS) $^ -o $@
@@ -23,7 +23,7 @@ programa: 01_main.o 02_saludo.o
 .PHONY: clean
 
 clean:
-	rm -f *.o
+	rm -f *.o programa
 
 
 # Para ejecutar el archivo simplemente escribimos make en la terminal.

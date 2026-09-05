@@ -1,15 +1,16 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##              Modificadores de Flujo              ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <stdbool.h>
 
 int main(void) {
-  /**
-     ############################################
-     ##                                        ##
-     ##  5. Modificadores de Flujo             ##  
-     ##                                        ##
-     ############################################
-  **/
-  printf("\n\n=== 5. Modificadores de Flujo ===\n");
+    printf("\n\n=== 5. Modificadores de Flujo ===\n");
 
   /** break: Aborta y sale inmediatamente del bucle actual. **/
   printf("--- Ejemplo de break ---\n");

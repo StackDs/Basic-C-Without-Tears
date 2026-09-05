@@ -1,4 +1,12 @@
 /**
+   ######################################################
+   ##                                                  ##
+   ##       Debug: Fuga de Memoria (Memory Leak)       ##
+   ##                                                  ##
+   ######################################################
+**/
+
+/**
  * Ejemplo 2: Fuga de Memoria (Memory Leak)
  * 
  * Este programa NO genera un Segmentation Fault, termina exitosamente.
@@ -16,9 +24,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void funcion_descuidada() {
+void funcion_descuidada(void) {
     // Pedimos 100 enteros a la memoria dinámica (Heap)
-    int *arreglo = (int*)malloc(100 * sizeof(int));
+    int *arreglo = malloc(100 * sizeof(int));
     
     if (arreglo == NULL) return;
     

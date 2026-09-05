@@ -1,4 +1,12 @@
 /**
+   ######################################################
+   ##                                                  ##
+   ##     Debug: Fuera de Limites (Out of Bounds)      ##
+   ##                                                  ##
+   ######################################################
+**/
+
+/**
  * Ejemplo 3: Violación de Segmento (Out of Bounds) / Acceso inválido
  * 
  * Intentar leer o escribir más allá del límite de un arreglo de memoria dinámica.
@@ -17,7 +25,7 @@
 
 int main(void) {
     // Pedimos memoria para solo 5 enteros (índices del 0 al 4)
-    int *datos = (int*)malloc(5 * sizeof(int));
+    int *datos = malloc(5 * sizeof(int));
     
     if (datos == NULL) return 1;
 

@@ -1,3 +1,11 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##          Argumentos del Main (Consola)           ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 
 // Observa la firma de main. Ya no es "int main(void)", ahora recibe argumentos.

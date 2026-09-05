@@ -1,4 +1,12 @@
 /**
+   ######################################################
+   ##                                                  ##
+   ##      Debug: Desbordamiento de Pila (Stack)       ##
+   ##                                                  ##
+   ######################################################
+**/
+
+/**
  * Ejemplo 4: Desbordamiento de Pila (Stack Overflow)
  * 
  * Ocurre cuando haces demasiadas llamadas a funciones recursivas infinitas

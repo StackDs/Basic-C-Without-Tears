@@ -1,3 +1,11 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##           Paso de Arreglos a Funciones           ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 
 void imprimir_arreglo_1d(int arr[], int size);

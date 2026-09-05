@@ -1,16 +1,16 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##            Operadores y Logica Basica            ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <stdbool.h>
 
 int main(void) {
-  
-  /**
-     ############################################
-     ##                                        ##
-     ##  1. Operadores y Logica Basica         ##  
-     ##                                        ##
-     ############################################
-  **/
-  printf("=== 1. Operadores y Logica Basica ===\n");
+    printf("=== 1. Operadores y Logica Basica ===\n");
   
   /** Verdad y Falsedad:
    * En C, 0 es Falso. Cualquier otro numero es Verdadero.

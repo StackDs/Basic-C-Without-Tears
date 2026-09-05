@@ -1,7 +1,15 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##          Archivos de Texto (Escritura)           ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main(void) {
     printf("\n=== 1. Archivos de Texto (Escritura) ===\n");
     // Abrimos en modo "w" (Write). ¡Si el archivo ya existe, se borrará!
     FILE *archivo_txt = fopen("mi_texto.txt", "w");

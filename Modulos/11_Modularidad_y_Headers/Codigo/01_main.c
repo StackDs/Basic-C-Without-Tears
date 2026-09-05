@@ -1,22 +1,22 @@
 /**
    ######################################################
    ##                                                  ##
-   ##        Demostración Compilación Múltiple         ## 
+   ##        Demostracion Compilacion Multiple         ##
    ##                                                  ##
    ######################################################
 **/
 
 // Este archivo demuestra la compilación de múltiples archivos.
 // Incluye nuestro "02_motor.h" para acceder a las funciones y variables
-// del módulo, pero el código real de esas funciones vive en "sintaxis.c".
+// del módulo, pero el código real de esas funciones vive en "02_motor.c".
 // 
 // Compilación:
-// gcc main.c sintaxis.c -o juego
+// gcc 01_main.c 02_motor.c -o juego
 
 #include <stdio.h>
 #include "02_motor.h" // Incluimos la interfaz pública de nuestro módulo
 
-int main() {
+int main(void) {
     printf("\n=== DEMOSTRACIÓN DE COMPILACIÓN SEPARADA ===\n\n");
     
     // 1. Usando el struct y las funciones públicas del módulo

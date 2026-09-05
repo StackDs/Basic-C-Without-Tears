@@ -1,14 +1,14 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##        Input, Output y el Caos del Buffer        ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
-#include <string.h>
 
 int main(void) {
-  /**
-     ######################################################
-     ##                                                  ##
-     ##        Input, Output y el caos del Buffer        ## 
-     ##                                                  ##
-     ######################################################
-  **/
   printf("=== Salida de Datos (Output) ===\n");
 
   /** Uso basico y secuencias de escape:

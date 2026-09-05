@@ -1,5 +1,12 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##           Desreferenciacion en Memoria           ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void){
     printf("\n=== 2. Desreferenciacion (Viajando a la memoria) ===\n");

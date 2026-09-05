@@ -1,4 +1,12 @@
 /**
+   ######################################################
+   ##                                                  ##
+   ##        Debug: El Puntero Nulo (Segfault)         ##
+   ##                                                  ##
+   ######################################################
+**/
+
+/**
  * Ejemplo 1: El Puntero Nulo (Segmentation Fault)
  * 
  * Instrucciones para depurar con GDB:

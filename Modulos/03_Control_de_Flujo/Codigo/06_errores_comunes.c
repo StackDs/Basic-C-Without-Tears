@@ -1,15 +1,16 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##             Errores Comunes de Flujo             ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <stdbool.h>
 
 int main(void) {
-  /**
-     ############################################
-     ##                                        ##
-     ##  6. Errores Comunes (Cuidado)          ##  
-     ##                                        ##
-     ############################################
-  **/
-  printf("\n\n=== 6. Errores Comunes de Sintaxis ===\n");
+    printf("\n\n=== 6. Errores Comunes de Sintaxis ===\n");
   
   /** Asignacion vs Comparacion (x = 5 en vez de x == 5) **/
   int x = 0;

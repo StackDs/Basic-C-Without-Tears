@@ -1,3 +1,11 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##        Paso de Parametros (Copia vs Ref)         ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 
 void hackear_cuenta_valor(int dinero);
@@ -22,6 +30,7 @@ int main(void){
 void hackear_cuenta_valor(int dinero){
     // Recibe un clon de "mi_cuenta"
     dinero = 999999; 
+    printf("  [Dentro de hackear_cuenta_valor]: El clon local cambio a %d\n", dinero);
     // Al terminar, el clon se destruye y nadie le avisa al original
 }
 

@@ -1,3 +1,11 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##         Aserciones y Contratos (assert)          ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <stdlib.h>
 // Definir NDEBUG antes de incluir assert.h desactiva los assert (para producción).

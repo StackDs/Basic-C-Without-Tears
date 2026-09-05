@@ -1,7 +1,7 @@
 /**
    ######################################################
    ##                                                  ##
-   ##                  Tipos y variables               ## 
+   ##                Tipos y Variables                 ##
    ##                                                  ##
    ######################################################
 **/
@@ -12,10 +12,10 @@ int main(void){
   printf("=== Tipos de datos primitivos y modificadores ===\n");
 
   /** Tipos de datos Primitivos y sus Tamaños:
-   * Existen 4 tipos de datos bsicos que determinan los valores vlidos:
+   * Existen 4 tipos de datos básicos que determinan los valores válidos:
    * - char: Un solo byte, para caracteres.
-   * - int: Un nmero entero (generalmente 4 bytes).
-   * - float y double: Nmeros de precisin simple y doble.
+   * - int: Un número entero (generalmente 4 bytes).
+   * - float y double: Números de precisión simple y doble.
    * Se les pueden aplicar modificadores como short, long o unsigned.
    **/
   char letra = 'r';
@@ -37,12 +37,12 @@ int main(void){
 
   // Imprimir los valores con modificadores
   printf("\n--- Valores con modificadores ---\n");
-  printf("entero_corto: %d\n", entero_corto);
+  printf("entero_corto: %hd\n", entero_corto);
   printf("entero_sin_signo: %u\n", entero_sin_signo);
   printf("entero_largo: %ld\n", entero_largo);
 
-  // Imprimir tamaos en bytes (depende de la arquitectura, tipicamente x86-64)
-  // La funcion 'sizeof' devuelve el tamao en bytes que ocupa un tipo de dato o variable en memoria
+  // Imprimir tamaños en bytes (depende de la arquitectura, tipicamente x86-64)
+  // La funcion 'sizeof' devuelve el tamaño en bytes que ocupa un tipo de dato o variable en memoria
   printf("\n--- Tamanios en memoria ---\n");
   printf("Tamanio de char: %zu bytes\n", sizeof(char));  
   printf("Tamanio de short: %zu bytes\n", sizeof(short));

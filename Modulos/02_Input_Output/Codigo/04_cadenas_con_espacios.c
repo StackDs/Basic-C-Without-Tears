@@ -1,15 +1,15 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##         Captura de Cadenas con Espacios          ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <string.h>
 
 int main(void) {
-  /**
-     ###########################################################
-     ##                                                       ##
-     ##          Captura de Cadenas con Espacios              ##
-     ##                                                       ##
-     ###########################################################
-  **/
-
   printf("\n\n=== Captura de Cadenas con Espacios ===\n");
 
   /** El problema de scanf con strings:

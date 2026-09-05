@@ -1,14 +1,14 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##         Entrada Basica de Datos (Input)          ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 
 int main(void) {
-  /**
-     ############################################
-     ##                                        ##
-     ##      Entrada basica de datos (Input)   ##  
-     ##                                        ##
-     ############################################
-  **/
-  
   printf("\n\n=== Entrada basica de datos (Input) ===\n");
 
   /** scanf y el operador & (Ampersand):

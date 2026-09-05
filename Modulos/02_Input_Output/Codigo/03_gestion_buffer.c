@@ -1,14 +1,14 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##          Gestion del Buffer de Entrada           ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 
 int main(void) {
-  /**
-     ############################################
-     ##                                        ##
-     ##      Gestion del buffer de entrada     ##  
-     ##                                        ##
-     ############################################
-  **/
-
   printf("\n\n=== Gestion del Buffer de Entrada ===\n");
 
   /** El problema del \n residual:

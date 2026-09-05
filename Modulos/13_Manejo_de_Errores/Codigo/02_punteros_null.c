@@ -1,3 +1,11 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##         Comprobacion de Punteros (NULL)          ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,7 +14,7 @@ int* crear_arreglo(int tamano) {
         return NULL; // Fallo de lógica, el tamaño no tiene sentido
     }
     // Intentamos asignar memoria (malloc en sí mismo devuelve NULL si falla)
-    int *ptr = (int*)malloc(tamano * sizeof(int));
+    int *ptr = malloc(tamano * sizeof(int));
     return ptr; 
 }
 

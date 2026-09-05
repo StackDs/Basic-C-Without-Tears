@@ -1,15 +1,16 @@
+/**
+   ######################################################
+   ##                                                  ##
+   ##          Bucles (Repeticion de Tareas)           ##
+   ##                                                  ##
+   ######################################################
+**/
+
 #include <stdio.h>
 #include <stdbool.h>
 
 int main(void) {
-  /**
-     ############################################
-     ##                                        ##
-     ##  4. Bucles (Repeticion de tareas)      ##  
-     ##                                        ##
-     ############################################
-  **/
-  printf("\n\n=== 4. Bucles (Repeticion de tareas) ===\n");
+    printf("\n\n=== 4. Bucles (Repeticion de tareas) ===\n");
 
   /** while: Evalua la condicion antes de entrar al bloque. **/
   int energia = 3;
