@@ -146,9 +146,10 @@ bool ventana_inicializar(SDL_Window **ventana, SDL_Renderer **renderer, const ch
 ```
 
 ### Cálculo de Dimensiones de Pantalla
-Con casillas de `TAM_TILE = 32` píxeles y un panel superior para el cronómetro (`PANEL_HUD_ALTO = 64` px):
-* **Ancho:** $\text{columnas} \times 32 = 31 \times 32 = 992\text{ px}$.
-* **Alto:** $\text{filas} \times 32 + 64 = 21 \times 32 + 64 = 736\text{ px}$.
+Con casillas de `TAM_TILE = 44` píxeles y un panel superior para el cronómetro (`PANEL_HUD_ALTO = 64` px):
+* **Ancho:** $\text{columnas} \times 44 = 31 \times 44 = 1364\text{ px}$.
+* **Alto:** $\text{filas} \times 44 + 64 = 21 \times 44 + 64 = 988\text{ px}$.
+* Esta resolución ofrece un tamaño amplio y cómodo que se adapta a monitores 1080p sin distorsión ni pixelación.
 
 ---
 
@@ -202,14 +203,23 @@ Dentro de esta carpeta [`01_Ventana_y_Ciclo/`](./):
 * [`laberinto.c`](./laberinto.c): Implementación de la carga dinámica de `mapa.txt`, asignación en el Heap, impresión de log crudo en consola y liberación con `free`.
 * [`ventana.h`](./ventana.h): Firmas para inicializar video/GPU, ejecutar el Game Loop base y destruir los recursos de SDL3.
 * [`ventana.c`](./ventana.c): Implementación de las llamadas a SDL3 y el bucle de eventos.
+* [`main.c`](./main.c): Archivo de prueba simple para verificar la carga del mapa, la salida por consola y la apertura/cierre de la ventana.
+
+### ¿Cómo probar este submódulo?
+Para compilar y ejecutar esta prueba puntual directamente desde la terminal:
+
+```bash
+gcc -Wall -Wextra -std=c11 main.c laberinto.c ventana.c -o prueba $(pkg-config --cflags --libs sdl3)
+./prueba
+```
 
 > [!NOTE]
 > **Sobre la Compilación:**
-> Como acordamos en la arquitectura acumulativa, este submódulo no incluye un Makefile propio; **el Makefile unificado residirá en el Submódulo 06**, enlazando todos los módulos acumulativos en el binario final del juego.
+> Cada submódulo cuenta con su `main.c` para pruebas individuales rápidas. El **Makefile unificado residirá en el Submódulo 06**, donde se integrará todo el proyecto en el ejecutable final del juego.
 
 ---
 
 <div align="center">
   <a href="../README.md">⬅️ Menú del Módulo 16</a> | 
-  <a href="../02_Renderizado_y_Assets/README.md">Avanzar al Submódulo 2 ➡️</a>
+  <a href="../02_Renderizado_y_Assets/README.md">Avanzar al Submódulo 02 ➡️</a>
 </div>

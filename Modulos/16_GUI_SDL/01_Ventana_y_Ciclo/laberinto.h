@@ -14,7 +14,7 @@
 #include <stddef.h>
 
 /* --- Dimensiones Gráficas --- */
-#define TAM_TILE 32       // Cada casilla mide 32x32 píxeles
+#define TAM_TILE 43       // Cada casilla mide 43x43 píxeles
 #define PANEL_HUD_ALTO 64 // Altura del panel superior para cronómetro/texto
 
 /* --- Códigos Numéricos de Celda --- */

@@ -48,7 +48,7 @@ void ventana_ejecutar_ciclo_base(SDL_Renderer *renderer) {
   SDL_Event evento;
 
   while (corriendo) {
-    // 1. Procesar todos los eventos de la cola
+    // Procesar cola de eventos
     while (SDL_PollEvent(&evento)) {
       if (evento.type == SDL_EVENT_QUIT) {
         corriendo = false;
@@ -59,13 +59,11 @@ void ventana_ejecutar_ciclo_base(SDL_Renderer *renderer) {
       }
     }
 
-    // 2. Limpiar el búfer de dibujo con color negro puro (R=0, G=0, B=0,
-    // Alpha=255)
+    // Limpiar pantalla en negro
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
-    // 3. Intercambiar el búfer trasero con la pantalla visible (Double
-    // Buffering)
+    // Presentar fotograma con doble buffer
     SDL_RenderPresent(renderer);
   }
 

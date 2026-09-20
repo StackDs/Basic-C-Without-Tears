@@ -58,7 +58,7 @@ bool laberinto_cargar_desde_archivo(const char *ruta_archivo,
     if (laberinto->celdas[f] == NULL) {
       fprintf(stderr, "[ERROR] Falló malloc para la fila %d del laberinto.\n",
               f);
-      /* Liberar las filas reservadas previamente para evitar fugas */
+      // Liberar filas previas si falla la asignacion
       for (int k = 0; k < f; k++) {
         free(laberinto->celdas[k]);
       }
@@ -88,8 +88,7 @@ bool laberinto_cargar_desde_archivo(const char *ruta_archivo,
         jugador->x = c;
         jugador->y = f;
         spawn_encontrado = true;
-        /* Convertimos la celda en camino limpio para desacoplar entidad y
-         * terreno */
+        // Desacoplar jugador del terreno dejando camino libre
         laberinto->celdas[f][c] = CELDA_CAMINO;
       } else {
         laberinto->celdas[f][c] = valor;
@@ -135,7 +134,7 @@ int laberinto_obtener_celda(const Laberinto *laberinto, int x, int y) {
     return CELDA_PARED;
   }
 
-  /* Comprobación de límites defensiva contra Segmentation Fault */
+  // Validar limites para evitar Segmentation Fault
   if (x < 0 || x >= laberinto->columnas || y < 0 || y >= laberinto->filas) {
     return CELDA_PARED;
   }
