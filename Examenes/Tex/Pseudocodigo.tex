@@ -1,0 +1,311 @@
+\documentclass[11pt,letterpaper]{article}
+
+% --- Paquetes de configuración básica ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage[margin=2cm,top=2.2cm,bottom=2.2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{array}
+
+\raggedbottom
+
+% --- Configuración de cabeceras y pie de página ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Basic C Without Tears}
+\fancyhead[C]{Guía Especial -- El Arte del Pseudocódigo}
+\fancyhead[R]{Stack}
+\fancyfoot[L]{Basic-C-Without-Tears}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Entornos de Código C y Pseudocódigo ---
+\lstdefinestyle{customc}{
+  language=C,
+  numbers=left,
+  stepnumber=1,
+  numbersep=6pt,
+  numberstyle=\tiny\color{gray},
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{blue!80!black},
+  commentstyle=\itshape\color{green!50!black},
+  stringstyle=\color{red!70!black},
+  breaklines=true,
+  tabsize=4,
+  showstringspaces=false,
+  frame=none
+}
+
+\lstdefinestyle{pseudocodigo}{
+  numbers=left,
+  stepnumber=1,
+  numbersep=6pt,
+  numberstyle=\tiny\color{gray},
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{purple!80!black},
+  commentstyle=\itshape\color{gray},
+  morekeywords={INICIO, FIN, SI, ENTONCES, SINO, FIN_SI, MIENTRAS, HACER, FIN_MIENTRAS, PARA, DESDE, HASTA, FIN_PARA, REPETIR, HASTA_QUE, RETORNAR, LEER, ESCRIBIR, FUNCION, FIN_FUNCION, VERDADERO, FALSO},
+  breaklines=true,
+  tabsize=4,
+  showstringspaces=false,
+  frame=none
+}
+
+% --- Cajas estilizadas para comparación ---
+\newtcolorbox{cbox}[1]{
+  colback=blue!3,
+  colframe=blue!70!black,
+  arc=1mm,
+  boxrule=0.6pt,
+  title=\textbf{#1},
+  coltitle=white,
+  fonttitle=\small\sffamily,
+  left=2mm, right=2mm, top=1.5mm, bottom=1.5mm
+}
+
+\newtcolorbox{pseudobox}[1]{
+  colback=purple!3,
+  colframe=purple!70!black,
+  arc=1mm,
+  boxrule=0.6pt,
+  title=\textbf{#1},
+  coltitle=white,
+  fonttitle=\small\sffamily,
+  left=2mm, right=2mm, top=1.5mm, bottom=1.5mm
+}
+
+\newtcolorbox{conceptbox}[1]{
+  colback=gray!5,
+  colframe=black,
+  arc=0mm,
+  boxrule=0.6pt,
+  title=\textbf{#1},
+  coltitle=white,
+  fonttitle=\small\sffamily,
+  left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm
+}
+
+\begin{document}
+
+% =============================================================================
+% PÁGINA 1: FUNDAMENTOS Y TABLA DE EQUIVALENCIAS
+% =============================================================================
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.2cm]
+    {\Large \textbf{Guía de Referencia: El Arte del Pseudocódigo en C}} \\[0.1cm]
+    \small Conceptos, Estándares de Escritura y Equivalencias con Código Compilable \\[0.05cm]
+    \textbf{Autor:} Stack
+\end{center}
+
+\vspace{0.1cm}
+
+\begin{conceptbox}{1. ¿Qué es el Pseudocódigo y cuándo utilizarlo?}
+\small
+El \textbf{pseudocódigo} es una descripción estructurada y rigurosa de un algoritmo. No depende de la sintaxis estricta de un compilador (puntos y coma, cabeceras o tipos de formateo), pero \textbf{no es lenguaje coloquial informal}.
+\begin{itemize}[noitemsep, topsep=1pt]
+    \item \textbf{Diseño previo:} Permite estructurar la solución antes de lidiar con la memoria y punteros en C.
+    \item \textbf{Evaluaciones formativas y entrevistas:} Permite evaluar el razonamiento algorítmico y el control de flujo sin penalizar por detalles sintácticos menores de bibliotecas externas.
+    \item \textbf{Regla de Oro:} Todo bloque debe tener delimitadores explícitos (\texttt{SI... FIN\_SI}, \texttt{MIENTRAS... FIN\_MIENTRAS}) y respetar sangría visual (\textit{indentación}).
+\end{itemize}
+\end{conceptbox}
+
+\vspace{0.15cm}
+
+\begin{conceptbox}{2. Tabla de Equivalencias Rápidas: Sintaxis C vs. Pseudocódigo Estándar}
+\centering
+\footnotesize
+\begin{tabular}{p{4.2cm} p{5.5cm} p{5.5cm}}
+\toprule
+\textbf{Operación} & \textbf{Código Compilable en C} & \textbf{Pseudocódigo Válido} \\
+\midrule
+Asignación de variable & \texttt{total = 0;} & \texttt{total $\leftarrow$ 0} \quad ó \quad \texttt{total = 0} \\
+Lectura de datos & \texttt{scanf("\%d", \&n);} & \texttt{LEER n} \\
+Impresión en consola & \texttt{printf("Res: \%d\textbackslash n", x);} & \texttt{ESCRIBIR "Res: ", x} \\
+Condicional simple & \texttt{if (cond) \{ ... \}} & \texttt{SI cond ENTONCES ... FIN\_SI} \\
+Condicional doble & \texttt{if (c) \{ ... \} else \{ ... \}} & \texttt{SI c ENTONCES ... SINO ... FIN\_SI} \\
+Bucle con contador & \texttt{for (int i=0; i<n; i++)} & \texttt{PARA i $\leftarrow$ 0 HASTA n-1 HACER} \\
+Bucle condicional previo & \texttt{while (cond) \{ ... \}} & \texttt{MIENTRAS cond HACER ... FIN\_MIENTRAS} \\
+Bucle con post-condición & \texttt{do \{ ... \} while (cond);} & \texttt{REPETIR ... HASTA QUE cond} \\
+Acceso a arreglos & \texttt{A[i] = A[i - 1];} & \texttt{A[i] $\leftarrow$ A[i - 1]} \\
+Retorno de valor & \texttt{return resultado;} & \texttt{RETORNAR resultado} \\
+\bottomrule
+\end{tabular}
+\end{conceptbox}
+
+% =============================================================================
+% PÁGINA 2: COMPARACIÓN 1 - CONDICIONALES Y VALIDACIÓN
+% =============================================================================
+\newpage
+\noindent {\Large \textbf{3. Comparativas Prácticas: Código C vs. Pseudocódigo}} \\[0.2cm]
+
+\noindent \textbf{Caso 1: Validación y Clasificación de Datos (Control Condicional)} \\
+\small \textit{Problema: Recibir tres medidas flotantes, verificar si conforman un triángulo admisible y clasificarlo por sus lados.}
+\vspace{0.2cm}
+
+\begin{cbox}{Código Compilable en C (C99/C11)}
+\begin{lstlisting}[style=customc]
+#include <stdio.h>
+
+void clasificar_triangulo(float a, float b, float c) {
+    // 1. Validacion de desigualdad triangular
+    if (a < b + c && b < a + c && c < a + b) {
+        printf("Triangulo valido: ");
+        // 2. Clasificacion por igualdad de lados
+        if (a == b && b == c) {
+            printf("Equilatero\n");
+        } else if (a == b || b == c || a == c) {
+            printf("Isosceles\n");
+        } else {
+            printf("Escaleno\n");
+        }
+    } else {
+        printf("No conforma un triangulo.\n");
+    }
+}
+\end{lstlisting}
+\end{cbox}
+
+\vspace{0.25cm}
+
+\begin{pseudobox}{Pseudocódigo Válido y Riguroso}
+\begin{lstlisting}[style=pseudocodigo]
+FUNCION clasificar_triangulo(a, b, c)
+    // 1. Validar la desigualdad triangular
+    SI (a < b + c) Y (b < a + c) Y (c < a + b) ENTONCES
+        ESCRIBIR "Triangulo valido: "
+        
+        // 2. Clasificacion por igualdad de lados
+        SI (a = b) Y (b = c) ENTONCES
+            ESCRIBIR "Equilatero"
+        SINO SI (a = b) O (b = c) O (a = c) ENTONCES
+            ESCRIBIR "Isosceles"
+        SINO
+            ESCRIBIR "Escaleno"
+        FIN_SI
+    SINO
+        ESCRIBIR "No conforma un triangulo."
+    FIN_SI
+FIN_FUNCION
+\end{lstlisting}
+\end{pseudobox}
+
+\vspace{0.2cm}
+\begin{conceptbox}{Clave Didáctica del Caso 1}
+\small
+En el pseudocódigo nos enfocamos en la lógica booleana (\texttt{Y}, \texttt{O}) y el anidamiento limpio. No es necesario gestionar bibliotecas (\texttt{\#include <stdio.h>}), prototipos ni secuencias de escape (\texttt{\textbackslash n}).
+\end{conceptbox}
+
+% =============================================================================
+% PÁGINA 3: COMPARACIÓN 2 - ARREGLOS Y DETECCIÓN DE PICOS
+% =============================================================================
+\newpage
+\noindent \textbf{Caso 2: Búsqueda y Filtrado en Arreglos Unidimensionales} \\
+\small \textit{Problema: Recorrer un arreglo $A$ de $n$ elementos y almacenar en $picos$ aquellos valores estrictamente mayores a sus dos vecinos contiguos ($1 \le i \le n-2$).}
+\vspace{0.2cm}
+
+\begin{cbox}{Código Compilable en C (C99/C11)}
+\begin{lstlisting}[style=customc]
+#include <stdio.h>
+
+int filtrar_picos(const int A[], int n, int picos[]) {
+    int total_picos = 0;
+
+    // Recorrido seguro de los indices interiores
+    for (int i = 1; i < n - 1; i++) {
+        if (A[i] > A[i - 1] && A[i] > A[i + 1]) {
+            picos[total_picos] = A[i];
+            total_picos++;
+        }
+    }
+    return total_picos; // Retorna cantidad detectada
+}
+\end{lstlisting}
+\end{cbox}
+
+\vspace{0.25cm}
+
+\begin{pseudobox}{Pseudocódigo Válido y Riguroso}
+\begin{lstlisting}[style=pseudocodigo]
+FUNCION filtrar_picos(A, n, picos)
+    total_picos <- 0
+
+    // Iterar estrictamente sobre elementos interiores
+    PARA i <- 1 HASTA n - 2 HACER
+        SI (A[i] > A[i - 1]) Y (A[i] > A[i + 1]) ENTONCES
+            picos[total_picos] <- A[i]
+            total_picos <- total_picos + 1
+        FIN_SI
+    FIN_PARA
+
+    RETORNAR total_picos
+FIN_FUNCION
+\end{lstlisting}
+\end{pseudobox}
+
+\vspace{0.2cm}
+\begin{conceptbox}{Clave Didáctica del Caso 2}
+\small
+Nota cómo el pseudocódigo respeta con precisión matemática los \textbf{límites del arreglo}: el ciclo recorre desde \texttt{1} hasta \texttt{n - 2}. Esta exactitud en los índices distingue a un pseudocódigo universitario sólido de una descripción informal vaga.
+\end{conceptbox}
+
+% =============================================================================
+% PÁGINA 4: COMPARACIÓN 3 - STRINGS Y ERRORES COMUNES
+% =============================================================================
+\newpage
+\noindent \textbf{Caso 3: Cadenas de Caracteres y Detección de Centinela (\texttt{'\textbackslash 0'})} \\
+\small \textit{Problema: Determinar la longitud de una cadena recorriendo carácter por carácter hasta hallar el terminador nulo.}
+\vspace{0.15cm}
+
+\begin{cbox}{Código Compilable en C (C99/C11)}
+\begin{lstlisting}[style=customc]
+int longitud_cadena(const char str[]) {
+    int len = 0;
+    while (str[len] != '\0') {
+        len++;
+    }
+    return len;
+}
+\end{lstlisting}
+\end{cbox}
+
+\vspace{0.15cm}
+
+\begin{pseudobox}{Pseudocódigo Válido y Riguroso}
+\begin{lstlisting}[style=pseudocodigo]
+FUNCION longitud_cadena(str)
+    len <- 0
+    MIENTRAS str[len] != '\0' HACER
+        len <- len + 1
+    FIN_MIENTRAS
+    RETORNAR len
+FIN_FUNCION
+\end{lstlisting}
+\end{pseudobox}
+
+\vspace{0.2cm}
+\begin{conceptbox}{4. Criterios de Validez: Lo que SÍ se permite vs. Lo que INVALIDA una respuesta}
+\small
+\begin{tabular}{p{7.3cm} p{7.3cm}}
+\toprule
+\textbf{\textcolor{green!50!black}{[VÁLIDO] Prácticas Permitidas}} & \textbf{\textcolor{red!70!black}{[INVÁLIDO] Errores Graves}} \\
+\midrule
+Omitir directivas de compilación (\texttt{\#include}) y tipos de formato (\texttt{\%d}, \texttt{\%f}). & Escribir frases ambiguas: \textit{<<Buscar el mayor elemento>>} sin escribir el bucle de búsqueda. \\
+\addlinespace[2pt]
+Usar operadores intuitivos: $\leftarrow$ o \texttt{=} para asignar, y palabras en español como \texttt{Y}, \texttt{O}, \texttt{NO}. & Inventar funciones mágicas que resuelvan el núcleo del problema algorítmico pedido. \\
+\addlinespace[2pt]
+Omitir llaves \texttt{\{\}} siempre que la indentación y palabras de cierre delimiten el bloque. & Dejar bucles sin condición explícita de parada o variables acumuladoras sin inicializar. \\
+\addlinespace[2pt]
+Indexar arreglos y cadenas de texto mediante corchetes familiares \texttt{A[i]} o \texttt{str[k]}. & Omitir los cierres de estructuras (\texttt{FIN\_SI}, \texttt{FIN\_MIENTRAS}), volviendo ambiguo el anidamiento. \\
+\bottomrule
+\end{tabular}
+\end{conceptbox}
+
+\end{document}

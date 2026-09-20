@@ -1,0 +1,201 @@
+\documentclass[11pt,letterpaper]{article}
+
+% --- Paquetes de configuración básica ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[margin=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+
+% --- Configuración de cabeceras y pie de página ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Basic C Without Tears}
+\fancyhead[C]{Guía de Práctica -- Tipo A}
+\fancyhead[R]{Stack}
+\fancyfoot[L]{Basic-C-Without-Tears}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Configuración de entorno de código C ---
+\lstdefinestyle{customc}{
+  language=C,
+  numbers=left,
+  stepnumber=1,
+  numbersep=8pt,
+  numberstyle=\tiny\color{gray},
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{blue!80!black},
+  commentstyle=\itshape\color{green!50!black},
+  stringstyle=\color{red!70!black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  showstringspaces=false,
+  frame=none
+}
+
+\begin{document}
+
+% --- Encabezado ---
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.25cm]
+    {\Large \textbf{Guía Práctica Formativa -- Tipo A}} \\[0.15cm]
+    \small Fundamentos de C, Control de Flujo, Arreglos y Cadenas de Caracteres \\[0.1cm]
+    \textbf{Autor:} Stack
+\end{center}
+
+\vspace{0.4cm}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+    % =========================================================================
+    % PREGUNTA 1
+    % =========================================================================
+    \item Responda a las siguientes preguntas teóricas y prácticas sobre memoria, tipos de datos primitivos y operadores.
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Indique si la siguiente afirmación es Verdadera o Falsa. Justifique detallando el cálculo exacto de memoria en bytes (asuma una arquitectura estándar donde $\text{sizeof(int)} = 4$, $\text{sizeof(double)} = 8$ y $\text{sizeof(char)} = 1$):
+        \begin{quote}
+            \textit{<<Un arreglo \texttt{double medidas[200]} ocupa en la memoria física exactamente la misma cantidad total de bytes que una matriz bidimensional \texttt{int matriz[100][4]} y que un arreglo \texttt{char buffer[1600]}>>.}
+        \end{quote}
+        
+
+        \item En C, los caracteres se almacenan internamente como números enteros pequeños según la tabla ASCII. Explique detalladamente la salida impresa por el siguiente fragmento de código, justificando por qué la operación \texttt{objetivo - base} es válida y cómo opera la transformación aritmética a mayúscula:
+        \begin{lstlisting}[style=customc, numbers=none]
+char base = 'a';
+char objetivo = 'd';
+int distancia = objetivo - base;
+char mayuscula = base - 32;
+
+printf("Distancia: %d, Mayuscula: %c\n", distancia, mayuscula);
+        \end{lstlisting}
+
+        \item El siguiente programa tiene como objetivo calcular el costo unitario prorrateado de un lote de producción, pero al ejecutarse imprime en consola un resultado erróneo de \texttt{\$0.00}:
+        \begin{lstlisting}[style=customc]
+int total_gastos = 450;
+int unidades = 1000;
+float costo_unitario;
+
+costo_unitario = total_gastos / unidades;
+printf("Costo por unidad: $%.2f\n", costo_unitario);
+        \end{lstlisting}
+        Identifique con precisión el error conceptual de tipos que provoca este comportamiento y escriba la instrucción de asignación corregida.
+        \vspace{3.5cm}
+    \end{enumerate}
+
+    \newpage
+
+    % =========================================================================
+    % PREGUNTA 2
+    % =========================================================================
+    \item Una empresa de logística y distribución de paquetería evalúa los paquetes que ingresan a su centro de distribución según su peso $P$ (en kilogramos) y sus dimensiones: largo $L$, ancho $W$ y alto $H$ (en centímetros).
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Escriba el fragmento condicional en C (\texttt{if-else}) que determine si un paquete es admisible para su transporte. Un paquete debe ser \textbf{rechazado} si su peso excede los $30.0\text{ kg}$, si cualquiera de sus dimensiones individuales ($L, W$ o $H$) supera los $120.0\text{ cm}$, o si la suma de las tres dimensiones ($L + W + H$) supera los $250.0\text{ cm}$. En caso contrario, el paquete es \textbf{aceptado}.
+        \vspace{4.5cm}
+
+        \item Si el paquete es aceptado, la tarifa base no se calcula siempre por el peso en báscula, sino sobre el \textit{peso facturable}, el cual se define formalmente como el valor máximo entre el peso real y el peso volumétrico ($PV$), calculado como:
+        \[
+        PV = \frac{L \times W \times H}{5000.0}
+        \]
+        Escriba las instrucciones en C que calculen $PV$ y asignen a la variable \texttt{peso\_facturable} el mayor de ambos valores, utilizando el operador ternario (\texttt{?:}) o una estructura condicional.
+        \vspace{4.5cm}
+
+        \item Para calcular el cobro final en pesos (\$) se aplican las siguientes reglas:
+        \begin{itemize}[noitemsep]
+            \item Tarifa base de \$3.000 para paquetes de hasta $2.0\text{ kg}$ de peso facturable.
+            \item Para pesos facturables superiores a $2.0\text{ kg}$, se cobran los \$3.000 base más \$1.200 por cada kilo (o fracción continua) excedente.
+            \item Si la variable entera \texttt{es\_zona\_remota} tiene el valor \texttt{1}, se aplica un recargo adicional del 25\% sobre el costo total acumulado.
+        \end{itemize}
+        Escriba el fragmento de código que calcule e imprima el total a pagar formateado como número entero sin decimales.
+        \vspace{5cm}
+    \end{enumerate}
+
+    \newpage
+
+    % =========================================================================
+    % PREGUNTA 3
+    % =========================================================================
+    \item En sistemas de telemetría y monitoreo de sensores industriales, las lecturas continuas se almacenan en un arreglo unidimensional \texttt{int A[n]}. Se define formalmente como un \textbf{pico local} a cualquier elemento que sea estrictamente mayor que sus dos vecinos contiguos (inmediato anterior e inmediato posterior).
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Explique por qué la condición de pico local no puede evaluarse con la misma expresión en los extremos del arreglo ($i = 0$ e $i = n - 1$). ¿Qué error de memoria ocurre a bajo nivel en C si se ejecuta la comparación \texttt{A[i] > A[i-1]} en el índice $i = 0$?
+        \vspace{3.5cm}
+
+        \item Para el arreglo de lecturas \texttt{int V[7] = \{12, 18, 14, 14, 22, 9, 15\};}, realice un trazado manual de los índices interiores ($i = 1, 2, 3, 4, 5$). Indique explícitamente cuáles de ellos cumplen con la condición de pico local y determine la cantidad total de picos detectados.
+        \vspace{5cm}
+
+        \item Escriba un programa completo o función en C que reciba un arreglo \texttt{int A[n]}, detecte todos los picos locales interiores, los almacene en un arreglo auxiliar \texttt{picos} y reporte por consola la cantidad total y los valores encontrados. Considere los siguientes casos de prueba:
+        
+        \begin{center}
+        \begin{tabular}{ll}
+        \toprule
+        \textbf{Entrada (\texttt{A[n]})} & \textbf{Salida esperada} \\
+        \midrule
+        \texttt{\{5, 10, 4, 8, 2, 9, 3\}} & \texttt{Picos encontrados (3): 10 8 9} \\
+        \texttt{\{1, 2, 3, 4, 5\}} & \texttt{Picos encontrados (0): ninguno} \\
+        \texttt{\{10, 4, 7, 7, 7, 3, 8\}} & \texttt{Picos encontrados (0): ninguno} \\
+        \bottomrule
+        \end{tabular}
+        \end{center}
+        \vspace{6cm}
+    \end{enumerate}
+
+    \newpage
+
+    % =========================================================================
+    % PREGUNTA 4
+    % =========================================================================
+    \item En C, las cadenas de caracteres (strings) se implementan como arreglos de tipo \texttt{char} delimitados por el carácter nulo terminador \texttt{'\textbackslash 0'}.
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Responda a las siguientes preguntas conceptuales:
+        \begin{enumerate}[label=\arabic*.]
+            \item ¿Cuál es la cantidad mínima de bytes que debe reservarse en memoria para almacenar de forma segura la palabra \texttt{"SISTEMAS"} como una cadena de caracteres en C? Justifique.
+            \item ¿Cuál es el propósito del carácter \texttt{'\textbackslash 0'} (cero binario) y qué consecuencia tiene en la ejecución de funciones como \texttt{printf("\%s", ...)} si este carácter se omite en memoria?
+        \end{enumerate}
+        \vspace{4cm}
+
+        \item Un estudiante implementó la siguiente función con el objetivo de invertir una cadena de caracteres en su mismo espacio de memoria (\textit{in-place}), pero al probarla la cadena resultante queda inalterada (idéntica a la original):
+        \begin{lstlisting}[style=customc]
+void invertir(char str[], int len) {
+    for (int i = 0; i < len; i++) {
+        char temp = str[i];
+        str[i] = str[len - 1 - i];
+        str[len - 1 - i] = temp;
+    }
+}
+        \end{lstlisting}
+        Explique por qué falla esta lógica algorítmica y escriba la corrección precisa que debe aplicarse en la condición de parada del ciclo \texttt{for}.
+
+        \item Escriba una función en C con el siguiente prototipo:
+        \begin{lstlisting}[style=customc, numbers=none]
+void generar_acronimo(const char frase[], char acronimo[]);
+        \end{lstlisting}
+        La función debe procesar la cadena \texttt{frase} y construir en \texttt{acronimo} las iniciales en mayúscula de cada palabra. Se asume que una nueva palabra comienza al inicio de la frase o tras uno o más espacios en blanco consecutivos (\texttt{' '}). Asegure la correcta colocación del carácter terminador \texttt{'\textbackslash 0'}.
+        
+        \begin{center}
+        \begin{tabular}{ll}
+        \toprule
+        \textbf{Entrada (\texttt{frase})} & \textbf{Salida (\texttt{acronimo})} \\
+        \midrule
+        \texttt{"basic c without tears"} & \texttt{"BCWT"} \\
+        \texttt{"  lenguaje   c   estandar  "} & \texttt{"LCE"} \\
+        \texttt{"memoria"} & \texttt{"M"} \\
+        \bottomrule
+        \end{tabular}
+        \end{center}
+        \vspace{6cm}
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}

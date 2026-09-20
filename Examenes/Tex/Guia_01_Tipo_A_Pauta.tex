@@ -1,0 +1,426 @@
+\documentclass[11pt,letterpaper]{article}
+
+% --- Paquetes de configuración básica ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[margin=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{array}
+
+\raggedbottom
+
+% --- Configuración de cabeceras y pie de página ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Basic C Without Tears}
+\fancyhead[C]{Pauta y Soluciones -- Guía Tipo A}
+\fancyhead[R]{Stack}
+\fancyfoot[L]{Basic-C-Without-Tears}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Configuración de entorno de código C ---
+\lstdefinestyle{customc}{
+  language=C,
+  numbers=left,
+  stepnumber=1,
+  numbersep=8pt,
+  numberstyle=\tiny\color{gray},
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{blue!80!black},
+  commentstyle=\itshape\color{green!50!black},
+  stringstyle=\color{red!70!black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  showstringspaces=false,
+  frame=none
+}
+
+% --- Entorno para Solución Formativa (Nunca cortada) ---
+\newtcolorbox{solucionbox}{
+  colback=white,
+  colframe=black,
+  arc=0mm,
+  boxrule=0.6pt,
+  left=3mm,
+  right=3mm,
+  top=2mm,
+  bottom=2mm,
+  nobeforeafter
+}
+
+\begin{document}
+
+% =============================================================================
+% EJERCICIO 1: PÁGINA 1 (Encabezado + 1.a + 1.b)
+% =============================================================================
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.2cm]
+    {\Large \textbf{Guía Práctica con Soluciones -- Tipo A}} \\[0.12cm]
+    \small Fundamentos de C, Control de Flujo, Arreglos y Cadenas de Caracteres \\[0.08cm]
+    \textbf{Autor:} Stack
+\end{center}
+\vspace{0.2cm}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Responda a las siguientes preguntas teóricas y prácticas sobre memoria, tipos de datos primitivos y operadores.
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Indique si la siguiente afirmación es Verdadera o Falsa. Justifique detallando el cálculo exacto de memoria en bytes (asuma una arquitectura estándar donde $\text{sizeof(int)} = 4$, $\text{sizeof(double)} = 8$ y $\text{sizeof(char)} = 1$):
+        \begin{quote}
+            \textit{<<Un arreglo \texttt{double medidas[200]} ocupa en la memoria física exactamente la misma cantidad total de bytes que una matriz bidimensional \texttt{int matriz[100][4]} y que un arreglo \texttt{char buffer[1600]}>>.}
+        \end{quote}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \noindent \textbf{Respuesta:} \textbf{Verdadero.}
+        \begin{itemize}[noitemsep]
+            \item \texttt{double medidas[200]}: $200 \times \text{sizeof(double)} = 200 \times 8 = 1600\text{ bytes}$.
+            \item \texttt{int matriz[100][4]}: $100 \times 4 \times \text{sizeof(int)} = 400 \times 4 = 1600\text{ bytes}$.
+            \item \texttt{char buffer[1600]}: $1600 \times \text{sizeof(char)} = 1600 \times 1 = 1600\text{ bytes}$.
+        \end{itemize}
+        Las tres estructuras reservan exactamente la misma cantidad de memoria contigua en el Stack ($1600\text{ bytes}$).
+        \end{solucionbox}
+
+        \vspace{0.3cm}
+        \item En C, los caracteres se almacenan internamente como números enteros pequeños según la tabla ASCII. Explique detalladamente la salida impresa por el siguiente fragmento de código, justificando por qué la operación \texttt{objetivo - base} es válida y cómo opera la transformación aritmética a mayúscula:
+        \begin{lstlisting}[style=customc, numbers=none]
+char base = 'a';
+char objetivo = 'd';
+int distancia = objetivo - base;
+char mayuscula = base - 32;
+
+printf("Distancia: %d, Mayuscula: %c\n", distancia, mayuscula);
+        \end{lstlisting}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \noindent \textbf{Salida por pantalla:} \texttt{Distancia: 3, Mayuscula: A}
+        
+        \noindent \textbf{Análisis conceptual:}
+        \begin{enumerate}[noitemsep]
+            \item El tipo \texttt{char} almacena enteros de 8 bits según la tabla ASCII. En dicha codificación, \texttt{'a'} equivale a $97$ y \texttt{'d'} equivale a $100$.
+            \item La expresión \texttt{objetivo - base} ejecuta una resta regular entre enteros ($100 - 97 = 3$), representando la distancia relativa entre ambas letras en el abecedario.
+            \item En ASCII, las letras mayúsculas se encuentran 32 posiciones antes de sus correspondientes minúsculas (\texttt{'A'} es 65, \texttt{'a'} es 97). Al restar $32$ al código de \texttt{'a'} se obtiene $65$, que con \texttt{\%c} se renderiza como \texttt{'A'}.
+        \end{enumerate}
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 1: PÁGINA 2 (1.c Avanzado)
+    % =========================================================================
+    \newpage
+    \begin{enumerate}[label=(\alph*), resume]
+        \item El siguiente programa tiene como objetivo calcular el costo unitario prorrateado de un lote de producción, pero al ejecutarse imprime en consola un resultado erróneo de \texttt{\$0.00}:
+        \begin{lstlisting}[style=customc]
+int total_gastos = 450;
+int unidades = 1000;
+float costo_unitario;
+
+costo_unitario = total_gastos / unidades;
+printf("Costo por unidad: $%.2f\n", costo_unitario);
+        \end{lstlisting}
+        Identifique con precisión el error conceptual de tipos que provoca este comportamiento y escriba la instrucción de asignación corregida.
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \noindent \textbf{Error conceptual:} Tanto \texttt{total\_gastos} como \texttt{unidades} son variables de tipo \texttt{int}. En C, cuando ambos operandos son enteros, el operador \texttt{/} realiza una \textbf{división entera}, truncando inmediatamente la parte decimal a cero ($450 / 1000 = 0$). Posteriormente, ese entero $0$ es promovido a \texttt{0.0f} durante la asignación a la variable flotante, perdiéndose la precisión decimal antes de almacenarse.
+        
+        \noindent \textbf{Instrucción corregida:} Se debe forzar una división en punto flotante aplicando conversión explícita (\textit{type casting}) a cualquiera de los operandos:
+        \begin{lstlisting}[style=customc, numbers=none]
+costo_unitario = (float)total_gastos / unidades;
+        \end{lstlisting}
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 2: PÁGINA 3 (Contexto + 2.a + 2.b)
+    % =========================================================================
+    \newpage
+    \item Una empresa de logística y distribución de paquetería evalúa los paquetes que ingresan a su centro de distribución según su peso $P$ (en kilogramos) y sus dimensiones: largo $L$, ancho $W$ y alto $H$ (en centímetros).
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Escriba el fragmento condicional en C (\texttt{if-else}) que determine si un paquete es admisible para su transporte. Un paquete debe ser \textbf{rechazado} si su peso excede los $30.0\text{ kg}$, si cualquiera de sus dimensiones individuales ($L, W$ o $H$) supera los $120.0\text{ cm}$, o si la suma de las tres dimensiones ($L + W + H$) supera los $250.0\text{ cm}$. En caso contrario, el paquete es \textbf{aceptado}.
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \noindent Se unen las condiciones de rechazo mediante el operador lógico disyunción (\texttt{||}):
+        \begin{lstlisting}[style=customc]
+// Evaluacion de condiciones de admision
+if (peso > 30.0f || largo > 120.0f || ancho > 120.0f || alto > 120.0f || (largo + ancho + alto) > 250.0f) {
+    printf("Paquete rechazado: excede los limites permitidos de peso o tamano.\n");
+} else {
+    printf("Paquete aceptado para distribucion.\n");
+}
+        \end{lstlisting}
+        \end{solucionbox}
+
+        \vspace{0.3cm}
+        \item Si el paquete es aceptado, la tarifa base no se calcula siempre por el peso en báscula, sino sobre el \textit{peso facturable}, el cual se define formalmente como el valor máximo entre el peso real y el peso volumétrico ($PV$), calculado como:
+        \[
+        PV = \frac{L \times W \times H}{5000.0}
+        \]
+        Escriba las instrucciones en C que calculen $PV$ y asignen a la variable \texttt{peso\_facturable} el mayor de ambos valores, utilizando el operador ternario (\texttt{?:}) o una estructura condicional.
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \noindent Es fundamental utilizar un literal de punto flotante (\texttt{5000.0f}) en el denominador para evitar la división entera:
+        \begin{lstlisting}[style=customc]
+// Calculo del peso volumetrico
+float peso_vol = (largo * ancho * alto) / 5000.0f;
+
+// Seleccion del mayor entre peso real y volumetrico
+float peso_facturable = (peso > peso_vol) ? peso : peso_vol;
+
+printf("Peso real: %.2f kg | Peso volumetrico: %.2f kg\n", peso, peso_vol);
+printf("Peso facturable aplicado: %.2f kg\n", peso_facturable);
+        \end{lstlisting}
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 2: PÁGINA 4 (2.c Avanzado)
+    % =========================================================================
+    \newpage
+    \begin{enumerate}[label=(\alph*), resume]
+        \item Para calcular el cobro final en pesos (\$) se aplican las siguientes reglas:
+        \begin{itemize}[noitemsep]
+            \item Tarifa base de \$3.000 para paquetes de hasta $2.0\text{ kg}$ de peso facturable.
+            \item Para pesos facturables superiores a $2.0\text{ kg}$, se cobran los \$3.000 base más \$1.200 por cada kilo (o fracción continua) excedente.
+            \item Si la variable entera \texttt{es\_zona\_remota} tiene el valor \texttt{1}, se aplica un recargo adicional del 25\% sobre el costo total acumulado.
+        \end{itemize}
+        Escriba el fragmento de código que calcule e imprima el total a pagar formateado como número entero sin decimales.
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \begin{lstlisting}[style=customc]
+float costo = 3000.0f;
+
+// Cobro de excedente para paquetes de mas de 2.0 kg
+if (peso_facturable > 2.0f) {
+    costo += (peso_facturable - 2.0f) * 1200.0f;
+}
+
+// Recargo adicional por zona remota (25%)
+if (es_zona_remota == 1) {
+    costo *= 1.25f;
+}
+
+printf("Costo total de envio: $%.0f\n", costo);
+        \end{lstlisting}
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 3: PÁGINA 5 (Contexto + 3.a + 3.b)
+    % =========================================================================
+    \newpage
+    \item En sistemas de telemetría y monitoreo de sensores industriales, las lecturas continuas se almacenan en un arreglo unidimensional \texttt{int A[n]}. Se define formalmente como un \textbf{pico local} a cualquier elemento que sea estrictamente mayor que sus dos vecinos contiguos (inmediato anterior e inmediato posterior).
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Explique por qué la condición de pico local no puede evaluarse con la misma expresión en los extremos del arreglo ($i = 0$ e $i = n - 1$). ¿Qué error de memoria ocurre a bajo nivel en C si se ejecuta la comparación \texttt{A[i] > A[i-1]} en el índice $i = 0$?
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \noindent Los elementos extremos carecen de un par completo de vecinos contiguos: en $i=0$ no existe un vecino anterior y en $i=n-1$ no existe un vecino posterior.
+        
+        \noindent Al evaluar \texttt{A[i-1]} con $i=0$, el programa genera el índice no válido \texttt{A[-1]}, intentando acceder a una dirección de memoria ubicada $4\text{ bytes}$ (\texttt{sizeof(int)}) antes del inicio del arreglo. Dado que C no comprueba límites (\textit{no bounds checking}), se produce un desbordamiento que lee basura o provoca una caída por \textit{Segmentation Fault}. Por ello, la iteración debe restringirse a los elementos estrictamente interiores: $1 \le i \le n - 2$.
+        \end{solucionbox}
+
+        \vspace{0.3cm}
+        \item Para el arreglo de lecturas \texttt{int V[7] = \{12, 18, 14, 14, 22, 9, 15\};}, realice un trazado manual de los índices interiores ($i = 1, 2, 3, 4, 5$). Indique explícitamente cuáles de ellos cumplen con la condición de pico local y determine la cantidad total de picos detectados.
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \noindent Evaluación secuencial de cada posición interior:
+        \begin{itemize}[noitemsep]
+            \item \textbf{i = 1} ($V[1] = 18$): Vecinos son $V[0]=12$ y $V[2]=14$. ¿$18 > 12$ y $18 > 14$? \textbf{Sí} $\rightarrow$ \textbf{Pico local 1}.
+            \item \textbf{i = 2} ($V[2] = 14$): Vecinos son $V[1]=18$ y $V[3]=14$. ¿$14 > 18$? \textbf{No} $\rightarrow$ No califica.
+            \item \textbf{i = 3} ($V[3] = 14$): Vecinos son $V[2]=14$ y $V[4]=22$. ¿$14 > 14$? \textbf{No} (debe ser estrictamente mayor) $\rightarrow$ No califica.
+            \item \textbf{i = 4} ($V[4] = 22$): Vecinos son $V[3]=14$ y $V[5]=9$. ¿$22 > 14$ y $22 > 9$? \textbf{Sí} $\rightarrow$ \textbf{Pico local 2}.
+            \item \textbf{i = 5} ($V[5] = 9$): Vecinos son $V[4]=22$ y $V[6]=15$. ¿$9 > 22$? \textbf{No} $\rightarrow$ No califica.
+        \end{itemize}
+        \textbf{Total detectado:} Existen exactamente \textbf{2 picos locales} (en los índices $1$ y $4$, con valores de $18$ y $22$).
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 3: PÁGINA 6 (3.c Avanzado)
+    % =========================================================================
+    \newpage
+    \begin{enumerate}[label=(\alph*), resume]
+        \item Escriba un programa completo o función en C que reciba un arreglo \texttt{int A[n]}, detecte todos los picos locales interiores, los almacene en un arreglo auxiliar \texttt{picos} y reporte por consola la cantidad total y los valores encontrados. Considere los siguientes casos de prueba:
+        
+        \begin{center}
+        \begin{tabular}{ll}
+        \toprule
+        \textbf{Entrada (\texttt{A[n]})} & \textbf{Salida esperada} \\
+        \midrule
+        \texttt{\{5, 10, 4, 8, 2, 9, 3\}} & \texttt{Picos encontrados (3): 10 8 9} \\
+        \texttt{\{1, 2, 3, 4, 5\}} & \texttt{Picos encontrados (0): ninguno} \\
+        \texttt{\{10, 4, 7, 7, 7, 3, 8\}} & \texttt{Picos encontrados (0): ninguno} \\
+        \bottomrule
+        \end{tabular}
+        \end{center}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \begin{lstlisting}[style=customc]
+#include <stdio.h>
+
+int main(void) {
+    int A[] = {5, 10, 4, 8, 2, 9, 3};
+    int n = sizeof(A) / sizeof(A[0]);
+    int picos[n];
+    int total_picos = 0;
+
+    // Recorrido seguro de los elementos interiores (1 a n-2)
+    for (int i = 1; i < n - 1; i++) {
+        if (A[i] > A[i - 1] && A[i] > A[i + 1]) {
+            picos[total_picos] = A[i];
+            total_picos++;
+        }
+    }
+
+    // Reporte de resultados
+    if (total_picos > 0) {
+        printf("Picos encontrados (%d): ", total_picos);
+        for (int j = 0; j < total_picos; j++) {
+            printf("%d ", picos[j]);
+        }
+        printf("\n");
+    } else {
+        printf("Picos encontrados (0): ninguno\n");
+    }
+
+    return 0;
+}
+        \end{lstlisting}
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 4: PÁGINA 7 (Contexto + 4.a + 4.b)
+    % =========================================================================
+    \newpage
+    \item En C, las cadenas de caracteres (strings) se implementan como arreglos de tipo \texttt{char} delimitados por el carácter nulo terminador \texttt{'\textbackslash 0'}.
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Responda a las siguientes preguntas conceptuales:
+        \begin{enumerate}[label=\arabic*.]
+            \item ¿Cuál es la cantidad mínima de bytes que debe reservarse en memoria para almacenar de forma segura la palabra \texttt{"SISTEMAS"} como una cadena de caracteres en C? Justifique.
+            \item ¿Cuál es el propósito del carácter \texttt{'\textbackslash 0'} (cero binario) y qué consecuencia tiene en la ejecución de funciones como \texttt{printf("\%s", ...)} si este carácter se omite en memoria?
+        \end{enumerate}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \begin{enumerate}[noitemsep]
+            \item \textbf{Reserva mínima de memoria:} Se requieren exactamente \textbf{9 bytes}. Aunque la palabra \texttt{"SISTEMAS"} consta de 8 caracteres útiles, en C toda cadena terminada en nulo necesita un byte adicional para almacenar el carácter centinela \texttt{'\textbackslash 0'}. Si se reservan solo 8 bytes, la secuencia no constituye un string válido según la especificación de C.
+            \item \textbf{Función de \texttt{'\textbackslash 0'}:} C no almacena la longitud de un string junto con la variable. Las funciones estándar como \texttt{printf("\%s", ...)} o \texttt{strlen} comienzan a leer desde la dirección de inicio e imprimen carácter por carácter de forma continua hasta encontrar un byte con valor numérico $0$ (\texttt{'\textbackslash 0'}). Si este terminador no existe, la función continúa leyendo fuera del buffer reservado, imprimiendo basura de memoria y provocando vulnerabilidades de acceso no autorizado o caídas por \textit{Segmentation Fault}.
+        \end{enumerate}
+        \end{solucionbox}
+
+        \vspace{0.3cm}
+        \item Un estudiante implementó la siguiente función con el objetivo de invertir una cadena de caracteres en su mismo espacio de memoria (\textit{in-place}), pero al probarla la cadena resultante queda inalterada (idéntica a la original):
+        \begin{lstlisting}[style=customc]
+void invertir(char str[], int len) {
+    for (int i = 0; i < len; i++) {
+        char temp = str[i];
+        str[i] = str[len - 1 - i];
+        str[len - 1 - i] = temp;
+    }
+}
+        \end{lstlisting}
+        Explique por qué falla esta lógica algorítmica y escriba la corrección precisa que debe aplicarse en la condición de parada del ciclo \texttt{for}.
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \noindent \textbf{Explicación del fallo:} El bucle recorre todos los índices de $0$ hasta $len - 1$. En la primera mitad ($i < len / 2$), los caracteres se intercambian correctamente; sin embargo, al cruzar el punto medio ($i \ge len / 2$), la iteración vuelve a intercambiar los caracteres simétricos ya movidos, regresando la cadena a su disposición original.
+        
+        \noindent \textbf{Corrección:} El bucle debe detenerse estrictamente en la mitad del arreglo:
+        \begin{lstlisting}[style=customc, numbers=none]
+for (int i = 0; i < len / 2; i++)
+        \end{lstlisting}
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 4: PÁGINA 8 (4.c Avanzado)
+    % =========================================================================
+    \newpage
+    \begin{enumerate}[label=(\alph*), resume]
+        \item Escriba una función en C con el siguiente prototipo:
+        \begin{lstlisting}[style=customc, numbers=none]
+void generar_acronimo(const char frase[], char acronimo[]);
+        \end{lstlisting}
+        La función debe procesar la cadena \texttt{frase} y construir en \texttt{acronimo} las iniciales en mayúscula de cada palabra. Se asume que una nueva palabra comienza al inicio de la frase o tras uno o más espacios en blanco consecutivos (\texttt{' '}). Asegure la correcta colocación del carácter terminador \texttt{'\textbackslash 0'}.
+        
+        \begin{center}
+        \begin{tabular}{ll}
+        \toprule
+        \textbf{Entrada (\texttt{frase})} & \textbf{Salida (\texttt{acronimo})} \\
+        \midrule
+        \texttt{"basic c without tears"} & \texttt{"BCWT"} \\
+        \texttt{"  lenguaje   c   estandar  "} & \texttt{"LCE"} \\
+        \texttt{"memoria"} & \texttt{"M"} \\
+        \bottomrule
+        \end{tabular}
+        \end{center}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+        
+        \begin{lstlisting}[style=customc]
+void generar_acronimo(const char frase[], char acronimo[]) {
+    int i = 0;
+    int k = 0;
+    int nueva_palabra = 1; // Bandera de estado para detectar el inicio de palabra
+
+    while (frase[i] != '\0') {
+        if (frase[i] != ' ') {
+            if (nueva_palabra) {
+                char c = frase[i];
+                // Si la letra es minuscula ('a'..'z'), convertir a mayuscula restando 32
+                if (c >= 'a' && c <= 'z') {
+                    c = c - 32;
+                }
+                acronimo[k] = c;
+                k++;
+                nueva_palabra = 0; // Ya se capturo la inicial de la palabra en curso
+            }
+        } else {
+            // El espacio habilita la captura de la proxima inicial
+            nueva_palabra = 1;
+        }
+        i++;
+    }
+    // Cierre indispensable del string generado con terminador nulo
+    acronimo[k] = '\0';
+}
+        \end{lstlisting}
+        \end{solucionbox}
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
