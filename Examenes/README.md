@@ -42,3 +42,30 @@ Cada entrega cuenta con dos documentos complementarios:
 ## 📘 Documentos Especiales de Referencia
 
 * **[Guía de Referencia: Pseudocódigo en C](./Pseudocodigo.pdf)** ([Fuente LaTeX](./Tex/Pseudocodigo.tex)): Documento explicativo de 4 páginas que detalla qué es el pseudocódigo, cuándo utilizarlo, tablas de equivalencia sintáctica con C y comparativas prácticas entre código compilable y pseudocódigo riguroso (condicionales, arreglos y cadenas con `\0`).
+
+---
+
+## 📚 Material de Práctica Disponible
+
+### Guías Tipo A (Fundamentos y Lógica)
+* **Guía 01 - Preguntas**: [`Guia_01_Tipo_A_Preguntas.pdf`](./Guia_01_Tipo_A_Preguntas.pdf) ([Fuente LaTeX](./Tex/Guia_01_Tipo_A_Preguntas.tex))
+* **Guía 01 - Pauta con Soluciones**: [`Guia_01_Tipo_A_Pauta.pdf`](./Guia_01_Tipo_A_Pauta.pdf) ([Fuente LaTeX](./Tex/Guia_01_Tipo_A_Pauta.tex))
+
+### Guías Tipo B (Conceptos Avanzados)
+* **Guía 01 - Preguntas**: [`Guia_01_Tipo_B_Preguntas.pdf`](./Guia_01_Tipo_B_Preguntas.pdf) ([Fuente LaTeX](./Tex/Guia_01_Tipo_B_Preguntas.tex))
+* **Guía 01 - Pauta con Soluciones**: [`Guia_01_Tipo_B_Pauta.pdf`](./Guia_01_Tipo_B_Pauta.pdf) ([Fuente LaTeX](./Tex/Guia_01_Tipo_B_Pauta.tex))
+
+---
+
+## 🛠️ Compilación de Archivos LaTeX
+
+Para compilar cualquiera de los archivos `.tex` hacia el directorio de tu elección utilizando `tectonic`:
+
+```bash
+tectonic --outdir <directorio_salida> Examenes/Tex/<archivo>.tex
+```
+Por ejemplo, para compilar directamente en la carpeta `Examenes/`:
+
+```bash
+tectonic --outdir Examenes Examenes/Tex/Guia_01_Tipo_B_Pauta.tex
+```

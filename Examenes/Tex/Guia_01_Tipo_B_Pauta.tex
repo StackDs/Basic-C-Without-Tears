@@ -1,0 +1,492 @@
+\documentclass[11pt,letterpaper]{article}
+
+% --- Paquetes de configuración básica ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage[margin=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{array}
+
+\raggedbottom
+\setlength{\headheight}{14pt}
+
+% --- Configuración de cabeceras y pie de página ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Basic C Without Tears}
+\fancyhead[C]{Pauta y Soluciones -- Guía Tipo B}
+\fancyhead[R]{Stack}
+\fancyfoot[L]{Basic-C-Without-Tears}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Configuración de entorno de código C ---
+\lstdefinestyle{customc}{
+  language=C,
+  numbers=left,
+  stepnumber=1,
+  numbersep=8pt,
+  numberstyle=\tiny\color{gray},
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{blue!80!black},
+  commentstyle=\itshape\color{green!50!black},
+  stringstyle=\color{red!70!black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  showstringspaces=false,
+  frame=none
+}
+
+% --- Entorno para Solución Formativa (Nunca cortada) ---
+\newtcolorbox{solucionbox}{
+  colback=white,
+  colframe=black,
+  arc=0mm,
+  boxrule=0.6pt,
+  left=3mm,
+  right=3mm,
+  top=2mm,
+  bottom=2mm,
+  nobeforeafter
+}
+
+\begin{document}
+
+% =============================================================================
+% EJERCICIO 1: PÁGINA 1 (Encabezado + 1.a)
+% =============================================================================
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.2cm]
+    {\Large \textbf{Guía Práctica con Soluciones -- Tipo B}} \\[0.12cm]
+    \small Estructuras, Punteros, Memoria Dinámica y Operaciones de Bits \\[0.08cm]
+    \textbf{Autor:} Stack
+\end{center}
+\vspace{0.2cm}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Responda a las siguientes preguntas sobre estructuras, uniones y representación de datos compuestos en memoria.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Considere las siguientes dos definiciones en una arquitectura de 64 bits con alineación natural ($\text{sizeof(char)} = 1$, $\text{sizeof(int)} = 4$, $\text{sizeof(double)} = 8$):
+        \begin{lstlisting}[style=customc, numbers=none]
+struct Version_A {
+    char    tipo;
+    double  valor;
+    int     codigo;
+};
+
+struct Version_B {
+    double  valor;
+    int     codigo;
+    char    tipo;
+};
+        \end{lstlisting}
+        Sin modificar los campos, indique cuál de las dos versiones ocupa menos bytes en memoria y justifique calculando el \texttt{sizeof} de cada una. Detalle los bytes de \textit{padding} insertados y su ubicación.
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \noindent \textbf{Respuesta:} \texttt{Version\_B} ocupa menos memoria (\textbf{16 bytes}) frente a los \textbf{24 bytes} de \texttt{Version\_A}.
+
+        \noindent \textbf{Análisis de \texttt{Version\_A}} (24 bytes):
+        \begin{itemize}[noitemsep]
+            \item Offset 0: \texttt{char tipo} (1 byte) + \textbf{7 bytes de padding} (offsets 1--7) para alinear \texttt{double} a múltiplo de 8.
+            \item Offsets 8--15: \texttt{double valor} (8 bytes).
+            \item Offsets 16--19: \texttt{int codigo} (4 bytes) + \textbf{4 bytes de padding} (offsets 20--23) para que el tamaño total sea múltiplo de 8.
+        \end{itemize}
+
+        \noindent \textbf{Análisis de \texttt{Version\_B}} (16 bytes):
+        \begin{itemize}[noitemsep]
+            \item Offsets 0--7: \texttt{double valor} (8 bytes), ya alineado.
+            \item Offsets 8--11: \texttt{int codigo} (4 bytes), alineado a múltiplo de 4.
+            \item Offset 12: \texttt{char tipo} (1 byte) + \textbf{3 bytes de padding} (offsets 13--15).
+        \end{itemize}
+        Reordenar los campos de mayor a menor tamaño minimiza el padding.
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 1: PÁGINA 2 (1.b + 1.c)
+    % =========================================================================
+    \newpage
+    \begin{enumerate}[label=(\alph*), resume]
+        \item El siguiente programa intenta copiar el contenido de una estructura a otra, pero el programador usó asignación campo a campo. Determine qué imprime el código y explique por qué la asignación directa \texttt{b = a;} entre variables del mismo tipo \texttt{struct} es válida en C:
+        \begin{lstlisting}[style=customc]
+struct Punto { int x; int y; };
+
+struct Punto a = {15, -8};
+struct Punto b;
+b.x = a.x;
+b.y = a.y;
+a.x = 0;
+
+printf("b: (%d, %d)\n", b.x, b.y);
+        \end{lstlisting}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \noindent \textbf{Salida por pantalla:} \texttt{b: (15, -8)}
+
+        \noindent La asignación campo a campo copia los valores de \texttt{a} en \texttt{b}. Ambas variables son independientes en el Stack. Cuando \texttt{a.x = 0;} se ejecuta después, solo modifica la copia de \texttt{a}, sin afectar a \texttt{b} que ya almacena $15$.
+
+        \noindent \textbf{Sobre \texttt{b = a;}:} En C, la asignación directa entre variables del mismo tipo \texttt{struct} es válida y equivale a una copia byte a byte (\texttt{memcpy} implícito) de todos los campos. El compilador genera el código de copia automáticamente.
+        \end{solucionbox}
+
+        \vspace{0.3cm}
+        \item Escriba una función en C con el siguiente prototipo:
+        \begin{lstlisting}[style=customc, numbers=none]
+int contar_aprobados(struct Alumno lista[], int n);
+        \end{lstlisting}
+        donde \texttt{struct Alumno} contiene los campos \texttt{char nombre[50]} y \texttt{float promedio}. La función debe retornar la cantidad de alumnos cuyo promedio sea mayor o igual a $4.0$.
+
+        \begin{center}
+        \begin{tabular}{ll}
+        \toprule
+        \textbf{Entrada} & \textbf{Salida esperada} \\
+        \midrule
+        \texttt{\{("Ana", 5.2), ("Luis", 3.9), ("Mia", 4.0)\}} & \texttt{2} \\
+        \texttt{\{("Pedro", 3.5), ("Sol", 2.8)\}} & \texttt{0} \\
+        \bottomrule
+        \end{tabular}
+        \end{center}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \begin{lstlisting}[style=customc]
+struct Alumno {
+    char nombre[50];
+    float promedio;
+};
+
+int contar_aprobados(struct Alumno lista[], int n) {
+    int aprobados = 0;
+    for (int i = 0; i < n; i++) {
+        if (lista[i].promedio >= 4.0f) {
+            aprobados++;
+        }
+    }
+    return aprobados;
+}
+        \end{lstlisting}
+        \noindent La función recorre el arreglo accediendo al campo \texttt{promedio} con el operador punto (\texttt{.}). La comparación \texttt{>= 4.0f} incluye igualdad, por lo que un promedio de exactamente $4.0$ cuenta como aprobado.
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 2: PÁGINA 3 (Contexto + 2.a)
+    % =========================================================================
+    \newpage
+    \item Los punteros en C permiten manipular directamente las direcciones de memoria donde residen las variables. Cada tipo de puntero avanza en memoria según el tamaño del tipo al que apunta.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Determine qué imprime el siguiente fragmento de código. Justifique cada línea de salida indicando el valor almacenado y la operación realizada:
+        \begin{lstlisting}[style=customc]
+int datos[5] = {100, 200, 300, 400, 500};
+int *p = datos + 1;
+
+printf("%d\n", *p);
+printf("%d\n", *(p + 2));
+printf("%d\n", p[-1]);
+p += 3;
+printf("%d\n", *p);
+        \end{lstlisting}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \noindent El puntero \texttt{p} se inicializa apuntando a \texttt{datos[1]}:
+        \begin{enumerate}[noitemsep]
+            \item \texttt{*p}: Desreferencia la posición actual $\rightarrow$ \texttt{datos[1]} = \textbf{200}.
+            \item \texttt{*(p + 2)}: Avanza 2 posiciones desde \texttt{datos[1]} $\rightarrow$ \texttt{datos[3]} = \textbf{400}.
+            \item \texttt{p[-1]}: Retrocede 1 posición desde \texttt{datos[1]} $\rightarrow$ \texttt{datos[0]} = \textbf{100}.
+            \item Tras \texttt{p += 3}, \texttt{p} apunta a \texttt{datos[4]}. \texttt{*p} = \textbf{500}.
+        \end{enumerate}
+        \noindent \textbf{Salida:} \texttt{200}, \texttt{400}, \texttt{100}, \texttt{500} (una por línea).
+        \end{solucionbox}
+
+        \vspace{0.3cm}
+        \item El siguiente programa pretende intercambiar los valores de dos variables mediante una función, pero tras la llamada \texttt{x} e \texttt{y} permanecen inalteradas:
+        \begin{lstlisting}[style=customc]
+void intercambiar(int a, int b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int main() {
+    int x = 7, y = 13;
+    intercambiar(x, y);
+    printf("x=%d, y=%d\n", x, y);
+    return 0;
+}
+        \end{lstlisting}
+        Explique por qué falla el intercambio y reescriba la función corregida utilizando punteros.
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \noindent \textbf{Diagnóstico:} En C, los argumentos se pasan \textbf{por valor}. Las variables \texttt{a} y \texttt{b} son copias locales que se destruyen al retornar. Salida: \texttt{x=7, y=13}.
+
+        \noindent \textbf{Corrección con punteros:}
+        \begin{lstlisting}[style=customc]
+void intercambiar(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+// Llamada: intercambiar(&x, &y);
+        \end{lstlisting}
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 2: PÁGINA 4 (2.c)
+    % =========================================================================
+    \newpage
+    \begin{enumerate}[label=(\alph*), resume]
+        \item Escriba una función en C con el siguiente prototipo:
+        \begin{lstlisting}[style=customc, numbers=none]
+void separar_pares_impares(const int *origen, int n,
+    int *pares, int *np, int *impares, int *ni);
+        \end{lstlisting}
+        La función recorre el arreglo \texttt{origen} de $n$ elementos y copia los números pares en \texttt{pares} (cantidad en \texttt{*np}) y los impares en \texttt{impares} (cantidad en \texttt{*ni}).
+
+        \begin{center}
+        \begin{tabular}{ll}
+        \toprule
+        \textbf{Entrada (\texttt{origen})} & \textbf{Salida esperada} \\
+        \midrule
+        \texttt{\{3, 8, 15, 4, 7, 2\}} & \texttt{pares: 8 4 2 (3), impares: 3 15 7 (3)} \\
+        \texttt{\{10, 20, 30\}} & \texttt{pares: 10 20 30 (3), impares: (0)} \\
+        \bottomrule
+        \end{tabular}
+        \end{center}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \begin{lstlisting}[style=customc]
+void separar_pares_impares(const int *origen, int n,
+    int *pares, int *np, int *impares, int *ni) {
+    *np = 0;
+    *ni = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (origen[i] % 2 == 0) {
+            pares[*np] = origen[i];
+            (*np)++;
+        } else {
+            impares[*ni] = origen[i];
+            (*ni)++;
+        }
+    }
+}
+        \end{lstlisting}
+        \noindent \textbf{Puntos clave:}
+        \begin{itemize}[noitemsep]
+            \item Los contadores \texttt{*np} y \texttt{*ni} se inicializan a $0$ al inicio.
+            \item Se usa el operador módulo (\texttt{\%~2}) para clasificar cada elemento.
+            \item Los paréntesis en \texttt{(*np)++} son esenciales: sin ellos, la precedencia de \texttt{++} incrementaría el puntero en lugar del valor apuntado.
+            \item \texttt{const} en \texttt{origen} garantiza que no se modifica el arreglo de entrada.
+        \end{itemize}
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 3: PÁGINA 5 (Contexto + 3.a)
+    % =========================================================================
+    \newpage
+    \item La gestión explícita de memoria dinámica en C se realiza mediante las funciones \texttt{malloc}, \texttt{realloc} y \texttt{free} de la biblioteca \texttt{<stdlib.h>}.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item El siguiente código compila correctamente, pero contiene dos errores graves de gestión de memoria. Identifíquelos y explique sus consecuencias:
+        \begin{lstlisting}[style=customc]
+int *crear_secuencia(int n) {
+    int resultado[n];
+    for (int i = 0; i < n; i++) {
+        resultado[i] = (i + 1) * 10;
+    }
+    return resultado;
+}
+
+int main() {
+    int *sec = crear_secuencia(5);
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", sec[i]);
+    }
+    free(sec);
+    return 0;
+}
+        \end{lstlisting}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \noindent \textbf{Error 1 -- Retorno de puntero a variable local (\textit{dangling pointer}):}
+        El arreglo \texttt{resultado} es un VLA que vive en el Stack Frame de \texttt{crear\_secuencia}. Cuando la función retorna, su Stack Frame se destruye y la memoria queda invalidada. El puntero devuelto produce \textit{undefined behavior} al desreferenciarlo.
+
+        \noindent \textbf{Error 2 -- \texttt{free} sobre memoria no dinámica:}
+        La función \texttt{free} solo acepta punteros obtenidos mediante \texttt{malloc}, \texttt{calloc} o \texttt{realloc}. Llamar a \texttt{free(sec)} con un puntero al Stack provoca corrupción del Heap o \textit{Segmentation Fault}.
+        \end{solucionbox}
+
+        \vspace{0.3cm}
+        \item Reescriba la función \texttt{crear\_secuencia} de forma correcta, reservando memoria en el Heap con \texttt{malloc} y verificando que la asignación no falle. Indique quién es responsable de liberar la memoria y dónde debe hacerse.
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \begin{lstlisting}[style=customc]
+int *crear_secuencia(int n) {
+    int *resultado = (int *)malloc(n * sizeof(int));
+    if (resultado == NULL) {
+        return NULL;  // Fallo de asignacion
+    }
+    for (int i = 0; i < n; i++) {
+        resultado[i] = (i + 1) * 10;
+    }
+    return resultado;
+}
+        \end{lstlisting}
+        \noindent \textbf{Responsabilidad de liberar:} El llamador (\texttt{main}) debe invocar \texttt{free(sec)} cuando termine de usar el bloque. La memoria en el Heap persiste hasta que se libere explícitamente.
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 3: PÁGINA 6 (3.c)
+    % =========================================================================
+    \newpage
+    \begin{enumerate}[label=(\alph*), resume]
+        \item Escriba una función en C con el siguiente prototipo:
+        \begin{lstlisting}[style=customc, numbers=none]
+int *leer_hasta_cero(int *cantidad);
+        \end{lstlisting}
+        La función lee enteros desde la entrada estándar hasta que el usuario ingrese el valor $0$ (centinela). Debe almacenar los valores leídos en un bloque dinámico que comienza con capacidad para $2$ elementos y se duplica con \texttt{realloc} cada vez que se llena. Al finalizar, almacena en \texttt{*cantidad} el total de elementos leídos y retorna el puntero al bloque.
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \begin{lstlisting}[style=customc]
+#include <stdio.h>
+#include <stdlib.h>
+
+int *leer_hasta_cero(int *cantidad) {
+    int capacidad = 2;
+    int total = 0;
+    int *bloque = (int *)malloc(capacidad * sizeof(int));
+    if (bloque == NULL) {
+        *cantidad = 0;
+        return NULL;
+    }
+
+    int valor;
+    while (scanf("%d", &valor) == 1 && valor != 0) {
+        if (total == capacidad) {
+            capacidad *= 2;
+            int *temp = (int *)realloc(bloque,
+                        capacidad * sizeof(int));
+            if (temp == NULL) {
+                free(bloque);
+                *cantidad = 0;
+                return NULL;
+            }
+            bloque = temp;
+        }
+        bloque[total] = valor;
+        total++;
+    }
+
+    *cantidad = total;
+    return bloque;
+}
+        \end{lstlisting}
+        \noindent \textbf{Puntos clave:}
+        \begin{itemize}[noitemsep]
+            \item Se usa un puntero temporal \texttt{temp} para el \texttt{realloc}: si falla, se conserva el puntero original para liberarlo y evitar una fuga de memoria.
+            \item La capacidad se duplica ($\times 2$) en cada expansión, dando un crecimiento amortizado de $O(1)$ por inserción.
+            \item El centinela ($0$) no se almacena en el arreglo.
+        \end{itemize}
+        \end{solucionbox}
+    \end{enumerate}
+
+    % =========================================================================
+    % EJERCICIO 4: PÁGINA 7 (Contexto + 4.a)
+    % =========================================================================
+    \newpage
+    \item Las operaciones a nivel de bits (\texttt{\&}, \texttt{|}, \texttt{\^{}}, \texttt{\~{}}, \texttt{<<}, \texttt{>>}) permiten manipular individualmente los bits de un valor entero.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Determine qué imprime el siguiente fragmento de código. Muestre el cálculo binario completo de cada operación (use representación de 8 bits):
+        \begin{lstlisting}[style=customc]
+unsigned char a = 0xC5;  // 1100 0101
+unsigned char b = 0x3A;  // 0011 1010
+
+printf("AND: 0x%02X\n", a & b);
+printf("OR:  0x%02X\n", a | b);
+printf("XOR: 0x%02X\n", a ^ b);
+        \end{lstlisting}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \noindent Operandos: \texttt{a = 0xC5} = \texttt{1100 0101}, \texttt{b = 0x3A} = \texttt{0011 1010}.
+        \begin{itemize}[noitemsep]
+            \item \textbf{AND} (\texttt{a \& b}): \texttt{1100 0101 \& 0011 1010} = \texttt{0000 0000} = \textbf{0x00}.
+            \item \textbf{OR} (\texttt{a | b}): \texttt{1100 0101 | 0011 1010} = \texttt{1111 1111} = \textbf{0xFF}.
+            \item \textbf{XOR} (\texttt{a \^{} b}): \texttt{1100 0101 \^{} 0011 1010} = \texttt{1111 1111} = \textbf{0xFF}.
+        \end{itemize}
+        \noindent \textbf{Salida:} \texttt{AND: 0x00}, \texttt{OR: 0xFF}, \texttt{XOR: 0xFF}.
+        \end{solucionbox}
+
+        \vspace{0.3cm}
+        \item En un sistema de control de acceso, los permisos de un usuario se almacenan en una variable \texttt{unsigned char permisos} donde cada bit representa un permiso distinto:
+        \begin{itemize}[noitemsep]
+            \item Bit 0: Lectura \quad Bit 1: Escritura \quad Bit 2: Ejecución \quad Bit 3: Administración
+        \end{itemize}
+        Un usuario tiene \texttt{permisos = 0x05} (binario: \texttt{0000 0101}). Escriba las expresiones en C para:
+        \begin{enumerate}[label=\arabic*., noitemsep]
+            \item Verificar si tiene permiso de Escritura (bit 1).
+            \item Otorgarle permiso de Administración (bit 3) sin alterar los demás.
+            \item Revocarle permiso de Lectura (bit 0) sin alterar los demás.
+            \item Conmutar (toggle) el permiso de Ejecución (bit 2).
+        \end{enumerate}
+
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}
+
+        \noindent Estado inicial: \texttt{permisos = 0x05} = \texttt{0000 0101} (Lectura + Ejecución activos).
+        \begin{enumerate}[noitemsep]
+            \item \textbf{Verificar Escritura (bit 1):}
+            \begin{lstlisting}[style=customc, numbers=none]
+if (permisos & (1 << 1))  // 0x05 & 0x02 = 0x00 -> NO tiene
+            \end{lstlisting}
+            \item \textbf{Otorgar Administración (bit 3) -- SET con OR:}
+            \begin{lstlisting}[style=customc, numbers=none]
+permisos |= (1 << 3);  // 0x05 | 0x08 = 0x0D
+            \end{lstlisting}
+            \item \textbf{Revocar Lectura (bit 0) -- CLEAR con AND + NOT:}
+            \begin{lstlisting}[style=customc, numbers=none]
+permisos &= ~(1 << 0);  // 0x0D & 0xFE = 0x0C
+            \end{lstlisting}
+            \item \textbf{Conmutar Ejecución (bit 2) -- TOGGLE con XOR:}
+            \begin{lstlisting}[style=customc, numbers=none]
+permisos ^= (1 << 2);  // 0x0C ^ 0x04 = 0x08
+            \end{lstlisting}
+        \end{enumerate}
+        \end{solucionbox}
+    \end{enumerate}
+    \newpage
+
+\end{enumerate}
+
+\end{document}
