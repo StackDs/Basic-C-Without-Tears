@@ -205,7 +205,7 @@ pkg-config --modversion sdl3 sdl3-mixer
 
 ## 7. Licencia y Uso de la Guía
 
-Este material y guía práctica están publicados bajo la **Licencia MIT**.
+Este material y guía práctica están publicados bajo la **Licencia Apache -2.0 License**.
 
 Tienes total libertad para **usar, cambiar, modificar, adaptar y distribuir** tanto el código fuente como los contenidos explicativos de esta guía para fines educativos, académicos o personales, **siempre y cuando se mantenga la referencia y el crédito correspondiente a la fuente original de donde se obtuvo**:
 
