@@ -1,0 +1,82 @@
+\input{../../Plantillas/PlantillaExamenA.tex}
+\newcommand{\NombreDocumento}{Examen 03 -- Variante A}
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.2cm]
+    {\Large \textbf{Examen 03 -- Variante A}} \\[0.12cm]
+    \small Fundamentos de C, matrices, control de flujo y cadenas de caracteres \\[0.08cm]
+    \textbf{Autor:} Stack
+\end{center}
+\vspace{0.2cm}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item Una matriz contiene las ventas de dos productos durante tres días:
+\begin{lstlisting}[style=customc, numbers=none]
+int V[3][2] = {{5, 8}, {7, 4}, {6, 9}};
+\end{lstlisting}
+\begin{enumerate}[label=(\alph*)]
+\item ¿Cuántas posiciones hay? Indique el valor de \texttt{V[2][0]}.
+\ifpauta\begin{solucionbox}Hay $3\times2=6$ posiciones. \texttt{V[2][0]} vale 6.\end{solucionbox}\else\vspace{1.5cm}\fi
+\item Calcule el total vendido por producto (cada columna).
+\ifpauta\begin{solucionbox}Producto 1: $5+7+6=18$. Producto 2: $8+4+9=21$.\end{solucionbox}\else\vspace{2cm}\fi
+\item Escriba código que cuente cuántas ventas de la matriz son mayores o iguales a 7.
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+int cantidad = 0;
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 2; j++) {
+        if (V[i][j] >= 7) {
+            cantidad++;
+        }
+    }
+}
+printf("Ventas de 7 o mas: %d\n", cantidad);
+\end{lstlisting}Los valores que cumplen son 8, 7 y 9; el resultado es 3.\end{solucionbox}\else\vspace{3cm}\fi
+\end{enumerate}
+\newpage
+\item Una cantidad ingresada en la variable \texttt{int cantidad} debe ser positiva y no superar 50.
+\begin{enumerate}[label=(\alph*)]
+\item Escriba una condición que identifique los datos inválidos.
+\ifpauta\begin{solucionbox}\texttt{cantidad <= 0 || cantidad > 50}.\end{solucionbox}\else\vspace{1.5cm}\fi
+\item Escriba un fragmento que imprima \texttt{Dato aceptado} solo si el valor es válido; en caso contrario, imprima \texttt{Revisar dato}.
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+if (cantidad > 0 && cantidad <= 50) {
+    printf("Dato aceptado\n");
+} else {
+    printf("Revisar dato\n");
+}
+\end{lstlisting}\end{solucionbox}\else\vspace{2cm}\fi
+\item Clasifique los valores \texttt{0}, \texttt{1}, \texttt{50} y \texttt{51}.
+\ifpauta\begin{solucionbox}0: inválido; 1: válido; 50: válido; 51: inválido.\end{solucionbox}\else\vspace{2cm}\fi
+\end{enumerate}
+\newpage
+\item Determine la salida exacta del código.
+\begin{lstlisting}[style=customc]
+int A[2][2] = {{3, 1}, {2, 4}};
+int mayor = A[0][0];
+for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 2; j++) {
+        if (A[i][j] > mayor) {
+            mayor = A[i][j];
+        }
+    }
+}
+printf("Mayor=%d\n", mayor);
+\end{lstlisting}
+\ifpauta\begin{solucionbox}Se comparan sucesivamente 3, 1, 2 y 4 con el mayor actual. El máximo final es 4.\par\textbf{Salida:}\texttt{Mayor=4}.\end{solucionbox}\else\vspace{3cm}\fi
+\item Escriba una función que copie una cadena a otra, reemplazando cada espacio por un guion bajo. Suponga que el arreglo de destino tiene espacio suficiente y termine correctamente la cadena.
+\begin{center}\begin{tabular}{ll}\toprule\textbf{Entrada} & \textbf{Resultado}\\\midrule\texttt{"hola c"} & \texttt{"hola\_c"}\\\texttt{"sin espacios"} & \texttt{"sin\_espacios"}\\\texttt{"C"} & \texttt{"C"}\\\bottomrule\end{tabular}\end{center}
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+void copiar_con_guion(const char origen[], char destino[]) {
+    int i = 0;
+    while (origen[i] != '\0') {
+        if (origen[i] == ' ') {
+            destino[i] = '_';
+        } else {
+            destino[i] = origen[i];
+        }
+        i++;
+    }
+    destino[i] = '\0';
+}
+\end{lstlisting}El índice de escritura avanza en paralelo al de lectura y se copia el terminador.\end{solucionbox}\else\vspace{3cm}\fi
+\end{enumerate}
+\end{document}

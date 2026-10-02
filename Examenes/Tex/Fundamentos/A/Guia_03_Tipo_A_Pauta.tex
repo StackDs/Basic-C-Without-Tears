@@ -1,0 +1,218 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage[margin=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{array}
+\raggedbottom
+\setlength{\headheight}{14pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Basic C Without Tears}
+\fancyhead[C]{Pauta -- Guía 03 Tipo A}
+\fancyhead[R]{Stack}
+\fancyfoot[L]{Basic-C-Without-Tears}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\lstdefinestyle{customc}{
+  language=C,
+  numbers=left,
+  stepnumber=1,
+  numbersep=8pt,
+  numberstyle=\tiny\color{gray},
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{blue!80!black},
+  commentstyle=\itshape\color{green!50!black},
+  stringstyle=\color{red!70!black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  showstringspaces=false,
+  frame=none
+}
+\lstdefinestyle{pseudocodigo}{
+  numbers=none,
+  basicstyle=\footnotesize\ttfamily,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  showstringspaces=false,
+  frame=none
+}
+\newtcolorbox{solucionbox}{
+  before=\par\smallskip,
+  after=\par\smallskip,
+  colback=white,
+  colframe=black,
+  arc=0mm,
+  boxrule=0.6pt,
+  left=3mm,
+  right=3mm,
+  top=2mm,
+  bottom=2mm
+}
+
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.25cm]
+    {\Large \textbf{Guía Práctica con Soluciones -- Tipo A -- Guía 03}} \\[0.15cm]
+    \small Fundamentos de C, traza de código, strings y matrices \\[0.1cm]
+    \textbf{Autor:} Stack
+\end{center}
+\vspace{0.3cm}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Fundamentos del Lenguaje (Teoría aplicada).}
+    Suponga que un \texttt{char} ocupa 1 byte y un \texttt{short} ocupa 2 bytes. Justifique las respuestas.
+    \begin{enumerate}[label=(\alph*)]
+        \item Para estas declaraciones, indique el valor de \texttt{sizeof(clave)}, cuántos caracteres útiles contiene la cadena y cuántos bytes suman ambos arreglos. Distinga la capacidad reservada de la longitud del texto.
+        \begin{lstlisting}[style=customc,numbers=none]
+char clave[7] = "LUNA";
+short intentos[4];
+        \end{lstlisting}
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}\par
+        \texttt{sizeof(clave)} vale \textbf{7}: mide el arreglo completo, aunque el texto solo tenga \textbf{4 caracteres útiles}. El terminador ocupa una posición adicional; quedan dos posiciones sin usar por ese texto. \texttt{intentos} ocupa $4\times2=8$ bytes. Ambos arreglos suman $7+8=\textbf{15}$ bytes.
+        \end{solucionbox}
+        \item Indique el valor entero y el valor lógico de la expresión siguiente. Explique el efecto de \texttt{!} y de la división entera. \textquestiondown{}Se consideraría \texttt{-3} verdadero o falso si se usara solo como condición de un \texttt{if}?
+        \begin{lstlisting}[style=customc,numbers=none]
+!(-3) || (6 / 4 > 1)
+        \end{lstlisting}
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}\par
+        \texttt{-3} es distinto de cero, por lo que es verdadero como condición. Su negación \texttt{!(-3)} vale 0. La división entera \texttt{6 / 4} vale 1, y \texttt{1 > 1} es falso. El resultado es \texttt{0 || 0}: \textbf{0, falso}.
+        \end{solucionbox}
+        \item Indique qué imprime el fragmento. \textquestiondown{}Sería válido agregar \texttt{printf("\%d", usados);} después de cerrar el bloque? Explique el alcance de cada variable.
+        \begin{lstlisting}[style=customc]
+int cupos = 6;
+{
+    int usados = 2;
+    cupos -= usados;
+}
+printf("%d\n", cupos);
+        \end{lstlisting}
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}\par
+        Imprime \texttt{4} seguido de un salto de línea. \texttt{cupos} está en alcance dentro del bloque y se modifica: $6-2=4$. \texttt{usados} solo está en alcance dentro de ese bloque; intentar utilizarlo después produciría un error de compilación por identificador no declarado.
+        \end{solucionbox}
+    \end{enumerate}
+
+    \newpage
+    \item \textbf{Análisis y Traza de Código (Matemáticas y Control de Flujo).}
+    \textquestiondown{}Qué imprime exactamente este código en pantalla? Suponga que el fragmento está dentro de \texttt{main} y que se incluyó \texttt{stdio.h}. Sin ejecutarlo ni modificarlo, respete los espacios y saltos de línea. Registre el dígito extraído, el valor restante de \texttt{n} y la suma al terminar cada vuelta, incluso cuando no se imprime nada.
+    \begin{lstlisting}[style=customc]
+int n = 5832, suma = 0;
+while (n > 0) {
+    int digito = n % 10;
+    n /= 10;
+    if (digito % 2 != 0) {
+        continue;
+    }
+    suma += digito;
+    printf("%d:%d\n", digito, suma);
+}
+printf("Resto=%d Total=%d\n", n, suma);
+    \end{lstlisting}
+    \begin{solucionbox}
+    \textbf{Solución y Explicación:}\par
+    El módulo obtiene el último dígito; la división entera lo elimina de \texttt{n}. Si el dígito es impar, \texttt{continue} salta la suma y la impresión, pero no deshace la división ya realizada.
+    \begin{center}
+    \begin{tabular}{cccc}
+    \toprule
+    \texttt{digito} & \texttt{n} restante & \texttt{suma} & Impresión \\
+    \midrule
+    2 & 583 & 2 & \texttt{2:2} \\
+    3 & 58 & 2 & Ninguna \\
+    8 & 5 & 10 & \texttt{8:10} \\
+    5 & 0 & 10 & Ninguna \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+    \textbf{Salida exacta:}
+    \begin{lstlisting}[style=customc,numbers=none]
+2:2
+8:10
+Resto=0 Total=10
+    \end{lstlisting}
+    Cada línea, incluida la última, termina en un salto de línea.
+    \end{solucionbox}
+
+    \newpage
+    \item \textbf{Algoritmia con Strings (Pseudocódigo).}
+    Un catálogo acepta una cadena solo si sus letras están en orden alfabético no decreciente: cada letra debe ser mayor o igual que la anterior. Escriba el pseudocódigo de una función que retorne \texttt{VERDADERO} o \texttt{FALSO} según esa regla, sin modificar la cadena.
+    Suponga que la entrada contiene únicamente letras de \texttt{'a'} a \texttt{'z'} en ASCII. Recorra la cadena hasta \texttt{'\textbackslash 0'} y no utilice funciones de biblioteca ni ordenamiento. Las letras repetidas se permiten; la cadena vacía y una cadena de una sola letra se consideran válidas.
+    \begin{center}
+    \begin{tabular}{ll}
+    \toprule
+    \textbf{Texto} & \textbf{Resultado} \\
+    \midrule
+    \texttt{"abbcz"} & \texttt{VERDADERO} \\
+    \texttt{"abac"} & \texttt{FALSO} \\
+    \texttt{"m"} & \texttt{VERDADERO} \\
+    \texttt{""} & \texttt{VERDADERO} \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+    \begin{solucionbox}
+    \textbf{Solución y Explicación:}
+    \begin{lstlisting}[style=pseudocodigo]
+FUNCION esta_ordenada(texto)
+    i <- 0
+    ordenada <- VERDADERO
+    MIENTRAS texto[i] != '\0' HACER
+        SI i > 0 ENTONCES
+            SI texto[i] < texto[i - 1] ENTONCES
+                ordenada <- FALSO
+            FIN_SI
+        FIN_SI
+        i <- i + 1
+    FIN_MIENTRAS
+    RETORNAR ordenada
+FIN_FUNCION
+    \end{lstlisting}
+    La condición \texttt{i > 0} evita leer la posición $-1$. La bandera queda falsa si aparece alguna disminución y no se restablece en comparaciones posteriores. Las letras iguales se aceptan. Para \texttt{"abac"}, la segunda \texttt{'a'} es menor que la \texttt{'b'} anterior.
+    \par Una cadena vacía no entra al ciclo y una de una letra no compara vecinos: ambas retornan verdadero. El recorrido llega al terminador sin modificarlo.
+    \end{solucionbox}
+
+    \newpage
+    \item \textbf{Algoritmia con Matrices/Arreglos (Pseudocódigo).}
+    Escriba pseudocódigo que copie una matriz \texttt{origen} en otra matriz \texttt{espejo}, invirtiendo el orden de las columnas de cada fila. La primera columna debe pasar a ser la última, la segunda la penúltima, y así sucesivamente; las filas conservan su posición.
+    Ambas matrices tienen \texttt{filas} por \texttt{columnas} posiciones, con dimensiones positivas y espacio ya reservado. Use bucles anidados e índices \texttt{i} y \texttt{j} desde cero, sin modificar \texttt{origen}. Muestre la matriz resultante para:
+    \[
+    \texttt{origen} =
+    \begin{bmatrix}
+    2 & 7 & 1 \\
+    9 & 4 & 6
+    \end{bmatrix}
+    \]
+    La solución debe funcionar también si hay una sola columna.
+    \begin{solucionbox}
+    \textbf{Solución y Explicación:}
+    \begin{lstlisting}[style=pseudocodigo]
+PARA i <- 0 HASTA filas - 1 HACER
+    PARA j <- 0 HASTA columnas - 1 HACER
+        espejo[i][j] <- origen[i][columnas - 1 - j]
+    FIN_PARA
+FIN_PARA
+    \end{lstlisting}
+    El índice de fila se conserva y el de lectura recorre las columnas desde la última hasta la primera. \texttt{origen} no se modifica. Con una sola columna, $1-1-0=0$, por lo que cada elemento se copia a la misma posición.
+    \[
+    \texttt{espejo} =
+    \begin{bmatrix}
+    1 & 7 & 2 \\
+    6 & 4 & 9
+    \end{bmatrix}
+    \]
+    \end{solucionbox}
+\end{enumerate}
+\end{document}

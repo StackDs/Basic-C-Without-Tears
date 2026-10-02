@@ -1,0 +1,76 @@
+\input{../../Plantillas/PlantillaExamenA.tex}
+\newcommand{\NombreDocumento}{Examen 02 -- Variante A}
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.2cm]
+    {\Large \textbf{Examen 02 -- Variante A}} \\[0.12cm]
+    \small Fundamentos de C, validación, matrices y cadenas de caracteres \\[0.08cm]
+    \textbf{Autor:} Stack
+\end{center}
+\vspace{0.2cm}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item Una estación registra temperaturas enteras durante tres días y en dos horarios:
+\begin{lstlisting}[style=customc, numbers=none]
+int T[3][2] = {{8, 12}, {15, 9}, {11, 14}};
+\end{lstlisting}
+\begin{enumerate}[label=(\alph*)]
+\item Indique cuántas filas y columnas tiene la matriz. ¿Qué representan \texttt{T[1][0]} y \texttt{T[2][1]}?
+\ifpauta\begin{solucionbox}La matriz tiene 3 filas y 2 columnas. \texttt{T[1][0]} vale 15 y \texttt{T[2][1]} vale 14; los índices comienzan en cero.\end{solucionbox}\else\vspace{1.5cm}\fi
+\item Recorra la matriz y calcule la suma de las temperaturas de cada día (cada fila).
+\ifpauta\begin{solucionbox}Las sumas por fila son: día 1, $8+12=20$; día 2, $15+9=24$; día 3, $11+14=25$.\end{solucionbox}\else\vspace{2cm}\fi
+\item Escriba un fragmento en C que recorra la matriz, calcule e imprima la suma de cada fila.
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+for (int i = 0; i < 3; i++) {
+    int suma = 0;
+    for (int j = 0; j < 2; j++) {
+        suma += T[i][j];
+    }
+    printf("Dia %d: %d\n", i + 1, suma);
+}
+\end{lstlisting}El ciclo exterior selecciona la fila y el interior visita todas sus columnas.\end{solucionbox}\else\vspace{3cm}\fi
+\end{enumerate}
+\newpage
+\item Una función recibe la edad de una persona en la variable entera \texttt{edad}. Se considera válida una edad entre 0 y 120, inclusive.
+\begin{enumerate}[label=(\alph*)]
+\item Escriba la condición lógica que permite comprobar que la edad es válida.
+\ifpauta\begin{solucionbox}\texttt{edad >= 0 \&\& edad <= 120}. Ambas condiciones deben cumplirse.\end{solucionbox}\else\vspace{1.5cm}\fi
+\item Complete un \texttt{if-else} que imprima \texttt{Edad valida} o \texttt{Edad invalida}.
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+if (edad >= 0 && edad <= 120) {
+    printf("Edad valida\n");
+} else {
+    printf("Edad invalida\n");
+}
+\end{lstlisting}\end{solucionbox}\else\vspace{2cm}\fi
+\item Indique el resultado de la validación para \texttt{-2}, \texttt{0}, \texttt{120} y \texttt{121}.
+\ifpauta\begin{solucionbox}\texttt{-2}: inválida; \texttt{0}: válida; \texttt{120}: válida; \texttt{121}: inválida. Los extremos se incluyen.\end{solucionbox}\else\vspace{2cm}\fi
+\end{enumerate}
+\newpage
+\item Determine exactamente qué imprime el siguiente código y explique el recorrido de los ciclos.
+\begin{lstlisting}[style=customc]
+int M[2][3] = {{1, 2, 3}, {4, 5, 6}};
+int total = 0;
+for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 3; j++) {
+        total += M[i][j];
+    }
+    printf("Fila %d: %d\n", i, total);
+}
+\end{lstlisting}
+\ifpauta\begin{solucionbox}El acumulador no se reinicia al cambiar de fila. Primera fila: suma $1+2+3=6$. Segunda fila: agrega $4+5+6$, por lo que queda 21.\par\textbf{Salida:}\\\texttt{Fila 0: 6}\\\texttt{Fila 1: 21}\end{solucionbox}\else\vspace{3cm}\fi
+\item En C, una cadena termina con \texttt{'\\0'}. Escriba una función que cuente cuántas vocales minúsculas (\texttt{a,e,i,o,u}) hay en una cadena, sin modificarla.
+\begin{center}\begin{tabular}{ll}\toprule\textbf{Entrada} & \textbf{Resultado}\\\midrule\texttt{"casa"} & \texttt{2}\\\texttt{"Basic C"} & \texttt{2}\\\texttt{"xyz"} & \texttt{0}\\\bottomrule\end{tabular}\end{center}
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+int contar_vocales(const char texto[]) {
+    int total = 0;
+    for (int i = 0; texto[i] != '\0'; i++) {
+        if (texto[i] == 'a' || texto[i] == 'e' ||
+            texto[i] == 'i' || texto[i] == 'o' || texto[i] == 'u') {
+            total++;
+        }
+    }
+    return total;
+}
+\end{lstlisting}Se recorre hasta el terminador; la condición solo incluye vocales minúsculas.\end{solucionbox}\else\vspace{3cm}\fi
+\end{enumerate}
+\end{document}

@@ -1,0 +1,76 @@
+\input{../../Plantillas/PlantillaExamenA.tex}
+\newcommand{\NombreDocumento}{Examen 02 -- Variante B}
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.2cm]
+    {\Large \textbf{Examen 02 -- Variante B}} \\[0.12cm]
+    \small Fundamentos de C, validación, matrices y cadenas de caracteres \\[0.08cm]
+    \textbf{Autor:} Stack
+\end{center}
+\vspace{0.2cm}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item Una biblioteca registra préstamos de libros en una matriz donde cada fila es una semana y cada columna una sucursal:
+\begin{lstlisting}[style=customc, numbers=none]
+int P[2][3] = {{4, 7, 3}, {5, 2, 8}};
+\end{lstlisting}
+\begin{enumerate}[label=(\alph*)]
+\item Indique el valor de \texttt{P[0][2]} y \texttt{P[1][1]}.
+\ifpauta\begin{solucionbox}\texttt{P[0][2]} vale 3 y \texttt{P[1][1]} vale 2.\end{solucionbox}\else\vspace{1.5cm}\fi
+\item Calcule el total de préstamos de cada sucursal (cada columna).
+\ifpauta\begin{solucionbox}Sucursal 1: $4+5=9$; sucursal 2: $7+2=9$; sucursal 3: $3+8=11$.\end{solucionbox}\else\vspace{2cm}\fi
+\item Escriba un fragmento en C que recorra la matriz e imprima el total de cada columna.
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+for (int j = 0; j < 3; j++) {
+    int suma = 0;
+    for (int i = 0; i < 2; i++) {
+        suma += P[i][j];
+    }
+    printf("Sucursal %d: %d\n", j + 1, suma);
+}
+\end{lstlisting}Se fija una columna en el ciclo exterior y se recorren sus filas en el interior.\end{solucionbox}\else\vspace{3cm}\fi
+\end{enumerate}
+\newpage
+\item Para ingresar una nota se usa la variable \texttt{float nota}; el rango permitido es de 1.0 a 7.0, inclusive.
+\begin{enumerate}[label=(\alph*)]
+\item Escriba la condición que detecta una nota fuera del rango.
+\ifpauta\begin{solucionbox}\texttt{nota < 1.0f || nota > 7.0f}. Basta con que se cumpla una de las dos condiciones para que sea inválida.\end{solucionbox}\else\vspace{1.5cm}\fi
+\item Escriba el fragmento \texttt{if-else} que imprima si la nota es válida.
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+if (nota >= 1.0f && nota <= 7.0f) {
+    printf("Nota valida\n");
+} else {
+    printf("Nota invalida\n");
+}
+\end{lstlisting}\end{solucionbox}\else\vspace{2cm}\fi
+\item Clasifique las entradas \texttt{0.9}, \texttt{1.0}, \texttt{5.5} y \texttt{7.1}.
+\ifpauta\begin{solucionbox}\texttt{0.9}: inválida; \texttt{1.0}: válida; \texttt{5.5}: válida; \texttt{7.1}: inválida.\end{solucionbox}\else\vspace{2cm}\fi
+\end{enumerate}
+\newpage
+\item Determine qué imprime el programa.
+\begin{lstlisting}[style=customc]
+int A[2][2] = {{2, 4}, {6, 8}};
+int suma = 0;
+for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 2; j++) {
+        suma += A[i][j];
+        printf("%d ", suma);
+    }
+}
+printf("\nTotal=%d\n", suma);
+\end{lstlisting}
+\ifpauta\begin{solucionbox}El acumulado se imprime después de agregar cada elemento: 2, 6, 12 y 20.\par\textbf{Salida:}\\\texttt{2 6 12 20}\\\texttt{Total=20}\end{solucionbox}\else\vspace{3cm}\fi
+\item Escriba una función que cuente cuántas cifras numéricas (\texttt{'0'} a \texttt{'9'}) contiene una cadena. No use funciones de biblioteca para strings.
+\begin{center}\begin{tabular}{ll}\toprule\textbf{Entrada} & \textbf{Resultado}\\\midrule\texttt{"Aula 204"} & \texttt{3}\\\texttt{"C"} & \texttt{0}\\\texttt{"12-34"} & \texttt{4}\\\bottomrule\end{tabular}\end{center}
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+int contar_cifras(const char texto[]) {
+    int total = 0;
+    for (int i = 0; texto[i] != '\0'; i++) {
+        if (texto[i] >= '0' && texto[i] <= '9') {
+            total++;
+        }
+    }
+    return total;
+}
+\end{lstlisting}La comparación de rango reconoce cualquier carácter entre cero y nueve en ASCII.\end{solucionbox}\else\vspace{3cm}\fi
+\end{enumerate}
+\end{document}

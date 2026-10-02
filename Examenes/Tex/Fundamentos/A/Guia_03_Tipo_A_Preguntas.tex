@@ -1,0 +1,126 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage[margin=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\raggedbottom
+\setlength{\headheight}{14pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Basic C Without Tears}
+\fancyhead[C]{Guía 03 -- Tipo A}
+\fancyhead[R]{Stack}
+\fancyfoot[L]{Basic-C-Without-Tears}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\lstdefinestyle{customc}{
+  language=C,
+  numbers=left,
+  stepnumber=1,
+  numbersep=8pt,
+  numberstyle=\tiny\color{gray},
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{blue!80!black},
+  commentstyle=\itshape\color{green!50!black},
+  stringstyle=\color{red!70!black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  showstringspaces=false,
+  frame=none
+}
+
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.25cm]
+    {\Large \textbf{Guía Práctica Formativa -- Tipo A -- Guía 03}} \\[0.15cm]
+    \small Fundamentos de C, traza de código, strings y matrices \\[0.1cm]
+    \textbf{Autor:} Stack
+\end{center}
+\vspace{0.3cm}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Fundamentos del Lenguaje (Teoría aplicada).}
+    Suponga que un \texttt{char} ocupa 1 byte y un \texttt{short} ocupa 2 bytes. Justifique las respuestas.
+    \begin{enumerate}[label=(\alph*)]
+        \item Para estas declaraciones, indique el valor de \texttt{sizeof(clave)}, cuántos caracteres útiles contiene la cadena y cuántos bytes suman ambos arreglos. Distinga la capacidad reservada de la longitud del texto.
+        \begin{lstlisting}[style=customc,numbers=none]
+char clave[7] = "LUNA";
+short intentos[4];
+        \end{lstlisting}
+        \par\vspace{1.5cm}
+        \item Indique el valor entero y el valor lógico de la expresión siguiente. Explique el efecto de \texttt{!} y de la división entera. \textquestiondown{}Se consideraría \texttt{-3} verdadero o falso si se usara solo como condición de un \texttt{if}?
+        \begin{lstlisting}[style=customc,numbers=none]
+!(-3) || (6 / 4 > 1)
+        \end{lstlisting}
+        \par\vspace{1.5cm}
+        \item Indique qué imprime el fragmento. \textquestiondown{}Sería válido agregar \texttt{printf("\%d", usados);} después de cerrar el bloque? Explique el alcance de cada variable.
+        \begin{lstlisting}[style=customc]
+int cupos = 6;
+{
+    int usados = 2;
+    cupos -= usados;
+}
+printf("%d\n", cupos);
+        \end{lstlisting}
+        \par\vspace{1.5cm}
+    \end{enumerate}
+
+    \newpage
+    \item \textbf{Análisis y Traza de Código (Matemáticas y Control de Flujo).}
+    \textquestiondown{}Qué imprime exactamente este código en pantalla? Suponga que el fragmento está dentro de \texttt{main} y que se incluyó \texttt{stdio.h}. Sin ejecutarlo ni modificarlo, respete los espacios y saltos de línea. Registre el dígito extraído, el valor restante de \texttt{n} y la suma al terminar cada vuelta, incluso cuando no se imprime nada.
+    \begin{lstlisting}[style=customc]
+int n = 5832, suma = 0;
+while (n > 0) {
+    int digito = n % 10;
+    n /= 10;
+    if (digito % 2 != 0) {
+        continue;
+    }
+    suma += digito;
+    printf("%d:%d\n", digito, suma);
+}
+printf("Resto=%d Total=%d\n", n, suma);
+    \end{lstlisting}
+
+    \newpage
+    \item \textbf{Algoritmia con Strings (Pseudocódigo).}
+    Un catálogo acepta una cadena solo si sus letras están en orden alfabético no decreciente: cada letra debe ser mayor o igual que la anterior. Escriba el pseudocódigo de una función que retorne \texttt{VERDADERO} o \texttt{FALSO} según esa regla, sin modificar la cadena.
+    Suponga que la entrada contiene únicamente letras de \texttt{'a'} a \texttt{'z'} en ASCII. Recorra la cadena hasta \texttt{'\textbackslash 0'} y no utilice funciones de biblioteca ni ordenamiento. Las letras repetidas se permiten; la cadena vacía y una cadena de una sola letra se consideran válidas.
+    \begin{center}
+    \begin{tabular}{ll}
+    \toprule
+    \textbf{Texto} & \textbf{Resultado} \\
+    \midrule
+    \texttt{"abbcz"} & \texttt{VERDADERO} \\
+    \texttt{"abac"} & \texttt{FALSO} \\
+    \texttt{"m"} & \texttt{VERDADERO} \\
+    \texttt{""} & \texttt{VERDADERO} \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+
+    \newpage
+    \item \textbf{Algoritmia con Matrices/Arreglos (Pseudocódigo).}
+    Escriba pseudocódigo que copie una matriz \texttt{origen} en otra matriz \texttt{espejo}, invirtiendo el orden de las columnas de cada fila. La primera columna debe pasar a ser la última, la segunda la penúltima, y así sucesivamente; las filas conservan su posición.
+    Ambas matrices tienen \texttt{filas} por \texttt{columnas} posiciones, con dimensiones positivas y espacio ya reservado. Use bucles anidados e índices \texttt{i} y \texttt{j} desde cero, sin modificar \texttt{origen}. Muestre la matriz resultante para:
+    \[
+    \texttt{origen} =
+    \begin{bmatrix}
+    2 & 7 & 1 \\
+    9 & 4 & 6
+    \end{bmatrix}
+    \]
+    La solución debe funcionar también si hay una sola columna.
+\end{enumerate}
+\end{document}

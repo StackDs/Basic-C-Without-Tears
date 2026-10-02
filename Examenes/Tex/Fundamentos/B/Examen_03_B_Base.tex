@@ -1,0 +1,79 @@
+\input{../../Plantillas/PlantillaExamenA.tex}
+\newcommand{\NombreDocumento}{Examen 03 -- Variante B}
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.2cm]
+    {\Large \textbf{Examen 03 -- Variante B}} \\[0.12cm]
+    \small Fundamentos de C, matrices, control de flujo y cadenas de caracteres \\[0.08cm]
+    \textbf{Autor:} Stack
+\end{center}
+\vspace{0.2cm}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item Una matriz registra unidades producidas por tres turnos en dos máquinas:
+\begin{lstlisting}[style=customc, numbers=none]
+int U[3][2] = {{10, 12}, {8, 15}, {14, 9}};
+\end{lstlisting}
+\begin{enumerate}[label=(\alph*)]
+\item Indique el valor de \texttt{U[0][1]} y \texttt{U[2][0]}.
+\ifpauta\begin{solucionbox}\texttt{U[0][1]} vale 12 y \texttt{U[2][0]} vale 14.\end{solucionbox}\else\vspace{1.5cm}\fi
+\item Calcule el total producido por cada turno (cada fila).
+\ifpauta\begin{solucionbox}Turno 1: 22 unidades; turno 2: 23; turno 3: 23.\end{solucionbox}\else\vspace{2cm}\fi
+\item Escriba código que cuente cuántos elementos son pares.
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+int pares = 0;
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 2; j++) {
+        if (U[i][j] % 2 == 0) {
+            pares++;
+        }
+    }
+}
+printf("Pares: %d\n", pares);
+\end{lstlisting}10, 12, 8 y 14 son pares; el resultado es 4.\end{solucionbox}\else\vspace{3cm}\fi
+\end{enumerate}
+\newpage
+\item Un código de producto almacenado en \texttt{int codigo} debe estar entre 1000 y 9999, inclusive.
+\begin{enumerate}[label=(\alph*)]
+\item Escriba la condición de validez.
+\ifpauta\begin{solucionbox}\texttt{codigo >= 1000 \&\& codigo <= 9999}.\end{solucionbox}\else\vspace{1.5cm}\fi
+\item Escriba un \texttt{if-else} que imprima \texttt{Codigo valido} o \texttt{Codigo invalido}.
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+if (codigo >= 1000 && codigo <= 9999) {
+            printf("Codigo valido\n");
+} else {
+            printf("Codigo invalido\n");
+}
+\end{lstlisting}\end{solucionbox}\else\vspace{2cm}\fi
+\item Clasifique \texttt{999}, \texttt{1000}, \texttt{4500} y \texttt{10000}.
+\ifpauta\begin{solucionbox}999: inválido; 1000: válido; 4500: válido; 10000: inválido.\end{solucionbox}\else\vspace{2cm}\fi
+\end{enumerate}
+\newpage
+\item Determine qué imprime el siguiente código.
+\begin{lstlisting}[style=customc]
+int M[2][3] = {{2, 1, 0}, {1, 2, 3}};
+int cuenta = 0;
+for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 3; j++) {
+        if (M[i][j] > 1) {
+            cuenta++;
+        }
+    }
+    printf("Conteo parcial: %d\\n", cuenta);
+}
+\end{lstlisting}
+\ifpauta\begin{solucionbox}En la primera fila solo el 2 cumple; en la segunda se agregan 2 y 3. El contador acumulado vale 1 y luego 3.\par\textbf{Salida:}\\\texttt{Conteo parcial: 1}\\\texttt{Conteo parcial: 3}\end{solucionbox}\else\vspace{3cm}\fi
+\item Escriba una función que cuente cuántas veces aparece el carácter \texttt{'a'} en una cadena. La función distingue mayúsculas de minúsculas.
+\begin{center}\begin{tabular}{ll}\toprule\textbf{Entrada} & \textbf{Resultado}\\\midrule\texttt{"banana"} & \texttt{3}\\\texttt{"Aula"} & \texttt{1}\\\texttt{"xyz"} & \texttt{0}\\\bottomrule\end{tabular}\end{center}
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+int contar_a(const char texto[]) {
+    int total = 0;
+    for (int i = 0; texto[i] != '\0'; i++) {
+        if (texto[i] == 'a') {
+            total++;
+        }
+    }
+    return total;
+}
+\end{lstlisting}Se compara cada carácter exactamente con la minúscula \texttt{'a'}.\end{solucionbox}\else\vspace{3cm}\fi
+\end{enumerate}
+\end{document}

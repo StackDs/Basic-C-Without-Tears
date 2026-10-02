@@ -1,0 +1,221 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage[margin=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{array}
+\raggedbottom
+\setlength{\headheight}{14pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Basic C Without Tears}
+\fancyhead[C]{Pauta -- Guía 02 Tipo A}
+\fancyhead[R]{Stack}
+\fancyfoot[L]{Basic-C-Without-Tears}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\lstdefinestyle{customc}{
+  language=C,
+  numbers=left,
+  stepnumber=1,
+  numbersep=8pt,
+  numberstyle=\tiny\color{gray},
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{blue!80!black},
+  commentstyle=\itshape\color{green!50!black},
+  stringstyle=\color{red!70!black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  showstringspaces=false,
+  frame=none
+}
+\lstdefinestyle{pseudocodigo}{
+  numbers=none,
+  basicstyle=\footnotesize\ttfamily,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  showstringspaces=false,
+  frame=none
+}
+\newtcolorbox{solucionbox}{
+  before=\par\smallskip,
+  after=\par\smallskip,
+  colback=white,
+  colframe=black,
+  arc=0mm,
+  boxrule=0.6pt,
+  left=3mm,
+  right=3mm,
+  top=2mm,
+  bottom=2mm
+}
+
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.25cm]
+    {\Large \textbf{Guía Práctica con Soluciones -- Tipo A -- Guía 02}} \\[0.15cm]
+    \small Fundamentos de C, traza de código, strings y matrices \\[0.1cm]
+    \textbf{Autor:} Stack
+\end{center}
+\vspace{0.3cm}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Fundamentos del Lenguaje (Teoría aplicada).}
+    Para los cálculos de tamaño, suponga que un \texttt{char} ocupa 1 byte, un \texttt{int} 4 bytes y un \texttt{double} 8 bytes. Suponga también que \texttt{unsigned char} tiene 8 bits.
+    \begin{enumerate}[label=(\alph*)]
+        \item Calcule el tamaño de cada objeto declarado y la suma de esos tamaños, en bytes. No considere posibles espacios entre variables.
+        \begin{lstlisting}[style=customc,numbers=none]
+char etiqueta[6];
+int lecturas[3];
+double promedio;
+        \end{lstlisting}
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}\par
+        \texttt{etiqueta} ocupa $6\times1=6$ bytes; \texttt{lecturas} ocupa $3\times4=12$ bytes; \texttt{promedio} ocupa 8 bytes. En total son $6+12+8=26$ bytes.
+        \end{solucionbox}
+        \item Determine si la siguiente expresión es verdadera o falsa en C tradicional e indique su valor entero. Justifique cómo se interpreta el operando negativo.
+        \begin{lstlisting}[style=customc,numbers=none]
+(0 || -2) && (5 % 2)
+        \end{lstlisting}
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}\par
+        \texttt{0 || -2} vale 1 porque \texttt{-2} es distinto de cero. \texttt{5 \% 2} vale 1. Por tanto, \texttt{1 \&\& 1} es verdadero y su resultado entero es 1.
+        En una condición, cero es falso y cualquier valor distinto de cero es verdadero; los operadores lógicos producen exactamente 0 o 1.
+        \end{solucionbox}
+        \item Si \texttt{dato} es un \texttt{unsigned char} de 8 bits, \textquestiondown{}qué valor queda almacenado después de la asignación? Explique el resultado.
+        \begin{lstlisting}[style=customc]
+unsigned char dato = 255;
+dato = dato + 1;
+        \end{lstlisting}
+        \begin{solucionbox}
+        \textbf{Solución y Explicación:}\par
+        El valor almacenado es \textbf{0}. Para la suma, \texttt{dato} se promueve a \texttt{int}, por lo que se calcula $255+1=256$. Al asignarlo a \texttt{unsigned char}, se reduce módulo $256$: el resto es 0. Esta conversión sin signo está definida; no ocurre desbordamiento de \texttt{int}.
+        \end{solucionbox}
+    \end{enumerate}
+
+    \newpage
+    \item \textbf{Análisis y Traza de Código (Matemáticas y Control de Flujo).}
+    \textquestiondown{}Qué imprime exactamente este código en pantalla? Suponga que el fragmento está dentro de \texttt{main} y que se incluyó \texttt{stdio.h}. Sin ejecutarlo ni modificarlo, escriba la salida respetando espacios y saltos de línea. Muestre los valores de \texttt{i} y \texttt{total} al terminar cada iteración.
+    \begin{lstlisting}[style=customc]
+int i = 1;
+int total = 0;
+while (i <= 4) {
+    total += i++ % 3;
+    if (i % 2 == 0) {
+        printf("P%d ", total);
+    } else {
+        printf("I%d ", i);
+    }
+}
+switch (total % 3) {
+    case 1: printf("uno ");
+    case 2: printf("dos ");
+    default: printf("fin\n");
+}
+    \end{lstlisting}
+    \begin{solucionbox}
+    \textbf{Solución y Explicación:}\par
+    En cada iteración, \texttt{i++} aporta el valor anterior de \texttt{i} a la operación y luego incrementa \texttt{i}. Los estados y textos son:
+    \begin{center}
+    \begin{tabular}{cccc}
+    \toprule
+    \texttt{i} inicial & \texttt{total} final & \texttt{i} final & Impresión \\
+    \midrule
+    1 & 1 & 2 & \texttt{P1 } \\
+    2 & 3 & 3 & \texttt{I3 } \\
+    3 & 3 & 4 & \texttt{P3 } \\
+    4 & 4 & 5 & \texttt{I5 } \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+    Al terminar el ciclo, \texttt{total \% 3} vale 1. El \texttt{switch} entra en \texttt{case 1}; como no hay \texttt{break}, continúa por \texttt{case 2} y luego por \texttt{default}.
+
+    \textbf{Salida exacta:}
+    \begin{lstlisting}[style=customc,numbers=none]
+P1 I3 P3 I5 uno dos fin
+    \end{lstlisting}
+    Hay un espacio entre cada texto y un único salto de línea después de \texttt{fin}.
+    \end{solucionbox}
+
+    \newpage
+    \item \textbf{Algoritmia con Strings (Pseudocódigo).}
+    Escriba el pseudocódigo de una función que elimine de una cadena \texttt{texto} todas las apariciones del carácter \texttt{objetivo}, modificando la misma cadena. Suponga que \texttt{objetivo} es distinto de \texttt{'\textbackslash 0'}. Recorra los caracteres hasta encontrar ese terminador, conserve el orden de los caracteres restantes y coloque correctamente el terminador al finalizar. No utilice funciones de biblioteca ni un arreglo auxiliar. Describa qué ocurre si la cadena está vacía, si el carácter no aparece o si todos los caracteres coinciden con él.
+    \begin{center}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Texto} & \textbf{Objetivo} & \textbf{Resultado} \\
+    \midrule
+    \texttt{"banana"} & \texttt{'a'} & \texttt{"bnn"} \\
+    \texttt{"sol"} & \texttt{'x'} & \texttt{"sol"} \\
+    \texttt{"aaa"} & \texttt{'a'} & \texttt{""} \\
+    \texttt{""} & \texttt{'a'} & \texttt{""} \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+    \begin{solucionbox}
+    \textbf{Solución y Explicación:}
+    \begin{lstlisting}[style=pseudocodigo]
+FUNCION eliminar_caracter(texto, objetivo)
+    lectura <- 0
+    escritura <- 0
+
+    MIENTRAS texto[lectura] != '\0' HACER
+        SI texto[lectura] != objetivo ENTONCES
+            texto[escritura] <- texto[lectura]
+            escritura <- escritura + 1
+        FIN_SI
+        lectura <- lectura + 1
+    FIN_MIENTRAS
+
+    texto[escritura] <- '\0'
+FIN_FUNCION
+    \end{lstlisting}
+    \texttt{lectura} visita todos los caracteres y \texttt{escritura} solo avanza cuando se conserva uno. Como la escritura nunca adelanta a la lectura, no se sobrescriben caracteres pendientes. El orden se conserva.
+    \par Si la cadena está vacía o todos los caracteres se eliminan, se escribe el terminador en la posición 0. Si el objetivo no aparece, la cadena queda igual.
+    \end{solucionbox}
+
+    \newpage
+    \item \textbf{Algoritmia con Matrices/Arreglos (Pseudocódigo).}
+    Una matriz \texttt{notas} tiene \texttt{filas} filas y \texttt{columnas} columnas, ambas cantidades positivas. Escriba pseudocódigo con bucles anidados e índices \texttt{i} y \texttt{j}, comenzando en cero, que calcule e informe el promedio de cada fila. La división debe ser real, sin descartar decimales. Para comprobar la solución, use:
+    \[
+    \texttt{notas} =
+    \begin{bmatrix}
+    4 & 8 & 6 & 2 \\
+    3 & 5 & 7 & 9 \\
+    10 & 0 & 2 & 5
+    \end{bmatrix}
+    \]
+    Indique los tres promedios obtenidos.
+    \begin{solucionbox}
+    \textbf{Solución y Explicación:}
+    \begin{lstlisting}[style=pseudocodigo]
+PARA i <- 0 HASTA filas - 1 HACER
+    suma <- 0.0
+    PARA j <- 0 HASTA columnas - 1 HACER
+        suma <- suma + notas[i][j]
+    FIN_PARA
+    promedio <- suma / columnas   // division real
+    ESCRIBIR "Promedio de fila ", i, ": ", promedio
+FIN_PARA
+    \end{lstlisting}
+    Se reinicia \texttt{suma} en cada fila; de lo contrario se acumularían notas de filas anteriores. Los límites incluyen todos los elementos sin salir de la matriz.
+    \begin{itemize}[noitemsep]
+        \item Fila 0: $(4+8+6+2)/4=5$.
+        \item Fila 1: $(3+5+7+9)/4=6$.
+        \item Fila 2: $(10+0+2+5)/4=4{,}25$.
+    \end{itemize}
+    \end{solucionbox}
+\end{enumerate}
+\end{document}

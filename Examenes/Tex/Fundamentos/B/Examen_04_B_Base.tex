@@ -1,0 +1,75 @@
+\input{../../Plantillas/PlantillaExamenA.tex}
+\newcommand{\NombreDocumento}{Examen 04 -- Variante B}
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{Basic C Without Tears}} \\[0.2cm]
+    {\Large \textbf{Examen 04 -- Variante B}} \\[0.12cm]
+    \small Fundamentos de C, matrices, validación y algoritmos simples de strings \\[0.08cm]
+    \textbf{Autor:} Stack
+\end{center}
+\vspace{0.2cm}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item Una matriz contiene resultados de dos equipos en dos rondas:
+\begin{lstlisting}[style=customc, numbers=none]
+int R[2][2] = {{3, 8}, {6, 4}};
+\end{lstlisting}
+\begin{enumerate}[label=(\alph*)]
+\item Indique los valores de \texttt{R[0][1]} y \texttt{R[1][0]}.
+\ifpauta\begin{solucionbox}\texttt{R[0][1]} vale 8 y \texttt{R[1][0]} vale 6.\end{solucionbox}\else\vspace{1.5cm}\fi
+\item Calcule la suma de la diagonal principal y la diagonal secundaria.
+\ifpauta\begin{solucionbox}Diagonal principal: $3+4=7$. Diagonal secundaria: $8+6=14$.\end{solucionbox}\else\vspace{2cm}\fi
+\item Escriba código que calcule e imprima la suma de la diagonal principal.
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+int suma = 0;
+for (int i = 0; i < 2; i++) {
+    suma += R[i][i];
+}
+printf("Diagonal principal: %d\n", suma);
+\end{lstlisting}En la diagonal principal el índice de fila coincide con el de columna.\end{solucionbox}\else\vspace{3cm}\fi
+\end{enumerate}
+\newpage
+\item Un número de unidades almacenado en \texttt{int unidades} es válido si está entre 1 y 500, inclusive.
+\begin{enumerate}[label=(\alph*)]
+\item Escriba la condición que comprueba la validez.
+\ifpauta\begin{solucionbox}\texttt{unidades >= 1 \&\& unidades <= 500}.\end{solucionbox}\else\vspace{1.5cm}\fi
+\item Escriba un fragmento \texttt{if-else} que imprima \texttt{Dentro de rango} o \texttt{Fuera de rango}.
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+if (unidades >= 1 && unidades <= 500) {
+    printf("Dentro de rango\n");
+} else {
+    printf("Fuera de rango\n");
+}
+\end{lstlisting}\end{solucionbox}\else\vspace{2cm}\fi
+\item Clasifique \texttt{1}, \texttt{250}, \texttt{500} y \texttt{501}.
+\ifpauta\begin{solucionbox}1, 250 y 500 son válidos; 501 está fuera del rango.\end{solucionbox}\else\vspace{2cm}\fi
+\end{enumerate}
+\newpage
+\item Determine la salida exacta.
+\begin{lstlisting}[style=customc]
+int M[2][2] = {{1, 2}, {3, 4}};
+for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 2; j++) {
+        if (M[i][j] % 2 == 0) {
+            printf("%d ", M[i][j]);
+        }
+    }
+}
+printf("fin\n");
+\end{lstlisting}
+\ifpauta\begin{solucionbox}Se recorren las filas de izquierda a derecha. Solo 2 y 4 son pares.\par\textbf{Salida:} \texttt{2 4 fin}.\end{solucionbox}\else\vspace{3cm}\fi
+\item Escriba una función que copie una cadena en otra en orden inverso. Suponga que el destino tiene espacio suficiente y que la cadena de entrada no supera los 99 caracteres.
+\begin{center}\begin{tabular}{ll}\toprule\textbf{Entrada} & \textbf{Resultado}\\\midrule\texttt{"sol"} & \texttt{"los"}\\\texttt{"C"} & \texttt{"C"}\\\texttt{""} & \texttt{""}\\\bottomrule\end{tabular}\end{center}
+\ifpauta\begin{solucionbox}\begin{lstlisting}[style=customc]
+void invertir_copia(const char origen[], char destino[]) {
+    int n = 0;
+    while (origen[n] != '\0') {
+        n++;
+    }
+    for (int i = 0; i < n; i++) {
+        destino[i] = origen[n - 1 - i];
+    }
+    destino[n] = '\0';
+}
+\end{lstlisting}Primero se calcula la longitud; luego el índice fuente decrece implícitamente con la expresión $n-1-i$. Para longitud cero, no se ejecuta el \texttt{for} y se escribe el terminador en destino[0].\end{solucionbox}\else\vspace{3cm}\fi
+\end{enumerate}
+\end{document}
